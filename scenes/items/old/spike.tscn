@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://mn8qo0scl38"]
+
+[ext_resource type="Texture2D" uid="uid://boaa3g3xpqy80" path="res://art/items/staticfood.png" id="1_so3ip"]
+[ext_resource type="Script" path="res://scenes/items/old/ItemPerish.gd" id="2_0e80f"]
+[ext_resource type="Script" path="res://scenes/items/old/ItemSpawn.gd" id="3_j0cyk"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_uhuu0"]
+radius = 3.0
+height = 16.0
+
+[node name="Foodnode" type="Area2D" groups=["Item", "LargeSpike"]]
+y_sort_enabled = true
+collision_layer = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -1)
+texture = ExtResource("1_so3ip")
+region_enabled = true
+region_rect = Rect2(22, 4, 22, 12)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_uhuu0")
+
+[node name="ItemPerish" type="Timer" parent="."]
+script = ExtResource("2_0e80f")
+
+[node name="ItemSpawn" type="Timer" parent="."]
+script = ExtResource("3_j0cyk")
+
+[connection signal="timeout" from="ItemPerish" to="ItemPerish" method="_on_timeout"]
+[connection signal="timeout" from="ItemSpawn" to="ItemSpawn" method="_on_timeout"]

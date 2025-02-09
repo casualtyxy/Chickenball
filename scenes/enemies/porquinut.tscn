@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://b7dabh2xgskfe"]
+
+[ext_resource type="Script" path="res://scenes/enemies/porquinut.gd" id="1_2botg"]
+[ext_resource type="Texture2D" uid="uid://ddxovgwfrwg4n" path="res://art/enemies/test/placeholder.png" id="2_2d8yv"]
+
+[sub_resource type="Curve2D" id="Curve2D_jd8dt"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 96, 0, 0, 0, 0, 0, 96, 48, 0, 0, 0, 0, 0, 48, 0, 0, 0, 0, 0, 0)
+}
+point_count = 5
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_t018x"]
+radius = 5.0
+height = 20.0
+
+[node name="Path2D" type="Path2D"]
+curve = SubResource("Curve2D_jd8dt")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="."]
+rotates = false
+
+[node name="Porquinut" type="Area2D" parent="PathFollow2D" groups=["Porquinut"]]
+collision_layer = 2
+script = ExtResource("1_2botg")
+
+[node name="Sprite2D" type="Sprite2D" parent="PathFollow2D/Porquinut"]
+position = Vector2(0, -8)
+texture = ExtResource("2_2d8yv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PathFollow2D/Porquinut"]
+position = Vector2(0, -3)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t018x")

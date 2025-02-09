@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://doabted1hcm4j"]
+
+[ext_resource type="Texture2D" uid="uid://n7bhc1q4gyt2" path="res://art/enemies/bubble.png" id="1_n7h7w"]
+[ext_resource type="Script" path="res://special_effects/particles/3second_spawner.gd" id="2_06jia"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_lcnqh"]
+particle_flag_disable_z = true
+angle_min = -180.0
+angle_max = 180.0
+direction = Vector3(0, 1, 0)
+spread = 180.0
+initial_velocity_min = 5.0
+initial_velocity_max = 50.0
+gravity = Vector3(0, 0, 0)
+
+[node name="Bubbles" type="GPUParticles2D"]
+z_index = 2
+amount = 5
+process_material = SubResource("ParticleProcessMaterial_lcnqh")
+texture = ExtResource("1_n7h7w")
+explosiveness = 0.5
+script = ExtResource("2_06jia")

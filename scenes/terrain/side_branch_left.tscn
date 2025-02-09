@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://dh8c6vnqf3siu"]
+
+[ext_resource type="Texture2D" uid="uid://b0nlnmv8yk86l" path="res://art/sprites/side_branch.png" id="1_h6j4p"]
+
+[sub_resource type="Gradient" id="Gradient_evg0h"]
+colors = PackedColorArray(0.568627, 0.619608, 0.298039, 1, 0.156863, 0.235294, 0.211765, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_n73v5"]
+gradient = SubResource("Gradient_evg0h")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_6ytry"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 24.0
+gravity = Vector3(5, 40, 0)
+scale_max = 3.0
+color_ramp = SubResource("GradientTexture1D_n73v5")
+turbulence_enabled = true
+turbulence_noise_strength = 10.0
+turbulence_noise_speed = Vector3(3, 1, 0)
+
+[node name="SideBranchLeft" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_h6j4p")
+offset = Vector2(-48, 0)
+flip_h = true
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+position = Vector2(-53, 0)
+process_material = SubResource("ParticleProcessMaterial_6ytry")
+lifetime = 10.0

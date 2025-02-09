@@ -1,0 +1,53 @@
+[gd_scene load_steps=8 format=3 uid="uid://0t34jnmjq2r7"]
+
+[ext_resource type="Script" path="res://scenes/items/old/ItemPerish.gd" id="2_40r8m"]
+[ext_resource type="Texture2D" uid="uid://db2agiwmyjyv2" path="res://art/items/superfood.png" id="2_els1u"]
+[ext_resource type="Script" path="res://scenes/items/old/ItemSpawn.gd" id="3_aoign"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_16bi4"]
+atlas = ExtResource("2_els1u")
+region = Rect2(0, 0, 22, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y4tby"]
+atlas = ExtResource("2_els1u")
+region = Rect2(22, 0, 22, 18)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jkukh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_16bi4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y4tby")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_uhuu0"]
+radius = 3.0
+height = 18.0
+
+[node name="Foodnode" type="Area2D" groups=["GoldSeed", "Item"]]
+y_sort_enabled = true
+collision_layer = 2
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -7)
+sprite_frames = SubResource("SpriteFrames_jkukh")
+autoplay = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_uhuu0")
+
+[node name="ItemPerish" type="Timer" parent="."]
+script = ExtResource("2_40r8m")
+
+[node name="ItemSpawn" type="Timer" parent="."]
+script = ExtResource("3_aoign")
+
+[connection signal="timeout" from="ItemPerish" to="ItemPerish" method="_on_timeout"]
+[connection signal="timeout" from="ItemSpawn" to="ItemSpawn" method="_on_timeout"]

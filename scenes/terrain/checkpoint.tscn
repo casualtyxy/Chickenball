@@ -1,0 +1,147 @@
+[gd_scene load_steps=21 format=3 uid="uid://b0vdbwu2o58ri"]
+
+[ext_resource type="Texture2D" uid="uid://diqhojpueb33t" path="res://art/sprites/SandwallFall.png" id="1_iysob"]
+[ext_resource type="Texture2D" uid="uid://clcisddco70ld" path="res://art/sprites/flag.png" id="2_uo7pc"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d1rgu"]
+atlas = ExtResource("1_iysob")
+region = Rect2(0, 0, 72, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cuiqj"]
+atlas = ExtResource("1_iysob")
+region = Rect2(72, 0, 72, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hyceu"]
+atlas = ExtResource("1_iysob")
+region = Rect2(144, 0, 72, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oxgfk"]
+atlas = ExtResource("1_iysob")
+region = Rect2(216, 0, 72, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wcbhf"]
+atlas = ExtResource("1_iysob")
+region = Rect2(288, 0, 72, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8gjso"]
+atlas = ExtResource("1_iysob")
+region = Rect2(360, 0, 72, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fcw23"]
+atlas = ExtResource("1_iysob")
+region = Rect2(432, 0, 72, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lnb4a"]
+atlas = ExtResource("1_iysob")
+region = Rect2(504, 0, 72, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2shvk"]
+atlas = ExtResource("1_iysob")
+region = Rect2(576, 0, 72, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yhlvt"]
+atlas = ExtResource("1_iysob")
+region = Rect2(648, 0, 72, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_23dvy"]
+atlas = ExtResource("1_iysob")
+region = Rect2(720, 0, 72, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uqih0"]
+atlas = ExtResource("1_iysob")
+region = Rect2(792, 0, 72, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_j6a57"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d1rgu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cuiqj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hyceu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oxgfk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wcbhf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8gjso")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fcw23")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lnb4a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2shvk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yhlvt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_23dvy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uqih0")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vclyi"]
+atlas = ExtResource("2_uo7pc")
+region = Rect2(0, 0, 72, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8a1jh"]
+atlas = ExtResource("2_uo7pc")
+region = Rect2(72, 0, 72, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uxi8q"]
+atlas = ExtResource("2_uo7pc")
+region = Rect2(144, 0, 72, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iokto"]
+atlas = ExtResource("2_uo7pc")
+region = Rect2(216, 0, 72, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lrls7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vclyi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8a1jh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uxi8q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iokto")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
+
+[node name="Checkpoint" type="Node2D"]
+
+[node name="Sand" type="AnimatedSprite2D" parent="."]
+visible = false
+sprite_frames = SubResource("SpriteFrames_j6a57")
+autoplay = "default"
+frame_progress = 0.013208
+offset = Vector2(0, 24)
+
+[node name="Flag" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_lrls7")
+autoplay = "default"
+frame_progress = 0.174374
+offset = Vector2(0, -24)

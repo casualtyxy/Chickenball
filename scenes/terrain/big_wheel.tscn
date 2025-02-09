@@ -1,0 +1,66 @@
+[gd_scene load_steps=6 format=3 uid="uid://ceda8w6f7bxfi"]
+
+[ext_resource type="Texture2D" uid="uid://c56y2h4h04vmq" path="res://art/sprites/big_wheel.png" id="1_1x2i0"]
+[ext_resource type="Script" path="res://scenes/terrain/big_wheel.gd" id="1_oheui"]
+[ext_resource type="AudioStream" uid="uid://pxw3dhhki2yq" path="res://audio/sounds/wheels/mill.ogg" id="3_asie6"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_y68ah"]
+radius = 35.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v2ptv"]
+custom_solver_bias = 0.1
+size = Vector2(6, 29)
+
+[node name="BigWheel" type="StaticBody2D"]
+script = ExtResource("1_oheui")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_1x2i0")
+
+[node name="Center" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_y68ah")
+
+[node name="1" type="CollisionShape2D" parent="."]
+position = Vector2(0, -50.5)
+shape = SubResource("RectangleShape2D_v2ptv")
+
+[node name="2" type="CollisionShape2D" parent="."]
+position = Vector2(-50.5, -0.000182809)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_v2ptv")
+
+[node name="3" type="CollisionShape2D" parent="."]
+position = Vector2(-36, 36)
+rotation = 0.785398
+shape = SubResource("RectangleShape2D_v2ptv")
+
+[node name="4" type="CollisionShape2D" parent="."]
+position = Vector2(-36, -36)
+rotation = 2.35619
+shape = SubResource("RectangleShape2D_v2ptv")
+
+[node name="5" type="CollisionShape2D" parent="."]
+position = Vector2(36, -36)
+rotation = 0.785398
+shape = SubResource("RectangleShape2D_v2ptv")
+
+[node name="6" type="CollisionShape2D" parent="."]
+position = Vector2(50.5, 0)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_v2ptv")
+
+[node name="7" type="CollisionShape2D" parent="."]
+position = Vector2(36, 36)
+rotation = 2.35619
+shape = SubResource("RectangleShape2D_v2ptv")
+
+[node name="8" type="CollisionShape2D" parent="."]
+position = Vector2(0, 50.5)
+shape = SubResource("RectangleShape2D_v2ptv")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_asie6")
+volume_db = -5.0
+autoplay = true
+max_distance = 1000.0
+attenuation = 0.4

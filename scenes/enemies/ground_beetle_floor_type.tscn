@@ -1,0 +1,107 @@
+[gd_scene load_steps=13 format=3 uid="uid://c4pn5qoxahlb2"]
+
+[ext_resource type="Script" path="res://scenes/enemies/ground_beetle_floor_type.gd" id="1_bfbju"]
+[ext_resource type="Texture2D" uid="uid://cxy2m2f4a2i4k" path="res://art/enemies/groundbeetle2.png" id="2_3m5it"]
+[ext_resource type="Texture2D" uid="uid://dt6ofl6hv42br" path="res://art/enemies/wallbeetle.png" id="3_gn7dq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4ij2g"]
+atlas = ExtResource("2_3m5it")
+region = Rect2(48, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_00p7k"]
+atlas = ExtResource("2_3m5it")
+region = Rect2(72, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lnj6o"]
+atlas = ExtResource("2_3m5it")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mq6ht"]
+atlas = ExtResource("2_3m5it")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8j388"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4ij2g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_00p7k")
+}],
+"loop": true,
+"name": &"default",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lnj6o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mq6ht")
+}],
+"loop": true,
+"name": &"flying",
+"speed": 8.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m4mtc"]
+size = Vector2(1.00004, 16)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_pqlv2"]
+resource_local_to_scene = true
+particles_animation = true
+particles_anim_h_frames = 2
+particles_anim_v_frames = 1
+particles_anim_loop = true
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5fidf"]
+size = Vector2(5, 22)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n4vpt"]
+size = Vector2(9, 22)
+
+[node name="GroundBeetleFloorType" type="CharacterBody2D"]
+collision_layer = 36
+collision_mask = 9
+floor_constant_speed = true
+safe_margin = 0.01
+script = ExtResource("1_bfbju")
+speed = -35
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_8j388")
+autoplay = "default"
+offset = Vector2(0, -12)
+
+[node name="WorldCol" type="CollisionShape2D" parent="."]
+position = Vector2(-1.90735e-06, -0.499987)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_m4mtc")
+
+[node name="dead" type="CPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_pqlv2")
+emitting = false
+amount = 1
+one_shot = true
+texture = ExtResource("3_gn7dq")
+
+[node name="weakarea" type="Area2D" parent="." groups=["Squishable"]]
+
+[node name="Shape" type="CollisionShape2D" parent="weakarea"]
+position = Vector2(-1.81e-06, -11.5)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_5fidf")
+debug_color = Color(0.7, 0.432241, 0, 0.42)
+
+[node name="attackarea" type="Area2D" parent="."]
+
+[node name="Shape" type="CollisionShape2D" parent="attackarea"]
+position = Vector2(-1.98881e-06, -4.5)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_n4vpt")
+debug_color = Color(0.7, 0, 0.146714, 0.42)
+
+[node name="OnScreen" type="VisibleOnScreenNotifier2D" parent="."]
+self_modulate = Color(1, 1, 1, 0.0745098)
+rect = Rect2(-80, -80, 160, 160)

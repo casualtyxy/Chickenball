@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://byg0ut4g3ts1t"]
+
+[ext_resource type="Texture2D" uid="uid://b8m0shaoo2pna" path="res://art/items/farm/tile_overlay.png" id="1_o1x8u"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e0v66"]
+
+[node name="1" type="Area2D" groups=["MergeTile"]]
+input_pickable = false
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("1_o1x8u")
+
+[node name="Box" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_e0v66")

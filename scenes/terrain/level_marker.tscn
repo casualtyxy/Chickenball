@@ -1,0 +1,280 @@
+[gd_scene load_steps=23 format=3 uid="uid://cpas6v134frk4"]
+
+[ext_resource type="Script" path="res://scenes/terrain/level_marker.gd" id="1_s3x1k"]
+[ext_resource type="Texture2D" uid="uid://cbxd3c18lt1ol" path="res://art/sprites/level_marker.png" id="2_t80pd"]
+[ext_resource type="Texture2D" uid="uid://c7g86rt0vhwwf" path="res://art/sprites/dispenser_star.png" id="3_3juf1"]
+[ext_resource type="Texture2D" uid="uid://bqyre2e3qbivt" path="res://art/sprites/level_marker_flag.png" id="3_vuebg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dp44b"]
+size = Vector2(24, 24)
+
+[sub_resource type="Animation" id="Animation_3s2st"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LevelPlaceholder:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("LevelPlaceholder:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("F1:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("F3:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Flag:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_5w5vv"]
+resource_name = "complete"
+length = 0.4
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LevelPlaceholder:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [1, 2, 3, 4]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("LevelPlaceholder:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 1.5), Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("F1:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Flag:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="Animation" id="Animation_q414g"]
+resource_name = "unlock"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LevelPlaceholder:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("F3:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.0333333),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_i4miv"]
+_data = {
+"RESET": SubResource("Animation_3s2st"),
+"complete": SubResource("Animation_5w5vv"),
+"unlock": SubResource("Animation_q414g")
+}
+
+[sub_resource type="Curve" id="Curve_joj7o"]
+max_value = 2.0
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.767528, 2), 1.26615, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_r18ry"]
+curve = SubResource("Curve_joj7o")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_wi76v"]
+lifetime_randomness = 0.7
+particle_flag_disable_z = true
+direction = Vector3(0, -1, 0)
+spread = 30.0
+initial_velocity_min = 300.0
+initial_velocity_max = 300.0
+gravity = Vector3(0, 300, 0)
+scale_curve = SubResource("CurveTexture_r18ry")
+sub_emitter_mode = 2
+sub_emitter_amount_at_end = 1
+
+[sub_resource type="Gradient" id="Gradient_a72nu"]
+offsets = PackedFloat32Array(0, 0.553506, 1)
+colors = PackedColorArray(1, 0, 0.0458012, 1, 1, 0.927453, 0.539459, 1, 0.80252, 0.98419, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_kboy2"]
+gradient = SubResource("Gradient_a72nu")
+
+[sub_resource type="Curve" id="Curve_1apn1"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_5gbkf"]
+curve = SubResource("Curve_1apn1")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_5c7r7"]
+particle_flag_disable_z = true
+spread = 180.0
+initial_velocity_min = 200.0
+initial_velocity_max = 200.0
+gravity = Vector3(0, 300, 0)
+scale_min = 0.5
+scale_curve = SubResource("CurveTexture_5gbkf")
+color_ramp = SubResource("GradientTexture1D_kboy2")
+
+[sub_resource type="Gradient" id="Gradient_6nbpo"]
+offsets = PackedFloat32Array(0, 0.596708, 1)
+colors = PackedColorArray(0.33625, 1, 0.282975, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_4btfl"]
+gradient = SubResource("Gradient_6nbpo")
+
+[sub_resource type="Curve" id="Curve_k7fgh"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.254613, 0.68437), 2.24531, 2.24531, 0, 0, Vector2(0.494465, 0.496965), 2.15324, 2.15324, 0, 0, Vector2(0.767528, 0.240516), 1.68017, 1.68017, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 5
+
+[sub_resource type="CurveTexture" id="CurveTexture_1sola"]
+curve = SubResource("Curve_k7fgh")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_7oli3"]
+particle_flag_disable_z = true
+spread = 180.0
+flatness = 1.0
+initial_velocity_min = 25.0
+initial_velocity_max = 25.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.5
+scale_curve = SubResource("CurveTexture_1sola")
+color_ramp = SubResource("GradientTexture1D_4btfl")
+
+[node name="LevelMarker" type="Node2D"]
+script = ExtResource("1_s3x1k")
+
+[node name="LevelPlaceholder" type="Sprite2D" parent="."]
+texture = ExtResource("2_t80pd")
+offset = Vector2(0, -24)
+hframes = 5
+
+[node name="Flag" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("3_vuebg")
+offset = Vector2(0, -24)
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(0, -10)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_dp44b")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_i4miv")
+}
+
+[node name="F1" type="GPUParticles2D" parent="."]
+position = Vector2(0, -10)
+emitting = false
+amount = 16
+sub_emitter = NodePath("../F2")
+process_material = SubResource("ParticleProcessMaterial_wi76v")
+lifetime = 2.0
+one_shot = true
+explosiveness = 0.8
+
+[node name="F2" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 16
+process_material = SubResource("ParticleProcessMaterial_5c7r7")
+texture = ExtResource("3_3juf1")
+one_shot = true
+explosiveness = 1.0
+
+[node name="F3" type="GPUParticles2D" parent="."]
+position = Vector2(0, -10)
+emitting = false
+amount = 32
+process_material = SubResource("ParticleProcessMaterial_7oli3")
+texture = ExtResource("3_3juf1")
+lifetime = 2.0
+one_shot = true
+explosiveness = 1.0

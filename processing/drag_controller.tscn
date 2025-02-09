@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://b15fe32dxpwx2"]
+
+[ext_resource type="Script" path="res://scenes/items/old/drag_controller.gd" id="1_nvbii"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jau3i"]
+size = Vector2(18, 18)
+
+[node name="DragController" type="Area2D"]
+script = ExtResource("1_nvbii")
+
+[node name="Shape" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_jau3i")
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]

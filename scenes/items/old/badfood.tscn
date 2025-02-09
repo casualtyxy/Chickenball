@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://yqohnv727rj0"]
+
+[ext_resource type="Texture2D" uid="uid://boaa3g3xpqy80" path="res://art/items/staticfood.png" id="1_g3p1e"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_uhuu0"]
+radius = 1.0
+height = 16.0
+
+[node name="Foodnode" type="Area2D" groups=["Crystal", "Item"]]
+y_sort_enabled = true
+collision_layer = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -4)
+texture = ExtResource("1_g3p1e")
+region_enabled = true
+region_rect = Rect2(2, 13, 18, 10)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_uhuu0")

@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://duj0frb80hdxm"]
+
+[ext_resource type="Script" path="res://player/Bonus.gd" id="1_wpm8v"]
+
+[node name="Bonus" type="Timer"]
+wait_time = 15.0
+one_shot = true
+autostart = true
+script = ExtResource("1_wpm8v")
+
+[connection signal="timeout" from="." to="." method="_on_timeout"]

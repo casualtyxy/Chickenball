@@ -1,0 +1,90 @@
+[gd_scene load_steps=10 format=3 uid="uid://esc81wv4ruf4"]
+
+[ext_resource type="Script" path="res://scenes/levels/arcade_door.gd" id="1_0dk5l"]
+[ext_resource type="Texture2D" uid="uid://djt2fcmvx3byf" path="res://art/sprites/door.png" id="1_wuxnc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6fmt2"]
+size = Vector2(32, 5)
+
+[sub_resource type="Gradient" id="Gradient_seo3b"]
+colors = PackedColorArray(0.698039, 0.960784, 1, 1, 1, 0.36, 0.808, 0)
+
+[sub_resource type="Gradient" id="Gradient_7wkou"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_30w3r"]
+gradient = SubResource("Gradient_7wkou")
+width = 32
+fill_from = Vector2(0, 1)
+fill_to = Vector2(0, 0)
+
+[sub_resource type="Gradient" id="Gradient_3rtic"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_6qa8s"]
+gradient = SubResource("Gradient_3rtic")
+width = 32
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8yehn"]
+size = Vector2(8, 2)
+
+[node name="ArcadeDoor" type="Area2D"]
+z_index = 1
+y_sort_enabled = true
+collision_layer = 8
+collision_mask = 8
+script = ExtResource("1_0dk5l")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 2.5)
+shape = SubResource("RectangleShape2D_6fmt2")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_wuxnc")
+offset = Vector2(0, -36)
+
+[node name="Effects" type="Node2D" parent="."]
+
+[node name="Orbit" type="CPUParticles2D" parent="Effects"]
+light_mask = 2
+z_index = 1
+position = Vector2(0, -33)
+amount = 120
+lifetime = 0.5
+speed_scale = 0.5
+emission_shape = 3
+emission_rect_extents = Vector2(16, 32)
+direction = Vector2(0, 0)
+gravity = Vector2(0, 0)
+initial_velocity_min = 10.0
+initial_velocity_max = 10.0
+angular_velocity_min = 50.0
+angular_velocity_max = 100.0
+orbit_velocity_min = 0.1
+orbit_velocity_max = 0.2
+radial_accel_min = -100.0
+radial_accel_max = -100.0
+scale_amount_max = 2.0
+color = Color(0.697295, 0.962609, 1, 1)
+color_ramp = SubResource("Gradient_seo3b")
+
+[node name="Lightdown" type="PointLight2D" parent="Effects"]
+energy = 0.5
+range_layer_max = 1
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_30w3r")
+offset = Vector2(0, 32)
+
+[node name="LightIn" type="PointLight2D" parent="Effects"]
+position = Vector2(0, -32)
+energy = 0.5
+texture = SubResource("GradientTexture2D_6qa8s")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-20, -1)
+shape = SubResource("RectangleShape2D_8yehn")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(20, -1)
+shape = SubResource("RectangleShape2D_8yehn")

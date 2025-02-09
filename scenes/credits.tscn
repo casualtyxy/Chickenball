@@ -1,0 +1,218 @@
+[gd_scene load_steps=14 format=3 uid="uid://c5vuaplyjtb1p"]
+
+[ext_resource type="Script" path="res://scenes/credits.gd" id="1_l37qj"]
+[ext_resource type="Texture2D" uid="uid://ngo8jktghooe" path="res://art/menus/background/credits2.png" id="2_3noni"]
+[ext_resource type="Texture2D" uid="uid://b38sv8tq2ut41" path="res://art/menus/buttons/x.png" id="2_b2l2d"]
+[ext_resource type="Texture2D" uid="uid://emq11msrqjop" path="res://art/menus/background/settings_back3.png" id="2_cr38y"]
+[ext_resource type="Texture2D" uid="uid://bj4cenvjdqbst" path="res://art/menus/background/credits3.png" id="2_st4we"]
+[ext_resource type="Texture2D" uid="uid://cbmagx8uy7xdd" path="res://art/menus/buttons/x_hi.png" id="3_olqot"]
+[ext_resource type="FontFile" uid="uid://ckcvei0nxbacg" path="res://fonts/orange-kid/Orange Kid.otf" id="4_xgqm5"]
+[ext_resource type="FontFile" uid="uid://6dh5boa0nvfx" path="res://fonts/fff-forward/FFFFORWA.TTF" id="5_jtj4e"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ovhtn"]
+resource_local_to_scene = true
+bg_color = Color(0.658824, 0.780392, 1, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.247059, 0.247059, 0.454902, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_77o0q"]
+resource_local_to_scene = true
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.247059, 0.247059, 0.454902, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0bnuf"]
+resource_local_to_scene = true
+bg_color = Color(0.658824, 0.780392, 1, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0hh2j"]
+content_margin_left = 4.0
+content_margin_top = 2.0
+content_margin_right = 2.0
+content_margin_bottom = 2.0
+bg_color = Color(0.247059, 0.247059, 0.454902, 1)
+border_color = Color(0.121569, 0.121569, 0.223529, 1)
+
+[sub_resource type="Theme" id="Theme_4kvmh"]
+RichTextLabel/colors/default_color = Color(1, 1, 1, 1)
+RichTextLabel/colors/font_outline_color = Color(0.223529, 0.223529, 0.411765, 1)
+RichTextLabel/colors/font_selected_color = Color(1, 0.702183, 0.440811, 1)
+RichTextLabel/colors/font_shadow_color = Color(0.211765, 0.211765, 0.392157, 1)
+RichTextLabel/colors/table_border = Color(0, 0, 0, 1)
+RichTextLabel/colors/table_even_row_bg = Color(0, 0, 0, 1)
+RichTextLabel/colors/table_odd_row_bg = Color(0, 0, 0, 1)
+RichTextLabel/constants/line_separation = -4
+RichTextLabel/constants/outline_size = 0
+RichTextLabel/constants/shadow_offset_x = -1
+RichTextLabel/constants/shadow_offset_y = 1
+RichTextLabel/constants/shadow_outline_size = 2
+RichTextLabel/constants/table_h_separation = 0
+RichTextLabel/constants/table_v_separation = 0
+RichTextLabel/constants/text_highlight_h_padding = 0
+RichTextLabel/constants/text_highlight_v_padding = 0
+RichTextLabel/font_sizes/bold_font_size = 16
+RichTextLabel/font_sizes/bold_italics_font_size = 16
+RichTextLabel/font_sizes/italics_font_size = 16
+RichTextLabel/font_sizes/mono_font_size = 16
+RichTextLabel/font_sizes/normal_font_size = 16
+RichTextLabel/fonts/bold_font = null
+RichTextLabel/fonts/bold_italics_font = null
+RichTextLabel/fonts/italics_font = null
+RichTextLabel/fonts/mono_font = null
+RichTextLabel/fonts/normal_font = null
+RichTextLabel/styles/focus = null
+RichTextLabel/styles/normal = null
+VScrollBar/styles/grabber = SubResource("StyleBoxFlat_ovhtn")
+VScrollBar/styles/grabber_highlight = SubResource("StyleBoxFlat_77o0q")
+VScrollBar/styles/grabber_pressed = SubResource("StyleBoxFlat_0bnuf")
+VScrollBar/styles/scroll = SubResource("StyleBoxFlat_0hh2j")
+
+[node name="Credits" type="Node2D"]
+script = ExtResource("1_l37qj")
+
+[node name="BG" type="Sprite2D" parent="."]
+texture = ExtResource("2_cr38y")
+centered = false
+
+[node name="Back" type="Sprite2D" parent="."]
+self_modulate = Color(0.886793, 0.833277, 0.981995, 1)
+texture = ExtResource("2_st4we")
+centered = false
+hframes = 2
+frame = 1
+
+[node name="Frame" type="Sprite2D" parent="."]
+texture = ExtResource("2_3noni")
+centered = false
+hframes = 2
+
+[node name="Title" type="RichTextLabel" parent="."]
+clip_contents = false
+offset_top = 12.0
+offset_right = 480.0
+offset_bottom = 40.0
+theme_override_colors/font_shadow_color = Color(0.231373, 0.231373, 0.431373, 1)
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/shadow_offset_x = -1
+bbcode_enabled = true
+text = "[center]Credits"
+scroll_active = false
+
+[node name="Close" type="TextureButton" parent="."]
+offset_left = 432.0
+offset_top = 24.0
+offset_right = 456.0
+offset_bottom = 48.0
+focus_neighbor_left = NodePath("../Contents")
+focus_neighbor_top = NodePath("../Contents")
+focus_neighbor_right = NodePath("../Contents")
+focus_neighbor_bottom = NodePath("../Contents")
+focus_next = NodePath("../Contents")
+focus_previous = NodePath("../Contents")
+texture_normal = ExtResource("2_b2l2d")
+texture_hover = ExtResource("3_olqot")
+texture_focused = ExtResource("3_olqot")
+
+[node name="Contents" type="RichTextLabel" parent="."]
+clip_contents = false
+offset_left = 40.0
+offset_top = 50.0
+offset_right = 424.0
+offset_bottom = 328.0
+focus_neighbor_left = NodePath("../Close")
+focus_neighbor_right = NodePath("../Close")
+focus_next = NodePath("../Close")
+focus_previous = NodePath("../Close")
+theme = SubResource("Theme_4kvmh")
+theme_override_fonts/normal_font = ExtResource("4_xgqm5")
+theme_override_fonts/italics_font = ExtResource("5_jtj4e")
+theme_override_font_sizes/normal_font_size = 18
+bbcode_enabled = true
+text = "(Hyperlinks are not working for some reason... if you know gdscript hit me up)
+
+[i]Fonts[/i]
+FFF Forward (Regular) - Fonts For Flash
+Orange Kid - Unknown
+Karma Suture - Raymond Larabie
+
+[i]Programs Used[/i]
+Game art - Asesprite
+Sounds - BFXR
+Music & other sounds - FL Studio 21
+Game engine - Godot 4.3
+
+[i]Developers[/i]
+TanjiTap
+
+[i]Helpers[/i]
+Color assistant - a friend of mine
+Introduction to engine functions - Splendid Automaton / Zed Manul
+
+[i]Special Thanks[/i]
+My girlfriend, for supporting this journey
+My friends, for helping test out builds and suggesting features
+Zed, for getting me started
+You, the player, for checking out this game
+
+[i]Sourced Sound Effects[/i]
+[url]bubble (3).wav by Glaneur de sons -- https://freesound.org/s/104942/ -- License: Attribution 4.0[/url]
+
+[url]bubble (4).wav by Glaneur de sons -- https://freesound.org/s/104943/ -- License: Attribution 4.0[/url]
+
+[url]bubble (2).wav by Glaneur de sons -- https://freesound.org/s/104941/ -- License: Attribution 4.0[/url]
+
+[url]bubble (7).wav by Glaneur de sons -- https://freesound.org/s/104946/ -- License: Attribution 4.0[/url]
+
+[url]glass-shattering_03.ogg by C_Rogers -- https://freesound.org/s/203373/ -- License: Creative Commons 0[/url]
+
+[url]snow_14.wav by max_b_jo -- https://freesound.org/s/269848/ -- License: Attribution 4.0[/url]
+
+[i]Sourced Images[/i]
+(pexels.com)
+Nicolas Postiglion (picture used for arcade depot)
+Quang Nguyen Vinh (picture used for arcade lake)
+Micah Boerma (picture used for arcade forest)
+
+[i]Insperations[/i]
+\"Bean dreams\" by Kumobius
+Probably a variety of retro games I played in my youth"
+
+[connection signal="meta_clicked" from="Contents" to="." method="_on_meta_clicked"]

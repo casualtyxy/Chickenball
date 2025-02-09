@@ -1,0 +1,54 @@
+[gd_scene load_steps=7 format=3 uid="uid://c50xrk7gpbhq0"]
+
+[ext_resource type="Script" path="res://scenes/levels/ocean_water.gd" id="1_0sax1"]
+[ext_resource type="Texture2D" uid="uid://b8x0522dm1bkk" path="res://art/background/new_ocean_wide.png" id="2_gj6ab"]
+[ext_resource type="Texture2D" uid="uid://l2ysc1fq8n6b" path="res://art/background/new_ocean_line.png" id="3_te3wj"]
+
+[sub_resource type="Gradient" id="Gradient_l1ltg"]
+offsets = PackedFloat32Array(0, 0.185185, 0.839506, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_4t1vb"]
+gradient = SubResource("Gradient_l1ltg")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_rx56d"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(480, 20, 1)
+gravity = Vector3(0, 0, 0)
+color_ramp = SubResource("GradientTexture1D_4t1vb")
+
+[node name="Water" type="ParallaxBackground"]
+scroll_ignore_camera_zoom = true
+
+[node name="Water" type="ParallaxLayer" parent="."]
+position = Vector2(0, 405)
+motion_scale = Vector2(0.05, 0)
+motion_mirroring = Vector2(960, 0)
+script = ExtResource("1_0sax1")
+
+[node name="Waterdetail" type="Sprite2D" parent="Water"]
+texture = ExtResource("2_gj6ab")
+centered = false
+
+[node name="ColorRect" type="ColorRect" parent="Water"]
+offset_top = 190.0
+offset_right = 960.0
+offset_bottom = 690.0
+color = Color(0.564706, 0.764706, 0.737255, 1)
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Water"]
+position = Vector2(480, 20)
+amount = 64
+process_material = SubResource("ParticleProcessMaterial_rx56d")
+lifetime = 2.0
+local_coords = true
+
+[node name="Waterglimmer" type="ParallaxLayer" parent="."]
+position = Vector2(0, 405)
+motion_scale = Vector2(0.05, 0)
+motion_mirroring = Vector2(960, 0)
+
+[node name="Line" type="Sprite2D" parent="Waterglimmer"]
+texture = ExtResource("3_te3wj")
+centered = false

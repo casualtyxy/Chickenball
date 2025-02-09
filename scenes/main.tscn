@@ -1,0 +1,81 @@
+[gd_scene load_steps=6 format=3 uid="uid://cxw8b0kcrvh"]
+
+[ext_resource type="Script" path="res://scenes/master.gd" id="1_7427p"]
+[ext_resource type="PackedScene" uid="uid://bmgh85gvb8svb" path="res://scenes/pause_menu.tscn" id="3_xqj6y"]
+[ext_resource type="FontFile" uid="uid://6dh5boa0nvfx" path="res://fonts/fff-forward/FFFFORWA.TTF" id="7_0t7h5"]
+
+[sub_resource type="Animation" id="Animation_85wmu"]
+resource_name = "default"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/Saving:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/Saving:visible_characters")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [6, 7, 8, 9]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3t30o"]
+_data = {
+"default": SubResource("Animation_85wmu")
+}
+
+[node name="LevelManager" type="Node"]
+script = ExtResource("1_7427p")
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="Autosave" type="Timer" parent="."]
+wait_time = 30.0
+
+[node name="SaveAnim" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_3t30o")
+}
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Saving" type="RichTextLabel" parent="CanvasLayer"]
+self_modulate = Color(1, 1, 1, 0.705882)
+texture_filter = 1
+clip_contents = false
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -48.0
+offset_top = -20.0
+offset_bottom = -7.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_fonts/normal_font = ExtResource("7_0t7h5")
+theme_override_font_sizes/normal_font_size = 8
+bbcode_enabled = true
+text = "[wave freq=-5 amp=50]Saving..."
+scroll_active = false
+autowrap_mode = 0
+visible_characters = 6
+visible_ratio = 0.666667
+
+[node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("3_xqj6y")]
+visible = false
+
+[connection signal="timeout" from="Autosave" to="." method="_on_autosave_timeout"]

@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://dihmc4wsbn0wg"]
+
+[ext_resource type="Script" path="res://scenes/terrain/physics_item.gd" id="1_ug6ud"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_i6giv"]
+
+[node name="PhysicsItem" type="RigidBody2D"]
+collision_layer = 0
+collision_mask = 33
+can_sleep = false
+lock_rotation = true
+freeze_mode = 1
+script = ExtResource("1_ug6ud")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_i6giv")
+debug_color = Color(0.146593, 0.7, 0, 0.42)
+
+[node name="ItemSlot" type="Node2D" parent="."]
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.05
+autostart = true

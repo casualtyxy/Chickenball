@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://dlpoo50o0wtpt"]
+
+[ext_resource type="Script" path="res://special_effects/particles/foodmunch.gd" id="1_ah5r6"]
+
+[sub_resource type="Gradient" id="Gradient_o86uh"]
+colors = PackedColorArray(0.87451, 0.443137, 0.14902, 1, 1, 0.964706, 0.658824, 1)
+
+[node name="foodmunch" type="CPUParticles2D"]
+emitting = false
+amount = 5
+lifetime = 0.7
+one_shot = true
+explosiveness = 0.3
+lifetime_randomness = 0.2
+emission_shape = 3
+emission_rect_extents = Vector2(5, 1)
+direction = Vector2(0, -1)
+gravity = Vector2(0, 400)
+initial_velocity_min = 67.49
+initial_velocity_max = 171.78
+scale_amount_max = 2.0
+color_ramp = SubResource("Gradient_o86uh")
+script = ExtResource("1_ah5r6")

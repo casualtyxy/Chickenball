@@ -1,0 +1,45 @@
+[gd_scene load_steps=5 format=3 uid="uid://02ur801lpxro"]
+
+[ext_resource type="Texture2D" uid="uid://buuen5gg3ps4u" path="res://art/player/chicken4.png" id="1_cxls1"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qwnks"]
+radius = 7.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_w8j5b"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_7peus"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+position = Vector2(225, 22)
+input_pickable = true
+gravity_scale = 0.2
+
+[node name="Sprite2D" type="Sprite2D" parent="RigidBody2D"]
+texture = ExtResource("1_cxls1")
+hframes = 7
+vframes = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+position = Vector2(1, 2)
+shape = SubResource("CircleShape2D_qwnks")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(227, 380)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("WorldBoundaryShape2D_w8j5b")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(254, -200)
+rotation = -1.5708
+shape = SubResource("WorldBoundaryShape2D_7peus")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-228, -201)
+rotation = -4.71239
+shape = SubResource("WorldBoundaryShape2D_7peus")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0

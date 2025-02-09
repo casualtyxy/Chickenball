@@ -1,0 +1,275 @@
+[gd_scene load_steps=32 format=3 uid="uid://f18wj7lkglud"]
+
+[ext_resource type="Texture2D" uid="uid://ce78gkjnvsf4v" path="res://art/player/chicken.png" id="1_dc8wk"]
+[ext_resource type="Script" path="res://chicken.gd" id="1_nmdxg"]
+[ext_resource type="Script" path="res://foodcheck.gd" id="3_608xl"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_whgs3"]
+radius = 1.0
+height = 10.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e1834"]
+size = Vector2(11, 14)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b1b5w"]
+size = Vector2(22, 17)
+
+[sub_resource type="Animation" id="Animation_rfrbs"]
+resource_name = "Eat"
+length = 0.1
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+
+[sub_resource type="Animation" id="Animation_2ldh7"]
+resource_name = "Hurt"
+length = 0.3
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [3, 4, 5]
+}
+
+[sub_resource type="Animation" id="Animation_6d0qq"]
+resource_name = "Idle"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="Animation" id="Animation_yhim2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 1,
+"values": []
+}
+
+[sub_resource type="Animation" id="Animation_i7n6v"]
+resource_name = "Squish"
+length = 0.1
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [6]
+}
+
+[sub_resource type="Animation" id="Animation_ohgfu"]
+resource_name = "Starve"
+length = 0.1
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [7]
+}
+
+[sub_resource type="Animation" id="Animation_3kjg4"]
+resource_name = "Walk"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [8, 9, 10, 11, 12]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_inels"]
+_data = {
+"Eat": SubResource("Animation_rfrbs"),
+"Hurt": SubResource("Animation_2ldh7"),
+"Idle": SubResource("Animation_6d0qq"),
+"RESET": SubResource("Animation_yhim2"),
+"Squish": SubResource("Animation_i7n6v"),
+"Starve": SubResource("Animation_ohgfu"),
+"Walk": SubResource("Animation_3kjg4")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_sm3px"]
+animation = &"Eat"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_mxgk1"]
+animation = &"Hurt"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ueddv"]
+animation = &"Idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8vp14"]
+animation = &"Squish"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_yp57s"]
+animation = &"Starve"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_014o8"]
+animation = &"Walk"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_qhr5l"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_lulw3"]
+advance_mode = 2
+advance_condition = &"is_moving"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ta6eg"]
+advance_mode = 2
+advance_condition = &"is_neutral"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_7wvyp"]
+advance_mode = 2
+advance_condition = &"is_eating"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_rro4u"]
+switch_mode = 2
+advance_mode = 2
+advance_condition = &"is_moving"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_mbbec"]
+switch_mode = 2
+advance_mode = 2
+advance_condition = &"is_neutral"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_57sd3"]
+advance_mode = 2
+advance_condition = &"is_hurt"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_xgvm7"]
+advance_mode = 2
+advance_condition = &"is_hurt"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_gia6t"]
+switch_mode = 2
+advance_mode = 2
+advance_condition = &"is_neutral"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_yjsjw"]
+switch_mode = 2
+advance_mode = 2
+advance_condition = &"is_moving"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_mw4ui"]
+states/Eat/node = SubResource("AnimationNodeAnimation_sm3px")
+states/Eat/position = Vector2(464, 35)
+states/End/position = Vector2(933, 118)
+states/Hurt/node = SubResource("AnimationNodeAnimation_mxgk1")
+states/Hurt/position = Vector2(464, 204)
+states/Idle/node = SubResource("AnimationNodeAnimation_ueddv")
+states/Idle/position = Vector2(396, 118)
+states/Squish/node = SubResource("AnimationNodeAnimation_8vp14")
+states/Squish/position = Vector2(693, 83)
+states/Start/position = Vector2(246, 101)
+states/Starve/node = SubResource("AnimationNodeAnimation_yp57s")
+states/Starve/position = Vector2(799, 170)
+states/Walk/node = SubResource("AnimationNodeAnimation_014o8")
+states/Walk/position = Vector2(539, 118)
+transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_qhr5l"), "Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_lulw3"), "Walk", "Idle", SubResource("AnimationNodeStateMachineTransition_ta6eg"), "Walk", "Eat", SubResource("AnimationNodeStateMachineTransition_7wvyp"), "Eat", "Walk", SubResource("AnimationNodeStateMachineTransition_rro4u"), "Eat", "Idle", SubResource("AnimationNodeStateMachineTransition_mbbec"), "Walk", "Hurt", SubResource("AnimationNodeStateMachineTransition_57sd3"), "Idle", "Hurt", SubResource("AnimationNodeStateMachineTransition_xgvm7"), "Hurt", "Idle", SubResource("AnimationNodeStateMachineTransition_gia6t"), "Hurt", "Walk", SubResource("AnimationNodeStateMachineTransition_yjsjw")]
+graph_offset = Vector2(-126, -1)
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+script = ExtResource("1_nmdxg")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -9)
+texture = ExtResource("1_dc8wk")
+hframes = 8
+vframes = 2
+frame = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_whgs3")
+
+[node name="foodcheck" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 126
+script = ExtResource("3_608xl")
+
+[node name="foodcheckarea" type="CollisionShape2D" parent="foodcheck"]
+visible = false
+position = Vector2(-1.81e-06, -2.5)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_e1834")
+
+[node name="nose" type="Area2D" parent="foodcheck"]
+collision_layer = 0
+collision_mask = 126
+
+[node name="nosearea" type="CollisionShape2D" parent="foodcheck/nose"]
+visible = false
+position = Vector2(0, -3.5)
+shape = SubResource("RectangleShape2D_b1b5w")
+
+[node name="Sleep" type="Timer" parent="."]
+
+[node name="SFX" type="AudioStreamPlayer" parent="."]
+volume_db = -10.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_inels")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeStateMachine_mw4ui")
+anim_player = NodePath("../AnimationPlayer")
+parameters/conditions/is_eating = false
+parameters/conditions/is_hurt = false
+parameters/conditions/is_moving = false
+parameters/conditions/is_neutral = false

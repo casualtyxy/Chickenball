@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://dgn1fa0ffwecf"]
+
+[ext_resource type="Texture2D" uid="uid://bcvd3s04x0jjn" path="res://art/enemies/test/sloth.png" id="1_pyfbn"]
+[ext_resource type="Texture2D" uid="uid://csc3gf1r072i7" path="res://art/enemies/test/sloth_arm2.png" id="2_7yrca"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gcyby"]
+
+[node name="Area2D" type="Area2D"]
+collision_layer = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_pyfbn")
+region_enabled = true
+region_rect = Rect2(0, 15, 24, 33)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("CapsuleShape2D_gcyby")
+
+[node name="Line2D" type="Line2D" parent="."]
+points = PackedVector2Array(-7, 2, -28, 2, -49, 2)
+texture = ExtResource("2_7yrca")
+texture_mode = 1

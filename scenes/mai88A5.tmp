@@ -1,0 +1,133 @@
+[gd_scene load_steps=8 format=3 uid="uid://cxw8b0kcrvh"]
+
+[ext_resource type="Script" path="res://scenes/main.gd" id="1_qvokn"]
+[ext_resource type="Texture2D" uid="uid://derhfsugpyslc" path="res://art/background/chicballforestback2.png" id="1_ya1mr"]
+[ext_resource type="PackedScene" uid="uid://f18wj7lkglud" path="res://chicken.tscn" id="2_khr7n"]
+[ext_resource type="Script" path="res://scenes/FoodTick.gd" id="4_3j5ha"]
+[ext_resource type="Script" path="res://scenes/GUI.gd" id="5_ctg43"]
+[ext_resource type="FontFile" uid="uid://cqxpckwtcvhyb" path="res://fonts/transcendsgames/TranscendsGamesUpright.otf" id="7_na8ak"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_05dqy"]
+
+[node name="Map" type="Node2D"]
+script = ExtResource("1_qvokn")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(240, 190)
+texture = ExtResource("1_ya1mr")
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("2_khr7n")]
+position = Vector2(246, 325)
+
+[node name="worldboundaries" type="StaticBody2D" parent="."]
+visible = false
+
+[node name="floor" type="CollisionShape2D" parent="worldboundaries"]
+position = Vector2(246, 380)
+shape = SubResource("WorldBoundaryShape2D_05dqy")
+
+[node name="right" type="CollisionShape2D" parent="worldboundaries"]
+position = Vector2(480, 193)
+rotation = -1.57079
+shape = SubResource("WorldBoundaryShape2D_05dqy")
+
+[node name="left" type="CollisionShape2D" parent="worldboundaries"]
+position = Vector2(0, 163)
+rotation = 1.57079
+shape = SubResource("WorldBoundaryShape2D_05dqy")
+
+[node name="ground" type="CollisionShape2D" parent="worldboundaries"]
+position = Vector2(217, 317)
+rotation = 3.14159
+shape = SubResource("WorldBoundaryShape2D_05dqy")
+
+[node name="FoodTick" type="Timer" parent="."]
+autostart = true
+script = ExtResource("4_3j5ha")
+
+[node name="SFX" type="AudioStreamPlayer" parent="."]
+volume_db = -10.0
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="GUI" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("5_ctg43")
+
+[node name="Label" type="Label" parent="CanvasLayer/GUI"]
+layout_mode = 2
+offset_left = 213.0
+offset_top = 176.0
+offset_right = 285.0
+offset_bottom = 199.0
+theme_override_colors/font_color = Color(0.976471, 0, 0, 0.54902)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+text = "You died!"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/GUI"]
+layout_mode = 1
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 51.0
+offset_bottom = 82.0
+
+[node name="PLabelFood" type="Label" parent="CanvasLayer/GUI/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("7_na8ak")
+text = "food"
+
+[node name="PLabelLevel" type="Label" parent="CanvasLayer/GUI/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("7_na8ak")
+text = "lev"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="CanvasLayer/GUI"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -51.0
+offset_top = 5.0
+offset_right = -5.0
+offset_bottom = 82.0
+grow_horizontal = 0
+size_flags_horizontal = 8
+
+[node name="PLabelUpgrade" type="Label" parent="CanvasLayer/GUI/VBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("7_na8ak")
+text = "up"
+
+[node name="PLabelNut" type="Label" parent="CanvasLayer/GUI/VBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("7_na8ak")
+text = "nut"
+
+[node name="PLabelProd" type="Label" parent="CanvasLayer/GUI/VBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("7_na8ak")
+text = "prod
+"
+
+[connection signal="timeout" from="FoodTick" to="FoodTick" method="_on_timeout"]

@@ -1,0 +1,57 @@
+[gd_scene load_steps=9 format=3 uid="uid://co1xi4haqyi0d"]
+
+[ext_resource type="Texture2D" uid="uid://8kge2osan5kk" path="res://art/items/ramen.png" id="1_pxkev"]
+[ext_resource type="Script" path="res://scenes/items/old/ItemPerish.gd" id="2_q1leo"]
+[ext_resource type="Script" path="res://scenes/items/old/ItemSpawn.gd" id="3_dwb0q"]
+[ext_resource type="Texture2D" uid="uid://sy78eyt2bdql" path="res://scenes/items/ramen_steam.png" id="4_5vm4r"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_uhuu0"]
+radius = 5.0
+height = 20.0
+
+[sub_resource type="Gradient" id="Gradient_4vy42"]
+offsets = PackedFloat32Array(0.0159363, 1)
+colors = PackedColorArray(1, 1, 1, 0.490196, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ffdev"]
+gradient = SubResource("Gradient_4vy42")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_qrvvm"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(10, 1, 1)
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+gravity = Vector3(0, -10, 0)
+damping_min = 5.0
+damping_max = 10.0
+color_ramp = SubResource("GradientTexture1D_ffdev")
+
+[node name="Foodnode" type="Area2D" groups=["CropKiller", "Item"]]
+y_sort_enabled = true
+collision_layer = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -3)
+texture = ExtResource("1_pxkev")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_uhuu0")
+
+[node name="ItemPerish" type="Timer" parent="."]
+script = ExtResource("2_q1leo")
+
+[node name="ItemSpawn" type="Timer" parent="."]
+script = ExtResource("3_dwb0q")
+
+[node name="Particles" type="GPUParticles2D" parent="."]
+z_index = 1
+position = Vector2(0, -8)
+amount = 4
+process_material = SubResource("ParticleProcessMaterial_qrvvm")
+texture = ExtResource("4_5vm4r")
+lifetime = 3.0
+
+[connection signal="timeout" from="ItemPerish" to="ItemPerish" method="_on_timeout"]
+[connection signal="timeout" from="ItemSpawn" to="ItemSpawn" method="_on_timeout"]

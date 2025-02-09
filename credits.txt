@@ -1,0 +1,9 @@
+Shaders
+Spotlight shader by p4rfait -- https://godotshaders.com/shader/spotlight-effect-transition-with-feathering-position/
+Wind shader for grass layers by afk -- https://godotshaders.com/shader/tilemap-wind-shader/
+
+Sound Effects
+Watermill.wav by sebastianlund -- https://freesound.org/s/58309/ -- License: Attribution 3.0
+
+Music
+Vocal Gasp FX - Breathe by Revolving & Evolving -- https://samplefocus.com/samples/vocal-gasp-fx-breathe -- License: Standard (RoyaltyFree)

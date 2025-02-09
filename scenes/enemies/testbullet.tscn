@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://byytddjwar55e"]
+
+[ext_resource type="Script" path="res://testbullet.gd" id="1_rbtqu"]
+[ext_resource type="Texture2D" uid="uid://bhlmhhwnh3n5y" path="res://art/enemies/gum_shard.png" id="2_5gxiq"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_httwe"]
+radius = 4.0
+
+[node name="Testbullet" type="Area2D"]
+script = ExtResource("1_rbtqu")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_5gxiq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_httwe")

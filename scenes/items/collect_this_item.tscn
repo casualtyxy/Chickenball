@@ -1,0 +1,185 @@
+[gd_scene load_steps=10 format=3 uid="uid://y3ycqtpsvn8t"]
+
+[ext_resource type="Script" path="res://scenes/items/farm/collect_this_item.gd" id="1_m0b4q"]
+[ext_resource type="Texture2D" uid="uid://3ot4mwssyps8" path="res://art/items/apple.png" id="2_0rme6"]
+[ext_resource type="AudioStream" uid="uid://tnn6d05eamc6" path="res://audio/sounds/pluck.wav" id="3_06aaw"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_72ery"]
+particles_animation = true
+particles_anim_h_frames = 2
+particles_anim_v_frames = 2
+particles_anim_loop = false
+
+[sub_resource type="Gradient" id="Gradient_kwed7"]
+offsets = PackedFloat32Array(0, 0.889299)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="Animation" id="Animation_xm0mt"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Texture:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Texture:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Texture:self_modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Collect_this_item/Crumbs:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Texture:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_peyv7"]
+resource_name = "collected"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Texture:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.433333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.5, 1.5)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Texture:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Collect_this_item/Crumbs:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_4q8cu"]
+resource_name = "default"
+length = 3.0
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Texture:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.7, 1.5, 2.3),
+"transitions": PackedFloat32Array(1, -2, -2, -2),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -2), Vector2(0, 0), Vector2(0, -2)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Texture:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-0.349066, 0.349066]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rewxa"]
+_data = {
+"RESET": SubResource("Animation_xm0mt"),
+"collected": SubResource("Animation_peyv7"),
+"default": SubResource("Animation_4q8cu")
+}
+
+[node name="Collect_this_item" type="Node2D"]
+script = ExtResource("1_m0b4q")
+
+[node name="Crumbs" type="CPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_72ery")
+emitting = false
+amount = 4
+one_shot = true
+explosiveness = 1.0
+texture = ExtResource("2_0rme6")
+direction = Vector2(0, -1)
+gravity = Vector2(0, 400)
+initial_velocity_min = 150.0
+initial_velocity_max = 150.0
+angular_velocity_min = 50.0
+angular_velocity_max = 250.0
+color_ramp = SubResource("Gradient_kwed7")
+anim_speed_max = 1.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_rewxa")
+}
+
+[node name="SFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_06aaw")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="FoodData" load_steps=3 format=3 uid="uid://c8qhwb1wfv0mf"]
+
+[ext_resource type="Script" path="res://Resources/FoodData.gd" id="1_6ju0s"]
+[ext_resource type="PackedScene" uid="uid://0t34jnmjq2r7" path="res://special_effects/particles/superfood.tscn" id="1_p5wtp"]
+
+[resource]
+script = ExtResource("1_6ju0s")
+VALUE = ExtResource("1_p5wtp")
+PICK_CHANCE = 8
+can_pick = false

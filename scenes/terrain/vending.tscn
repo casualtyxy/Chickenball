@@ -1,0 +1,42 @@
+[gd_scene load_steps=6 format=3 uid="uid://d0volww2g4xny"]
+
+[ext_resource type="Script" path="res://scenes/terrain/vending.gd" id="1_kyi21"]
+[ext_resource type="Texture2D" uid="uid://b0eqjvx82hh3e" path="res://art/sprites/proto_vending.png" id="1_xt3m7"]
+[ext_resource type="Texture2D" uid="uid://c7aj45w6hbqfq" path="res://art/menus/level/proto_vend.png" id="3_obmvv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_54iha"]
+size = Vector2(48, 24)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_njao7"]
+size = Vector2(52, 17)
+
+[node name="vending" type="Node2D"]
+z_index = 1
+y_sort_enabled = true
+script = ExtResource("1_kyi21")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, -12)
+shape = SubResource("RectangleShape2D_54iha")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_xt3m7")
+offset = Vector2(0, -36)
+
+[node name="ActivateArea" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ActivateArea"]
+position = Vector2(0, 1.5)
+shape = SubResource("RectangleShape2D_njao7")
+debug_color = Color(0.7, 0.686813, 0, 0.42)
+
+[node name="ProtoVend" type="Sprite2D" parent="."]
+light_mask = 4
+visibility_layer = 4
+z_index = 2
+position = Vector2(0, -91)
+texture = ExtResource("3_obmvv")

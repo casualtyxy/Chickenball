@@ -1,0 +1,121 @@
+[gd_scene load_steps=6 format=3 uid="uid://ceh5iwhxhtdft"]
+
+[ext_resource type="Script" path="res://scenes/player/platformer_ui_layer.gd" id="1_dhguw"]
+[ext_resource type="Texture2D" uid="uid://byvnrr36iglwd" path="res://art/player/0.png" id="2_sfidp"]
+[ext_resource type="FontFile" uid="uid://ckcvei0nxbacg" path="res://fonts/orange-kid/Orange Kid.otf" id="3_luhcj"]
+[ext_resource type="Texture2D" uid="uid://d0lllogyg2cml" path="res://art/items/food.png" id="4_pi4h0"]
+[ext_resource type="Texture2D" uid="uid://i1amdofnqoid" path="res://art/items/life4.png" id="5_qg0kn"]
+
+[node name="PlatformerUILayer" type="CanvasLayer"]
+script = ExtResource("1_dhguw")
+
+[node name="P1Info" type="Node2D" parent="."]
+position = Vector2(0, 8)
+
+[node name="Icon" type="Sprite2D" parent="P1Info"]
+texture = ExtResource("2_sfidp")
+centered = false
+hframes = 7
+vframes = 4
+frame = 1
+
+[node name="Control" type="Control" parent="P1Info"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 24.0
+offset_right = 64.0
+offset_bottom = 40.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="P1Info/Control"]
+layout_mode = 0
+offset_top = -9.0
+offset_right = 24.0
+offset_bottom = 15.0
+scale = Vector2(2, 2)
+
+[node name="Max" type="RichTextLabel" parent="P1Info/Control/HBoxContainer"]
+clip_contents = false
+custom_minimum_size = Vector2(6, 12)
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("3_luhcj")
+bbcode_enabled = true
+text = "0"
+scroll_active = false
+
+[node name="Max2" type="RichTextLabel" parent="P1Info/Control/HBoxContainer"]
+clip_contents = false
+custom_minimum_size = Vector2(12, 12)
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("3_luhcj")
+theme_override_font_sizes/normal_font_size = 12
+bbcode_enabled = true
+text = "/5"
+scroll_active = false
+autowrap_mode = 0
+
+[node name="P2Info" type="Node2D" parent="."]
+position = Vector2(0, 32)
+
+[node name="Icon" type="Sprite2D" parent="P2Info"]
+texture = ExtResource("2_sfidp")
+centered = false
+hframes = 7
+vframes = 4
+frame = 1
+
+[node name="Control" type="Control" parent="P2Info"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 24.0
+offset_right = 64.0
+offset_bottom = 40.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="P2Info/Control"]
+layout_mode = 0
+offset_top = -9.0
+offset_right = 24.0
+offset_bottom = 15.0
+scale = Vector2(2, 2)
+
+[node name="Max" type="RichTextLabel" parent="P2Info/Control/HBoxContainer"]
+clip_contents = false
+custom_minimum_size = Vector2(6, 12)
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("3_luhcj")
+bbcode_enabled = true
+text = "0"
+scroll_active = false
+
+[node name="Max2" type="RichTextLabel" parent="P2Info/Control/HBoxContainer"]
+clip_contents = false
+custom_minimum_size = Vector2(12, 12)
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("3_luhcj")
+theme_override_font_sizes/normal_font_size = 12
+bbcode_enabled = true
+text = "/5"
+scroll_active = false
+autowrap_mode = 0
+
+[node name="Food" type="Sprite2D" parent="."]
+position = Vector2(158, 23)
+scale = Vector2(2, 2)
+texture = ExtResource("4_pi4h0")
+
+[node name="Life4" type="Sprite2D" parent="."]
+position = Vector2(77, 18)
+texture = ExtResource("5_qg0kn")
+
+[node name="Life5" type="Sprite2D" parent="."]
+position = Vector2(76, 41)
+texture = ExtResource("5_qg0kn")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+offset_left = 183.0
+offset_top = 3.0
+offset_right = 197.0
+offset_bottom = 23.0
+scale = Vector2(2, 2)
+theme_override_fonts/normal_font = ExtResource("3_luhcj")
+bbcode_enabled = true
+text = "0"

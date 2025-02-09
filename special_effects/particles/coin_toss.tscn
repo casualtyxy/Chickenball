@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://duwa8yn3q4qcu"]
+
+[ext_resource type="Texture2D" uid="uid://dmg3yux7utn0m" path="res://art/items/coin.png" id="1_wqehk"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_8cy0u"]
+particles_animation = true
+particles_anim_h_frames = 4
+particles_anim_v_frames = 1
+particles_anim_loop = true
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_udkv3"]
+particle_flag_disable_z = true
+direction = Vector3(0, -1, 0)
+spread = 15.0
+initial_velocity_min = 80.0
+initial_velocity_max = 80.0
+gravity = Vector3(0, 98, 0)
+anim_speed_min = 4.0
+anim_speed_max = 4.0
+
+[node name="CoinToss" type="GPUParticles2D"]
+material = SubResource("CanvasItemMaterial_8cy0u")
+emitting = false
+amount = 1
+process_material = SubResource("ParticleProcessMaterial_udkv3")
+texture = ExtResource("1_wqehk")
+lifetime = 1.5
+one_shot = true
+speed_scale = 2.0

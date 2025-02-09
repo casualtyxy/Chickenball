@@ -1,0 +1,65 @@
+[gd_scene load_steps=7 format=3 uid="uid://d08b2tr23lx27"]
+
+[ext_resource type="Texture2D" uid="uid://b8o4si7dw48p5" path="res://art/items/farm/seed.png" id="1_hmtdy"]
+[ext_resource type="PackedScene" uid="uid://b15fe32dxpwx2" path="res://processing/drag_controller.tscn" id="2_tkheb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jau3i"]
+size = Vector2(18, 18)
+
+[sub_resource type="Animation" id="Animation_dn7xu"]
+resource_name = "RESET"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_hmg5x"]
+resource_name = "spawn"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0.75, 1.5), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_uacbg"]
+_data = {
+"RESET": SubResource("Animation_dn7xu"),
+"spawn": SubResource("Animation_hmg5x")
+}
+
+[node name="Base" type="Area2D" groups=["Item", "LvL1", "Seed"]]
+z_index = 1
+z_as_relative = false
+y_sort_enabled = true
+collision_layer = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_hmtdy")
+region_rect = Rect2(2, 33, 18, 6)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_jau3i")
+
+[node name="DragController" parent="." instance=ExtResource("2_tkheb")]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_uacbg")
+}

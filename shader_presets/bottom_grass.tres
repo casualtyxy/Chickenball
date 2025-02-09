@@ -1,0 +1,24 @@
+[gd_resource type="ShaderMaterial" load_steps=4 format=3 uid="uid://ba448ke4q04o3"]
+
+[ext_resource type="Shader" path="res://scenes/levels/platformer/Ranch/grass_wind.gdshader" id="1_xfnln"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_umnl0"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_r7dvx"]
+width = 48
+height = 48
+seamless = true
+seamless_blend_skirt = 1.0
+as_normal_map = true
+bump_strength = 4.0
+noise = SubResource("FastNoiseLite_umnl0")
+
+[resource]
+shader = ExtResource("1_xfnln")
+shader_parameter/render_noise = false
+shader_parameter/move_top = false
+shader_parameter/distortion_force = Vector2(10, 5)
+shader_parameter/time_scale = 0.1
+shader_parameter/noise_scale = 0.002
+shader_parameter/global_transform = Projection(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_r7dvx")

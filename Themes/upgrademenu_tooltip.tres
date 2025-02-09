@@ -1,0 +1,29 @@
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://bu5rw7q8ykpqo"]
+
+[ext_resource type="FontFile" uid="uid://6dh5boa0nvfx" path="res://fonts/fff-forward/FFFFORWA.TTF" id="1_pmmrj"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_13foh"]
+content_margin_left = 7.0
+content_margin_top = 7.0
+content_margin_right = 7.0
+content_margin_bottom = 7.0
+bg_color = Color(0.239216, 0.0156863, 0.0156863, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.94902, 0.352941, 0.184314, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+shadow_color = Color(0.247059, 0, 0, 0.588235)
+shadow_size = 1
+shadow_offset = Vector2(5, 5)
+anti_aliasing = false
+
+[resource]
+default_font = ExtResource("1_pmmrj")
+default_font_size = 12
+TooltipLabel/colors/font_color = Color(1, 1, 1, 1)
+TooltipPanel/styles/panel = SubResource("StyleBoxFlat_13foh")

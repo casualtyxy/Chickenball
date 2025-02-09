@@ -1,0 +1,393 @@
+[gd_scene load_steps=27 format=3 uid="uid://dk2my6puodcvb"]
+
+[ext_resource type="Script" path="res://settings_menu.gd" id="1_e4ie4"]
+[ext_resource type="Texture2D" uid="uid://dg2ob3m8o0l2a" path="res://art/menus/background/settings0.png" id="2_qccrk"]
+[ext_resource type="Texture2D" uid="uid://dup1reonfmp4x" path="res://art/menus/background/settings_frame.png" id="3_a8r03"]
+[ext_resource type="Texture2D" uid="uid://cot1ehpudku4d" path="res://art/menus/background/settings1.png" id="3_hnl85"]
+[ext_resource type="Texture2D" uid="uid://q76133p7bm6c" path="res://art/menus/buttons/silly/button_data.png" id="5_mcgeo"]
+[ext_resource type="Texture2D" uid="uid://brg7lwe3ft3dy" path="res://art/menus/buttons/silly/button_data_hover.png" id="6_ro3kt"]
+[ext_resource type="Theme" uid="uid://hnbn47314h6f" path="res://Themes/popup.tres" id="7_vy2nd"]
+[ext_resource type="Texture2D" uid="uid://cndueb1adktle" path="res://art/menus/buttons/button_retrobubble.png" id="8_0tv1s"]
+[ext_resource type="Texture2D" uid="uid://csp4krpn6i2lm" path="res://art/menus/buttons/button_retrobubble_hover.png" id="9_hs7x2"]
+[ext_resource type="PackedScene" uid="uid://beh0453rwge7j" path="res://processing/volume_slider.tscn" id="10_us6jx"]
+[ext_resource type="Texture2D" uid="uid://c336t7cfjmlgl" path="res://art/menus/buttons/grabber3.png" id="11_8d6df"]
+[ext_resource type="Texture2D" uid="uid://c7ku44cno0hxv" path="res://art/menus/buttons/grabber_highlight3.png" id="12_d23fm"]
+[ext_resource type="Texture2D" uid="uid://dbkrwd4xmxcgi" path="res://art/player/new_chicken3.png" id="13_n1pni"]
+[ext_resource type="Texture2D" uid="uid://d237qhbkcmpqc" path="res://art/menus/buttons/button_retrobubble_long.png" id="14_sa23k"]
+[ext_resource type="Texture2D" uid="uid://b5qt74hy47wm0" path="res://art/menus/buttons/button_retrobubble_long_hover.png" id="15_cb0e7"]
+[ext_resource type="Texture2D" uid="uid://br600735hpe53" path="res://art/menus/player_slots.png" id="15_twskd"]
+[ext_resource type="Texture2D" uid="uid://cwvw0hxn82bx6" path="res://art/player/goose.png" id="17_bnea1"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_72wjp"]
+bg_color = Color(0.364706, 0.501961, 0.74902, 1)
+corner_radius_top_left = 4
+corner_radius_bottom_left = 4
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4idqu"]
+bg_color = Color(0.85098, 0.341176, 0.388235, 1)
+corner_radius_top_left = 4
+corner_radius_bottom_left = 4
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dfyry"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.164706, 0.227451, 0.329412, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
+anti_aliasing = false
+
+[sub_resource type="Theme" id="Theme_c7uvw"]
+HSlider/icons/grabber = ExtResource("11_8d6df")
+HSlider/icons/grabber_highlight = ExtResource("12_d23fm")
+HSlider/styles/grabber_area = SubResource("StyleBoxFlat_72wjp")
+HSlider/styles/grabber_area_highlight = SubResource("StyleBoxFlat_4idqu")
+HSlider/styles/slider = SubResource("StyleBoxFlat_dfyry")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_40yoq"]
+atlas = ExtResource("3_a8r03")
+region = Rect2(0, 0, 120, 95)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4tbg3"]
+atlas = ExtResource("3_a8r03")
+region = Rect2(120, 0, 120, 95)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ur511"]
+atlas = ExtResource("3_a8r03")
+region = Rect2(240, 0, 120, 95)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4r5r0"]
+atlas = ExtResource("3_a8r03")
+region = Rect2(360, 0, 120, 95)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cdcbq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_40yoq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4tbg3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ur511")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4r5r0")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="settings_menu" type="Node2D"]
+script = ExtResource("1_e4ie4")
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2(960, 0)
+
+[node name="0" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+texture = ExtResource("2_qccrk")
+centered = false
+metadata/_edit_lock_ = true
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2(960, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2"]
+texture = ExtResource("3_hnl85")
+centered = false
+
+[node name="volume_slider" parent="." instance=ExtResource("10_us6jx")]
+offset_left = 15.0
+offset_top = 438.0
+offset_right = 146.0
+offset_bottom = 454.0
+focus_neighbor_top = NodePath("../Back")
+focus_neighbor_bottom = NodePath("../volume_slider2")
+focus_next = NodePath("../volume_slider2")
+focus_previous = NodePath("../Back")
+theme = SubResource("Theme_c7uvw")
+value = 0.8
+bus_name = "Sounds"
+
+[node name="volume_slider2" parent="." instance=ExtResource("10_us6jx")]
+offset_left = 14.0
+offset_top = 490.0
+offset_right = 145.0
+offset_bottom = 506.0
+focus_neighbor_top = NodePath("../volume_slider")
+focus_neighbor_bottom = NodePath("../Back")
+focus_next = NodePath("../DataButton")
+focus_previous = NodePath("../volume_slider")
+theme = SubResource("Theme_c7uvw")
+value = 0.5
+bus_name = "Music"
+
+[node name="DataButton" type="TextureButton" parent="."]
+offset_left = 753.0
+offset_top = 489.0
+offset_right = 811.0
+offset_bottom = 513.0
+scale = Vector2(1.5, 1.5)
+focus_neighbor_left = NodePath("../Back")
+focus_neighbor_top = NodePath("../volume_slider2")
+focus_neighbor_right = NodePath("../Back")
+focus_neighbor_bottom = NodePath("../volume_slider")
+focus_next = NodePath("../Back")
+focus_previous = NodePath("../LMusic")
+texture_normal = ExtResource("8_0tv1s")
+texture_hover = ExtResource("9_hs7x2")
+texture_focused = ExtResource("9_hs7x2")
+
+[node name="Label" type="RichTextLabel" parent="DataButton"]
+clip_contents = false
+layout_mode = 0
+offset_top = 7.0
+offset_right = 97.0
+offset_bottom = 25.0
+scale = Vector2(0.6, 0.6)
+mouse_filter = 2
+bbcode_enabled = true
+text = "[center]Files"
+scroll_active = false
+
+[node name="AcceptDialog" type="AcceptDialog" parent="DataButton"]
+auto_translate_mode = 1
+title = "Clear Data"
+initial_position = 4
+size = Vector2i(316, 128)
+content_scale_stretch = 1
+theme = ExtResource("7_vy2nd")
+ok_button_text = "Cancel"
+dialog_text = "Manage your save directory"
+
+[node name="TouchControl" type="TextureButton" parent="."]
+visible = false
+offset_left = 12.0
+offset_top = 270.0
+offset_right = 58.0
+offset_bottom = 293.0
+scale = Vector2(2, 2)
+texture_normal = ExtResource("5_mcgeo")
+texture_hover = ExtResource("6_ro3kt")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="TouchControl"]
+clip_contents = false
+layout_mode = 0
+offset_top = 6.0
+offset_right = 76.0
+offset_bottom = 24.0
+scale = Vector2(0.6, 0.6)
+mouse_filter = 2
+bbcode_enabled = true
+text = "[center]Touch"
+scroll_active = false
+
+[node name="AcceptDialog" type="AcceptDialog" parent="TouchControl"]
+title = "Touch Controls"
+initial_position = 4
+size = Vector2i(282, 100)
+theme = ExtResource("7_vy2nd")
+ok_button_text = "Hide"
+dialog_text = "Do you want to show touch 
+controls in the level?"
+
+[node name="Back" type="TextureButton" parent="."]
+offset_left = 859.0
+offset_top = 489.0
+offset_right = 917.0
+offset_bottom = 513.0
+scale = Vector2(1.5, 1.5)
+focus_neighbor_left = NodePath("../DataButton")
+focus_neighbor_top = NodePath("../PlayerCount")
+focus_neighbor_right = NodePath("../DataButton")
+focus_neighbor_bottom = NodePath("../PlayerCount")
+focus_next = NodePath("../PlayerCount")
+focus_previous = NodePath("../DataButton")
+texture_normal = ExtResource("8_0tv1s")
+texture_hover = ExtResource("9_hs7x2")
+texture_focused = ExtResource("9_hs7x2")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Back"]
+clip_contents = false
+layout_mode = 0
+offset_top = 7.0
+offset_right = 97.0
+offset_bottom = 25.0
+scale = Vector2(0.6, 0.6)
+mouse_filter = 2
+bbcode_enabled = true
+text = "[center]Done"
+scroll_active = false
+
+[node name="LSound" type="RichTextLabel" parent="."]
+clip_contents = false
+offset_left = 14.0
+offset_top = 412.0
+offset_right = 146.0
+offset_bottom = 434.0
+text = "Sound:"
+scroll_active = false
+
+[node name="LMusic" type="RichTextLabel" parent="."]
+clip_contents = false
+offset_left = 13.0
+offset_top = 465.0
+offset_right = 143.0
+offset_bottom = 489.0
+text = "Music:"
+scroll_active = false
+
+[node name="BGFrame" type="AnimatedSprite2D" parent="."]
+visible = false
+self_modulate = Color(1, 1, 1, 0.490196)
+scale = Vector2(4, 4)
+sprite_frames = SubResource("SpriteFrames_cdcbq")
+autoplay = "default"
+frame_progress = 0.598074
+centered = false
+metadata/_edit_lock_ = true
+
+[node name="PlayerCount" type="TextureButton" parent="."]
+offset_left = 13.0
+offset_top = 315.0
+offset_right = 129.0
+offset_bottom = 339.0
+scale = Vector2(1.5, 1.5)
+focus_neighbor_left = NodePath("../Back")
+focus_neighbor_top = NodePath("../volume_slider2")
+focus_neighbor_right = NodePath("../Back")
+focus_neighbor_bottom = NodePath("../Back")
+focus_next = NodePath("../DataButton")
+focus_previous = NodePath("../volume_slider2")
+texture_normal = ExtResource("14_sa23k")
+texture_hover = ExtResource("15_cb0e7")
+texture_focused = ExtResource("15_cb0e7")
+
+[node name="PCountLabel" type="RichTextLabel" parent="PlayerCount"]
+clip_contents = false
+layout_mode = 0
+offset_top = 7.0
+offset_right = 193.0
+offset_bottom = 25.0
+scale = Vector2(0.6, 0.6)
+mouse_filter = 2
+bbcode_enabled = true
+text = "[center]Player Count: 1"
+scroll_active = false
+
+[node name="Label" type="Label" parent="."]
+offset_left = 14.0
+offset_top = 356.0
+offset_right = 316.0
+offset_bottom = 403.0
+scale = Vector2(0.5, 0.5)
+text = "Currently for Adventure only!
+This is couch multiplayer."
+
+[node name="Box1" type="Node2D" parent="."]
+position = Vector2(104, 203)
+scale = Vector2(4, 4)
+
+[node name="b" type="Sprite2D" parent="Box1"]
+texture = ExtResource("15_twskd")
+hframes = 6
+frame = 5
+
+[node name="c" type="Sprite2D" parent="Box1"]
+position = Vector2(4, 4)
+scale = Vector2(2, 2)
+texture = ExtResource("13_n1pni")
+flip_h = true
+region_enabled = true
+region_rect = Rect2(5, 0, 19, 19)
+
+[node name="f" type="Sprite2D" parent="Box1"]
+texture = ExtResource("15_twskd")
+hframes = 6
+
+[node name="Box2" type="Node2D" parent="."]
+position = Vector2(300, 203)
+scale = Vector2(4, 4)
+
+[node name="b" type="Sprite2D" parent="Box2"]
+texture = ExtResource("15_twskd")
+hframes = 6
+frame = 5
+
+[node name="c" type="Sprite2D" parent="Box2"]
+visible = false
+position = Vector2(4, 4)
+scale = Vector2(2, 2)
+texture = ExtResource("17_bnea1")
+flip_h = true
+region_enabled = true
+region_rect = Rect2(5, 0, 19, 19)
+
+[node name="f" type="Sprite2D" parent="Box2"]
+texture = ExtResource("15_twskd")
+hframes = 6
+frame = 1
+
+[node name="Box3" type="Node2D" parent="."]
+position = Vector2(496, 203)
+scale = Vector2(4, 4)
+
+[node name="b" type="Sprite2D" parent="Box3"]
+texture = ExtResource("15_twskd")
+hframes = 6
+frame = 5
+
+[node name="c" type="Sprite2D" parent="Box3"]
+visible = false
+position = Vector2(4, 4)
+scale = Vector2(2, 2)
+texture = ExtResource("13_n1pni")
+flip_h = true
+region_enabled = true
+region_rect = Rect2(5, 0, 19, 19)
+
+[node name="f" type="Sprite2D" parent="Box3"]
+texture = ExtResource("15_twskd")
+hframes = 6
+frame = 2
+
+[node name="Box4" type="Node2D" parent="."]
+position = Vector2(692, 203)
+scale = Vector2(4, 4)
+
+[node name="b" type="Sprite2D" parent="Box4"]
+texture = ExtResource("15_twskd")
+hframes = 6
+frame = 5
+
+[node name="c" type="Sprite2D" parent="Box4"]
+visible = false
+position = Vector2(4, 4)
+scale = Vector2(2, 2)
+texture = ExtResource("13_n1pni")
+flip_h = true
+region_enabled = true
+region_rect = Rect2(5, 0, 19, 19)
+
+[node name="f" type="Sprite2D" parent="Box4"]
+texture = ExtResource("15_twskd")
+hframes = 6
+frame = 3
+
+[node name="Sound" type="AudioStreamPlayer" parent="."]
+
+[connection signal="custom_action" from="DataButton/AcceptDialog" to="." method="clear_data"]
+[connection signal="custom_action" from="TouchControl/AcceptDialog" to="." method="show_touch_controls"]

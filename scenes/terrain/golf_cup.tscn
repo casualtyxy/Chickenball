@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://cuji75bsfj6jx"]
+
+[ext_resource type="Texture2D" uid="uid://c0qyl4jdm1i0p" path="res://art/sprites/golfcup.png" id="1_uj6tx"]
+[ext_resource type="Texture2D" uid="uid://clcisddco70ld" path="res://art/sprites/flag.png" id="2_l50h3"]
+
+[node name="GolfCup" type="Node2D"]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(24, 24)
+
+[node name="B" type="Sprite2D" parent="StaticBody2D"]
+texture = ExtResource("1_uj6tx")
+hframes = 2
+
+[node name="Flag" type="Sprite2D" parent="StaticBody2D"]
+position = Vector2(0, -29)
+texture = ExtResource("2_l50h3")
+hframes = 4
+
+[node name="F" type="Sprite2D" parent="StaticBody2D"]
+texture = ExtResource("1_uj6tx")
+hframes = 2
+frame = 1
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PackedVector2Array(-24, -14, -21, -12, -18, 16, 18, 16, 21, -12, 24, -14, 24, 21, -24, 21)

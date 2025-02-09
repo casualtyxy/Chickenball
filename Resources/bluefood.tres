@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="FoodData" load_steps=3 format=3 uid="uid://pnua0i5gxmqe"]
+
+[ext_resource type="PackedScene" uid="uid://co1xi4haqyi0d" path="res://scenes/items/old/bluefood.tscn" id="1_3y35f"]
+[ext_resource type="Script" path="res://Resources/FoodData.gd" id="2_ufghx"]
+
+[resource]
+script = ExtResource("2_ufghx")
+VALUE = ExtResource("1_3y35f")
+PICK_CHANCE = 1
+can_pick = false

@@ -1,0 +1,884 @@
+[gd_scene load_steps=60 format=3 uid="uid://d3dx67kiinl6o"]
+
+[ext_resource type="Script" path="res://scenes/mastermenu_arcade.gd" id="1_jkgyn"]
+[ext_resource type="Script" path="res://scenes/gamemenu_arcade.gd" id="2_h5v1i"]
+[ext_resource type="Texture2D" uid="uid://uvyn41wph5b7" path="res://art/menus/background/BG_focus.png" id="3_twqid"]
+[ext_resource type="Texture2D" uid="uid://nk14dsmd5hew" path="res://art/menus/background/upgrades_back_2.png" id="4_ryx3t"]
+[ext_resource type="Texture2D" uid="uid://ciivcjjojtewv" path="res://art/menus/background/upgrades_overlay.png" id="5_8gfef"]
+[ext_resource type="FontFile" uid="uid://6dh5boa0nvfx" path="res://fonts/fff-forward/FFFFORWA.TTF" id="6_fo56f"]
+[ext_resource type="Texture2D" uid="uid://bgtbkge7tb6ig" path="res://art/menus/buttons/button_retract.png" id="7_d6r1n"]
+[ext_resource type="Texture2D" uid="uid://dwdu7ggb7bfld" path="res://art/menus/buttons/button_retract_pressed.png" id="8_wpbic"]
+[ext_resource type="Texture2D" uid="uid://ctoby8876caab" path="res://art/menus/buttons/button_retract_hover.png" id="9_pwtfa"]
+[ext_resource type="Theme" uid="uid://bu5rw7q8ykpqo" path="res://Themes/upgrademenu_tooltip.tres" id="10_6w1w8"]
+[ext_resource type="Texture2D" uid="uid://cmfmpd66wpnkb" path="res://art/menus/buttons/up_button.png" id="11_5mug2"]
+[ext_resource type="Texture2D" uid="uid://bp8sujuu445kg" path="res://art/menus/buttons/up_button_down.png" id="12_ydi2o"]
+[ext_resource type="Texture2D" uid="uid://ljsgq366jva4" path="res://art/menus/buttons/up_button_hover.png" id="13_busg1"]
+[ext_resource type="Texture2D" uid="uid://dvton8q64n64o" path="res://art/menus/buttons/blank_button.png" id="14_83m3g"]
+[ext_resource type="Texture2D" uid="uid://byvnrr36iglwd" path="res://art/player/0.png" id="15_ahn1i"]
+[ext_resource type="Texture2D" uid="uid://dgrw744ks2llk" path="res://art/menus/buttons/button_basic.png" id="15_xyjg1"]
+[ext_resource type="Texture2D" uid="uid://cvyu5mw11feby" path="res://art/menus/buttons/button_basic_hover.png" id="16_sb23e"]
+[ext_resource type="Texture2D" uid="uid://dmg3yux7utn0m" path="res://art/items/coin.png" id="20_qwdpb"]
+[ext_resource type="Texture2D" uid="uid://j3lv8vhye8m2" path="res://art/sprites/icons/energy.png" id="23_llk5n"]
+[ext_resource type="Texture2D" uid="uid://i1amdofnqoid" path="res://art/items/life4.png" id="25_dae2l"]
+[ext_resource type="Texture2D" uid="uid://d0lllogyg2cml" path="res://art/items/food.png" id="26_0dlbi"]
+[ext_resource type="FontFile" uid="uid://ckcvei0nxbacg" path="res://fonts/orange-kid/Orange Kid.otf" id="26_hbe2b"]
+[ext_resource type="Theme" uid="uid://hnbn47314h6f" path="res://Themes/popup.tres" id="26_oqfxc"]
+[ext_resource type="Script" path="res://processing/upgradebutton.gd" id="28_02a0s"]
+[ext_resource type="Theme" uid="uid://bxvf0hvsralds" path="res://Themes/healthbar.tres" id="28_ytw0a"]
+[ext_resource type="Texture2D" uid="uid://crcfc3rralns2" path="res://art/effects/critical_overlay2.png" id="29_whwru"]
+[ext_resource type="Texture2D" uid="uid://c6qpwq23gd22b" path="res://art/menus/buttons/top_new.png" id="29_yt1hr"]
+[ext_resource type="Texture2D" uid="uid://bkn3udj7anwe4" path="res://art/menus/buttons/top_new_pressed.png" id="30_tvhsp"]
+[ext_resource type="Texture2D" uid="uid://d2ymoyv855qy0" path="res://art/menus/buttons/top_new_hover.png" id="31_wq2ff"]
+[ext_resource type="AudioStream" uid="uid://b5l4f35xkcnag" path="res://audio/sounds/close_menu.ogg" id="32_uv85y"]
+[ext_resource type="AudioStream" uid="uid://dbxivaajgogrj" path="res://audio/sounds/open_menu.ogg" id="33_la8f7"]
+
+[sub_resource type="Curve" id="Curve_7hqi5"]
+min_value = 0.1
+_data = [Vector2(0, 0.37), 0.0, 0.0, 0, 0, Vector2(1, 0.73), 0.0, 0.0, 0, 0]
+point_count = 2
+metadata/_snap_enabled = true
+
+[sub_resource type="CurveTexture" id="CurveTexture_byc01"]
+curve = SubResource("Curve_7hqi5")
+
+[sub_resource type="Gradient" id="Gradient_t6ew0"]
+offsets = PackedFloat32Array(0, 0.988048)
+colors = PackedColorArray(1, 1, 1, 0.470588, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_6511e"]
+gradient = SubResource("Gradient_t6ew0")
+
+[sub_resource type="Curve" id="Curve_qckor"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.533675), -1.50076, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_t6x0h"]
+curve = SubResource("Curve_qckor")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_7frcn"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(240, 1, 1)
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+angle_min = -60.0
+angle_max = 60.0
+angle_curve = SubResource("CurveTexture_byc01")
+gravity = Vector3(0, -20, 0)
+linear_accel_min = 5.0
+linear_accel_max = 10.0
+scale_min = 20.0
+scale_max = 40.0
+scale_curve = SubResource("CurveTexture_t6x0h")
+color_ramp = SubResource("GradientTexture1D_6511e")
+turbulence_noise_scale = 10.0
+
+[sub_resource type="Animation" id="Animation_2sk6o"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible_characters")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [-1]
+}
+
+[sub_resource type="Animation" id="Animation_r4ub2"]
+resource_name = "threading"
+length = 2.0
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible_characters")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0, 99]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_py2re"]
+_data = {
+"RESET": SubResource("Animation_2sk6o"),
+"threading": SubResource("Animation_r4ub2")
+}
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_50nn8"]
+atlas = ExtResource("20_qwdpb")
+region = Rect2(0, 0, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ppm15"]
+atlas = ExtResource("20_qwdpb")
+region = Rect2(20, 0, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nkrnf"]
+atlas = ExtResource("20_qwdpb")
+region = Rect2(40, 0, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_doph0"]
+atlas = ExtResource("20_qwdpb")
+region = Rect2(60, 0, 20, 20)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hfmkh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_50nn8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ppm15")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nkrnf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_doph0")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gppqf"]
+bg_color = Color(0.215686, 0.419608, 0.337255, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bch5t"]
+bg_color = Color(0.6, 0.898039, 0.313726, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+anti_aliasing = false
+
+[sub_resource type="Theme" id="Theme_51248"]
+default_font_size = 8
+ProgressBar/styles/background = SubResource("StyleBoxFlat_gppqf")
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_bch5t")
+
+[sub_resource type="Animation" id="Animation_2bjjq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -380)]
+}
+
+[sub_resource type="Animation" id="Animation_iqajq"]
+resource_name = "close_upgrade_menu"
+length = 0.45
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -380)]
+}
+tracks/1/type = "audio"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AudioStreamPlayer")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("32_uv85y")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/1/use_blend = true
+
+[sub_resource type="Animation" id="Animation_7chev"]
+resource_name = "open_upgrade_menu"
+length = 0.45
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.25, 0.3, 0.35, 0.4, 0.45),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, -380), Vector2(0, -377), Vector2(0, 0), Vector2(0, -20), Vector2(0, 0), Vector2(0, -5), Vector2(0, 0)]
+}
+tracks/1/type = "audio"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AudioStreamPlayer")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("33_la8f7")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/1/use_blend = true
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_44jex"]
+_data = {
+"RESET": SubResource("Animation_2bjjq"),
+"close_upgrade_menu": SubResource("Animation_iqajq"),
+"open_upgrade_menu": SubResource("Animation_7chev")
+}
+
+[sub_resource type="Animation" id="Animation_3v5h7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("gamemenuarcade/upgradebutton/icHealth:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("gamemenuarcade/upgradebutton/icFood:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Critical_overlay:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_nqkfv"]
+resource_name = "heartbeat"
+length = 1.5
+loop_mode = 1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("gamemenuarcade/upgradebutton/icHealth:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.75, 1.5),
+"transitions": PackedFloat32Array(1, 2, 0.5),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.2, 1.2), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Critical_overlay:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.75, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.313726), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8sh33"]
+_data = {
+"RESET": SubResource("Animation_3v5h7"),
+"heartbeat": SubResource("Animation_nqkfv")
+}
+
+[sub_resource type="Animation" id="Animation_3uwx8"]
+resource_name = "RESET"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("gamemenuarcade/upgradebutton/icFood:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_b7sei"]
+resource_name = "food_increase"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("gamemenuarcade/upgradebutton/icFood:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 2),
+"update": 0,
+"values": [Vector2(1.2, 1.4), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_k6hpa"]
+_data = {
+"RESET": SubResource("Animation_3uwx8"),
+"food_increase": SubResource("Animation_b7sei")
+}
+
+[node name="UpgradeMenusArcade" type="Node2D"]
+script = ExtResource("1_jkgyn")
+
+[node name="gamemenuarcade" type="Node2D" parent="."]
+light_mask = 2
+visibility_layer = 2
+position = Vector2(0, -380)
+script = ExtResource("2_h5v1i")
+
+[node name="Focus" type="Sprite2D" parent="gamemenuarcade"]
+self_modulate = Color(1, 1, 1, 0.627451)
+position = Vector2(0, 380)
+texture = ExtResource("3_twqid")
+centered = false
+offset = Vector2(0, -380)
+metadata/_edit_lock_ = true
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="gamemenuarcade"]
+position = Vector2(240, 130)
+amount = 60
+process_material = SubResource("ParticleProcessMaterial_7frcn")
+lifetime = 2.5
+randomness = 1.0
+metadata/_edit_lock_ = true
+
+[node name="Background" type="Sprite2D" parent="gamemenuarcade"]
+scale = Vector2(2, 2)
+texture = ExtResource("4_ryx3t")
+centered = false
+metadata/_edit_lock_ = true
+
+[node name="GUI" type="Control" parent="gamemenuarcade"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Overlay" type="Sprite2D" parent="gamemenuarcade/GUI"]
+texture = ExtResource("5_8gfef")
+centered = false
+
+[node name="LLevel" type="Label" parent="gamemenuarcade/GUI"]
+layout_mode = 0
+offset_left = 53.0
+offset_top = 72.0
+offset_right = 113.0
+offset_bottom = 95.0
+theme_override_fonts/font = ExtResource("6_fo56f")
+theme_override_font_sizes/font_size = 12
+text = "000000000000"
+
+[node name="LFood" type="Label" parent="gamemenuarcade/GUI"]
+layout_mode = 0
+offset_left = 53.0
+offset_top = 97.0
+offset_right = 161.0
+offset_bottom = 120.0
+theme_override_fonts/font = ExtResource("6_fo56f")
+theme_override_font_sizes/font_size = 12
+text = "000000000000"
+
+[node name="MenuExit" type="TextureButton" parent="gamemenuarcade/GUI"]
+layout_mode = 0
+offset_left = 194.0
+offset_top = 314.0
+offset_right = 290.0
+offset_bottom = 360.0
+texture_normal = ExtResource("7_d6r1n")
+texture_pressed = ExtResource("8_wpbic")
+texture_hover = ExtResource("9_pwtfa")
+
+[node name="LNutrition" type="RichTextLabel" parent="gamemenuarcade/GUI"]
+clip_contents = false
+layout_mode = 0
+offset_left = 30.0
+offset_top = 148.0
+offset_right = 175.0
+offset_bottom = 185.0
+tooltip_text = "Increases the value of food
+(For this session)"
+mouse_filter = 1
+theme = ExtResource("10_6w1w8")
+theme_override_font_sizes/normal_font_size = 12
+bbcode_enabled = true
+text = "[img]res://art/items/farm/seed.png[/img]Nutrition: ?
+Cost: ?"
+autowrap_mode = 0
+
+[node name="Nut_Upgrade" type="TextureButton" parent="gamemenuarcade/GUI"]
+layout_mode = 2
+offset_left = 190.0
+offset_top = 140.0
+offset_right = 238.0
+offset_bottom = 190.0
+focus_neighbor_left = NodePath("../Special")
+focus_neighbor_top = NodePath("../Pile_Upgrade")
+focus_neighbor_right = NodePath("../Special")
+focus_neighbor_bottom = NodePath("../Prod_Upgrade")
+texture_normal = ExtResource("11_5mug2")
+texture_pressed = ExtResource("12_ydi2o")
+texture_hover = ExtResource("13_busg1")
+
+[node name="LProduction" type="RichTextLabel" parent="gamemenuarcade/GUI"]
+clip_contents = false
+layout_mode = 0
+offset_left = 30.0
+offset_top = 202.0
+offset_right = 174.0
+offset_bottom = 239.0
+tooltip_text = "Increases food spawning rate
+(For this session)"
+mouse_filter = 1
+theme = ExtResource("10_6w1w8")
+theme_override_colors/default_color = Color(0.937255, 0.8, 0.584314, 1)
+theme_override_font_sizes/normal_font_size = 12
+bbcode_enabled = true
+text = "Production rate
+retired"
+autowrap_mode = 0
+
+[node name="Prod_Upgrade" type="TextureButton" parent="gamemenuarcade/GUI"]
+layout_mode = 0
+offset_left = 190.0
+offset_top = 194.0
+offset_right = 238.0
+offset_bottom = 242.0
+focus_neighbor_left = NodePath("../Special")
+focus_neighbor_top = NodePath("../Nut_Upgrade")
+focus_neighbor_right = NodePath("../Special")
+focus_neighbor_bottom = NodePath("../Iron_Upgrade")
+texture_normal = ExtResource("11_5mug2")
+texture_pressed = ExtResource("12_ydi2o")
+texture_hover = ExtResource("13_busg1")
+
+[node name="LIron_Upgrade" type="RichTextLabel" parent="gamemenuarcade/GUI"]
+clip_contents = false
+layout_mode = 0
+offset_left = 30.0
+offset_top = 256.0
+offset_right = 175.0
+offset_bottom = 293.0
+tooltip_text = "Increases your max health
+(For this session)"
+mouse_filter = 1
+theme = ExtResource("10_6w1w8")
+theme_override_colors/default_color = Color(0.937255, 0.8, 0.584314, 1)
+bbcode_enabled = true
+text = "Resistance retired"
+scroll_active = false
+
+[node name="Iron_Upgrade" type="TextureButton" parent="gamemenuarcade/GUI"]
+layout_mode = 0
+offset_left = 190.0
+offset_top = 248.0
+offset_right = 236.0
+offset_bottom = 296.0
+focus_neighbor_left = NodePath("../Special")
+focus_neighbor_top = NodePath("../Prod_Upgrade")
+focus_neighbor_right = NodePath("../Special")
+focus_neighbor_bottom = NodePath("../Pile_Upgrade")
+texture_normal = ExtResource("11_5mug2")
+texture_pressed = ExtResource("12_ydi2o")
+texture_hover = ExtResource("13_busg1")
+
+[node name="LPiles" type="RichTextLabel" parent="gamemenuarcade/GUI"]
+clip_contents = false
+layout_mode = 0
+offset_left = 250.0
+offset_top = 148.0
+offset_right = 395.0
+offset_bottom = 185.0
+tooltip_text = "???"
+mouse_filter = 1
+theme = ExtResource("10_6w1w8")
+theme_override_colors/default_color = Color(0.937255, 0.8, 0.584314, 1)
+bbcode_enabled = true
+text = "Empty Slot"
+
+[node name="Pile_Upgrade" type="TextureButton" parent="gamemenuarcade/GUI"]
+layout_mode = 0
+offset_left = 410.0
+offset_top = 140.0
+offset_right = 458.0
+offset_bottom = 188.0
+focus_neighbor_left = NodePath("../Special")
+focus_neighbor_top = NodePath("../Iron_Upgrade")
+focus_neighbor_right = NodePath("../Special")
+focus_neighbor_bottom = NodePath("../Nut_Upgrade")
+texture_normal = ExtResource("14_83m3g")
+
+[node name="SpecialLabel" type="RichTextLabel" parent="gamemenuarcade/GUI"]
+clip_contents = false
+layout_mode = 0
+offset_left = 250.0
+offset_top = 202.0
+offset_right = 394.0
+offset_bottom = 239.0
+tooltip_text = "Maybe I should put the 
+mission here"
+mouse_filter = 1
+theme = ExtResource("10_6w1w8")
+theme_override_colors/default_color = Color(0.937255, 0.8, 0.584314, 1)
+text = "Empty Slot"
+
+[node name="Special" type="TextureButton" parent="gamemenuarcade/GUI"]
+layout_mode = 0
+offset_left = 410.0
+offset_top = 194.0
+offset_right = 458.0
+offset_bottom = 242.0
+focus_neighbor_left = NodePath("../Nut_Upgrade")
+focus_neighbor_right = NodePath("../Nut_Upgrade")
+texture_normal = ExtResource("14_83m3g")
+
+[node name="Gamemode" type="TextureButton" parent="gamemenuarcade/GUI"]
+visible = false
+layout_mode = 0
+offset_left = 354.0
+offset_top = 232.0
+offset_right = 400.0
+offset_bottom = 280.0
+tooltip_text = "Knock knock
+Who's there?
+Just another lock"
+theme = ExtResource("10_6w1w8")
+texture_normal = ExtResource("14_83m3g")
+
+[node name="Skins" type="TextureButton" parent="gamemenuarcade/GUI"]
+visible = false
+layout_mode = 0
+offset_left = 408.0
+offset_top = 232.0
+offset_right = 454.0
+offset_bottom = 280.0
+tooltip_text = "Better not to hype it up,
+this will take some time"
+theme = ExtResource("10_6w1w8")
+texture_normal = ExtResource("14_83m3g")
+
+[node name="Dictionary" type="TextureButton" parent="gamemenuarcade/GUI"]
+visible = false
+layout_mode = 0
+offset_left = 408.0
+offset_top = 286.0
+offset_right = 454.0
+offset_bottom = 334.0
+texture_normal = ExtResource("14_83m3g")
+
+[node name="SaveScore" type="TextureButton" parent="gamemenuarcade/GUI"]
+layout_mode = 0
+offset_left = 366.0
+offset_top = 312.0
+offset_right = 412.0
+offset_bottom = 336.0
+scale = Vector2(2, 2)
+texture_normal = ExtResource("15_xyjg1")
+texture_hover = ExtResource("16_sb23e")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="gamemenuarcade/GUI/SaveScore"]
+clip_contents = false
+layout_mode = 0
+offset_top = 8.0
+offset_right = 92.0
+offset_bottom = 40.0
+scale = Vector2(0.5, 0.5)
+mouse_filter = 2
+bbcode_enabled = true
+text = "[center]End Run"
+
+[node name="AcceptDialog" type="AcceptDialog" parent="gamemenuarcade/GUI/SaveScore"]
+title = "End Run"
+initial_position = 4
+size = Vector2i(440, 128)
+unresizable = true
+theme = ExtResource("26_oqfxc")
+dialog_text = "End your run and save current score?
+()"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="gamemenuarcade"]
+volume_db = -10.0
+bus = &"Sounds"
+
+[node name="PlayerWindow" type="Sprite2D" parent="gamemenuarcade"]
+position = Vector2(420, 79)
+scale = Vector2(2, 2)
+texture = ExtResource("15_ahn1i")
+flip_h = true
+hframes = 7
+vframes = 4
+
+[node name="TextBubble" type="Label" parent="gamemenuarcade"]
+offset_left = 260.0
+offset_top = 48.0
+offset_right = 380.0
+offset_bottom = 94.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/line_spacing = -3
+theme_override_fonts/font = ExtResource("26_hbe2b")
+theme_override_font_sizes/font_size = 12
+text = "You are my special
+ba nau nau nananau"
+autowrap_mode = 2
+visible_ratio = -0.027027
+
+[node name="TextClick" type="Button" parent="gamemenuarcade/TextBubble"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="gamemenuarcade/TextBubble"]
+libraries = {
+"": SubResource("AnimationLibrary_py2re")
+}
+
+[node name="Foodicon" type="AnimatedSprite2D" parent="gamemenuarcade"]
+position = Vector2(38, 78)
+sprite_frames = SubResource("SpriteFrames_hfmkh")
+autoplay = "default"
+frame_progress = 0.620878
+
+[node name="upgradebutton" type="Control" parent="gamemenuarcade"]
+z_index = -1
+layout_mode = 3
+anchor_right = 1.0
+anchor_bottom = 0.234
+offset_top = 380.0
+offset_bottom = 380.08
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("28_02a0s")
+
+[node name="UpgradeButton" type="TextureButton" parent="gamemenuarcade/upgradebutton"]
+layout_mode = 0
+offset_right = 480.0
+offset_bottom = 76.0
+texture_normal = ExtResource("29_yt1hr")
+texture_pressed = ExtResource("30_tvhsp")
+texture_hover = ExtResource("31_wq2ff")
+
+[node name="icHealth" type="Sprite2D" parent="gamemenuarcade/upgradebutton"]
+position = Vector2(19, 39)
+texture = ExtResource("25_dae2l")
+
+[node name="PLabelLevel" type="RichTextLabel" parent="gamemenuarcade/upgradebutton"]
+unique_name_in_owner = true
+clip_contents = false
+layout_mode = 2
+offset_left = 30.0
+offset_top = 31.0
+offset_right = 51.0
+offset_bottom = 51.0
+size_flags_horizontal = 3
+theme_override_font_sizes/normal_font_size = 14
+bbcode_enabled = true
+text = "[right]50"
+scroll_active = false
+autowrap_mode = 0
+
+[node name="max" type="RichTextLabel" parent="gamemenuarcade/upgradebutton/PLabelLevel"]
+clip_contents = false
+layout_mode = 0
+offset_left = 21.0
+offset_right = 417.0
+offset_bottom = 21.0
+scale = Vector2(0.25, 0.25)
+bbcode_enabled = true
+text = "/50"
+scroll_active = false
+autowrap_mode = 1
+
+[node name="icFood" type="Sprite2D" parent="gamemenuarcade/upgradebutton"]
+position = Vector2(179, 39)
+texture = ExtResource("26_0dlbi")
+
+[node name="PLabelFood" type="RichTextLabel" parent="gamemenuarcade/upgradebutton"]
+unique_name_in_owner = true
+clip_contents = false
+custom_minimum_size = Vector2(50, 20)
+layout_mode = 2
+offset_left = 190.0
+offset_top = 31.0
+offset_right = 308.0
+offset_bottom = 51.0
+size_flags_horizontal = 3
+theme_override_font_sizes/normal_font_size = 14
+bbcode_enabled = true
+text = "12345"
+scroll_active = false
+autowrap_mode = 0
+
+[node name="icEnergy" type="Sprite2D" parent="gamemenuarcade/upgradebutton"]
+position = Vector2(338, 39)
+texture = ExtResource("23_llk5n")
+
+[node name="PLabelSprouts" type="RichTextLabel" parent="gamemenuarcade/upgradebutton"]
+unique_name_in_owner = true
+clip_contents = false
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+offset_left = 348.0
+offset_top = 31.0
+offset_right = 368.0
+offset_bottom = 51.0
+size_flags_horizontal = 3
+theme_override_font_sizes/normal_font_size = 14
+bbcode_enabled = true
+text = "50
+"
+scroll_active = false
+autowrap_mode = 0
+
+[node name="max" type="RichTextLabel" parent="gamemenuarcade/upgradebutton/PLabelSprouts"]
+clip_contents = false
+layout_mode = 0
+offset_left = 21.0
+offset_right = 65.0
+offset_bottom = 21.0
+scale = Vector2(0.25, 0.25)
+bbcode_enabled = true
+text = "/50
+"
+scroll_active = false
+
+[node name="Panel" type="Panel" parent="gamemenuarcade/upgradebutton"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 313.0
+offset_right = 156.0
+offset_bottom = 379.0
+mouse_filter = 1
+theme = ExtResource("26_oqfxc")
+
+[node name="Goal" type="RichTextLabel" parent="gamemenuarcade/upgradebutton/Panel"]
+clip_contents = false
+layout_mode = 0
+offset_left = 4.0
+offset_top = 6.0
+offset_right = 210.0
+offset_bottom = 88.0
+scale = Vector2(0.7, 0.7)
+mouse_filter = 2
+theme_override_constants/line_separation = -5
+theme_override_fonts/normal_font = ExtResource("26_hbe2b")
+theme_override_fonts/bold_font = ExtResource("6_fo56f")
+theme_override_font_sizes/normal_font_size = 20
+bbcode_enabled = true
+text = "[b]Goal:[/b]
+random"
+scroll_active = false
+
+[node name="EnergyBar" type="ProgressBar" parent="gamemenuarcade/upgradebutton"]
+layout_mode = 0
+offset_left = 371.0
+offset_top = 39.0
+offset_right = 468.0
+offset_bottom = 45.0
+theme = SubResource("Theme_51248")
+max_value = 50.0
+step = 1.0
+value = 25.0
+show_percentage = false
+
+[node name="HealthBar" type="ProgressBar" parent="gamemenuarcade/upgradebutton"]
+layout_mode = 0
+offset_left = 53.0
+offset_top = 39.0
+offset_right = 148.0
+offset_bottom = 45.0
+theme = ExtResource("28_ytw0a")
+max_value = 50.0
+step = 1.0
+value = 25.0
+show_percentage = false
+
+[node name="Sprite2D" type="Sprite2D" parent="gamemenuarcade"]
+position = Vector2(38, 102)
+texture = ExtResource("26_0dlbi")
+
+[node name="GUIAnimation" type="AnimationPlayer" parent="."]
+root_node = NodePath("../gamemenuarcade")
+libraries = {
+"": SubResource("AnimationLibrary_44jex")
+}
+
+[node name="HeartAnim" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_8sh33")
+}
+
+[node name="FoodAnim" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_k6hpa")
+}
+
+[node name="Critical_overlay" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0)
+texture = ExtResource("29_whwru")
+centered = false
+
+[connection signal="pressed" from="gamemenuarcade/GUI/MenuExit" to="gamemenuarcade" method="_on_menu_exit_pressed"]
+[connection signal="pressed" from="gamemenuarcade/GUI/Nut_Upgrade" to="gamemenuarcade" method="_on_nut_upgrade_pressed"]
+[connection signal="pressed" from="gamemenuarcade/GUI/Prod_Upgrade" to="gamemenuarcade" method="_on_prod_upgrade_pressed"]
+[connection signal="pressed" from="gamemenuarcade/GUI/Iron_Upgrade" to="gamemenuarcade" method="_on_iron_upgrade_pressed"]
+[connection signal="pressed" from="gamemenuarcade/GUI/Pile_Upgrade" to="gamemenuarcade" method="_on_pile_upgrade_pressed"]
+[connection signal="pressed" from="gamemenuarcade/TextBubble/TextClick" to="gamemenuarcade" method="_on_text_click_pressed"]
+[connection signal="animation_finished" from="GUIAnimation" to="gamemenuarcade" method="_on_menu_open"]

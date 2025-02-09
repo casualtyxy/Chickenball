@@ -1,0 +1,45 @@
+[gd_scene load_steps=5 format=3 uid="uid://cbkv2efk4a42u"]
+
+[ext_resource type="Script" path="res://scenes/levels/platformer/player_setup.gd" id="1_mf650"]
+[ext_resource type="PackedScene" uid="uid://d1oxwr0oqwup1" path="res://scenes/player/player_platformer.tscn" id="1_weyf5"]
+[ext_resource type="Texture2D" uid="uid://dbkrwd4xmxcgi" path="res://art/player/new_chicken3.png" id="3_vmmf7"]
+[ext_resource type="Texture2D" uid="uid://cwvw0hxn82bx6" path="res://art/player/goose.png" id="4_qilrn"]
+
+[node name="PlayerSetup" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_mf650")
+
+[node name="Player1" parent="." instance=ExtResource("1_weyf5")]
+button_left = "left"
+button_right = "right"
+button_down = "down"
+button_jump = "jump"
+button_flap = "click_right"
+player_skin = ExtResource("3_vmmf7")
+
+[node name="Player2" parent="." instance=ExtResource("1_weyf5")]
+position = Vector2(-40, 0)
+button_left = "p2left"
+button_right = "p2right"
+button_down = "p2down"
+button_jump = "p2jump"
+button_flap = "p2flap"
+player_skin = ExtResource("4_qilrn")
+
+[node name="Player3" parent="." instance=ExtResource("1_weyf5")]
+position = Vector2(-80, 0)
+button_left = "p3left"
+button_right = "p3right"
+button_down = "p3down"
+button_jump = "p3jump"
+button_flap = "p3flap"
+player_skin = ExtResource("3_vmmf7")
+
+[node name="Player4" parent="." instance=ExtResource("1_weyf5")]
+position = Vector2(-120, 0)
+button_left = "p4left"
+button_right = "p4right"
+button_down = "p4down"
+button_jump = "p4jump"
+button_flap = "p4flap"
+player_skin = ExtResource("3_vmmf7")

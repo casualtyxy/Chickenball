@@ -1,0 +1,220 @@
+[gd_scene load_steps=19 format=4 uid="uid://dpv0aaptyi07n"]
+
+[ext_resource type="Texture2D" uid="uid://b0qc3eidog0ca" path="res://art/tilesets/old_house.png" id="1_5e86f"]
+[ext_resource type="Script" path="res://scenes/levels/house_room.gd" id="1_bqkgp"]
+[ext_resource type="Texture2D" uid="uid://uvyn41wph5b7" path="res://art/menus/background/BG_focus.png" id="2_aaqpw"]
+[ext_resource type="PackedScene" uid="uid://f18wj7lkglud" path="res://player/chicken.tscn" id="3_dkk5c"]
+[ext_resource type="Texture2D" uid="uid://dmg3yux7utn0m" path="res://art/items/coin.png" id="5_4n5hd"]
+[ext_resource type="Texture2D" uid="uid://do4sgydda81ns" path="res://art/menus/listings.png" id="6_dg0ew"]
+[ext_resource type="PackedScene" uid="uid://bmgh85gvb8svb" path="res://scenes/pause_menu.tscn" id="7_guw5q"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wy3am"]
+texture = ExtResource("1_5e86f")
+texture_region_size = Vector2i(24, 24)
+0:0/0 = 0
+1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-12, -12, 12, -12, 12, 12, -12, 12)
+1:1/0 = 0
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-12, -12, 12, -12, 12, 12, -12, 12)
+1:2/0 = 0
+1:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-12, -12, 12, -12, 12, 12, -12, 12)
+1:3/0 = 0
+1:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-12, -12, 12, -12, 12, 12, -12, 12)
+2:3/0 = 0
+2:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-12, -12, 12, -12, 12, 12, -12, 12)
+2:2/0 = 0
+2:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-12, -12, 12, -12, 12, 12, -12, 12)
+2:1/0 = 0
+2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-12, -12, 12, -12, 12, 12, -12, 12)
+2:0/0 = 0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-12, -12, 12, -12, 12, 12, -12, 12)
+3:0/0 = 0
+3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-12, -12, 12, -12, 12, 12, -12, 12)
+3:1/0 = 0
+3:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-12, -12, 12, -12, 12, 12, -12, 12)
+3:2/0 = 0
+3:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-12, -12, 12, -12, 12, 12, -12, 12)
+3:3/0 = 0
+3:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-12, -12, 12, -12, 12, 12, -12, 12)
+
+[sub_resource type="TileSet" id="TileSet_jkjms"]
+tile_size = Vector2i(24, 24)
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_wy3am")
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_6w0uk"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bpen3"]
+bg_color = Color(0.1496, 0.23188, 0.44, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.5, 0.641667, 1, 1)
+anti_aliasing = false
+
+[sub_resource type="Theme" id="Theme_e81ju"]
+Panel/styles/panel = SubResource("StyleBoxFlat_bpen3")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_50nn8"]
+atlas = ExtResource("5_4n5hd")
+region = Rect2(0, 0, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ppm15"]
+atlas = ExtResource("5_4n5hd")
+region = Rect2(20, 0, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nkrnf"]
+atlas = ExtResource("5_4n5hd")
+region = Rect2(40, 0, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_doph0"]
+atlas = ExtResource("5_4n5hd")
+region = Rect2(60, 0, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l55ti"]
+atlas = ExtResource("5_4n5hd")
+region = Rect2(0, 0, 20, 20)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7p5x4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_50nn8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ppm15")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nkrnf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_doph0")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l55ti")
+}],
+"loop": true,
+"name": &"grabbed",
+"speed": 5.0
+}]
+
+[node name="house_room" type="Node2D"]
+script = ExtResource("1_bqkgp")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAABAAAAAAABAAAAAAANAAAAAAADAAAAAAACAAAAAAACAAAAAAADAAAAAAACAAAAAAAEAAAAAAACAAAAAAAFAAAAAAACAAAAAAAGAAAAAAACAAAAAAAJAAAAAAACAAAAAAAKAAAAAAACAAAAAAALAAAAAAACAAAAAAAMAAAAAAACAAAAAAAIAAAAAAACAAAAAAAHAAAAAAACAAAAAAABAAEAAAABAAEAAAABAAIAAAABAAIAAAABAAMAAAABAAMAAAANAAMAAAABAAMAAAANAAEAAAADAAEAAAANAAIAAAADAAIAAAACAAEAAAACAAEAAAACAAIAAAACAAIAAAADAAEAAAACAAEAAAADAAIAAAACAAIAAAAEAAEAAAACAAEAAAAEAAIAAAACAAIAAAAFAAEAAAACAAEAAAAFAAIAAAACAAIAAAAGAAEAAAACAAEAAAAGAAIAAAACAAIAAAAHAAEAAAACAAEAAAAHAAIAAAACAAIAAAAIAAEAAAACAAEAAAAIAAIAAAACAAIAAAAJAAEAAAACAAEAAAAJAAIAAAACAAIAAAAKAAEAAAACAAEAAAAKAAIAAAACAAIAAAALAAEAAAACAAEAAAALAAIAAAACAAIAAAAMAAEAAAACAAEAAAAMAAIAAAACAAIAAAACAAMAAAABAAMAAAADAAMAAAABAAMAAAAEAAMAAAABAAMAAAAFAAMAAAABAAMAAAAGAAMAAAABAAMAAAAHAAMAAAABAAMAAAAIAAMAAAABAAMAAAAJAAMAAAABAAMAAAAKAAMAAAACAAMAAAALAAMAAAADAAMAAAAMAAMAAAABAAMAAAABAAQAAAAAAAAAAAABAAUAAAAAAAAAAAABAAYAAAAAAAAAAAABAAcAAAAAAAAAAAABAAgAAAAAAAAAAAANAAgAAAAAAAAAAAANAAcAAAAAAAAAAAANAAYAAAAAAAAAAAANAAUAAAAAAAAAAAANAAQAAAAAAAAAAAAMAAQAAAAAAAAAAAALAAQAAAAAAAAAAAAKAAQAAAAAAAAAAAAJAAQAAAAAAAAAAAAIAAQAAAAAAAAAAAAHAAQAAAAAAAAAAAAGAAQAAAAAAAAAAAAFAAQAAAAAAAAAAAAEAAQAAAAAAAAAAAADAAQAAAAAAAAAAAACAAQAAAAAAAAAAAACAAUAAAAAAAAAAAACAAYAAAAAAAAAAAACAAcAAAAAAAAAAAADAAcAAAAAAAAAAAADAAgAAAAAAAAAAAACAAgAAAAAAAAAAAADAAUAAAAAAAAAAAAEAAUAAAAAAAAAAAAEAAYAAAAAAAAAAAAEAAcAAAAAAAAAAAADAAYAAAAAAAAAAAAFAAYAAAAAAAAAAAAFAAcAAAAAAAAAAAAFAAgAAAAAAAAAAAAEAAgAAAAAAAAAAAAGAAgAAAAAAAAAAAAHAAgAAAAAAAAAAAAIAAgAAAAAAAAAAAAMAAgAAAAAAAAAAAALAAgAAAAAAAAAAAAKAAgAAAAAAAAAAAAJAAgAAAAAAAAAAAAIAAcAAAAAAAAAAAAHAAcAAAAAAAAAAAAGAAYAAAAAAAAAAAAGAAUAAAAAAAAAAAAGAAcAAAAAAAAAAAAFAAUAAAAAAAAAAAAHAAUAAAAAAAAAAAAHAAYAAAAAAAAAAAAIAAYAAAAAAAAAAAAIAAUAAAAAAAAAAAAJAAUAAAAAAAAAAAAKAAUAAAAAAAAAAAAKAAYAAAAAAAAAAAAKAAcAAAAAAAAAAAAJAAcAAAAAAAAAAAAJAAYAAAAAAAAAAAALAAUAAAAAAAAAAAALAAYAAAAAAAAAAAALAAcAAAAAAAAAAAAMAAcAAAAAAAAAAAAMAAYAAAAAAAAAAAAMAAUAAAAAAAAAAAA=")
+tile_set = SubResource("TileSet_jkjms")
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground"]
+texture = ExtResource("2_aaqpw")
+centered = false
+
+[node name="Player" parent="." instance=ExtResource("3_dkk5c")]
+position = Vector2(178, 150)
+
+[node name="StaticView" type="Camera2D" parent="."]
+anchor_mode = 0
+enabled = false
+zoom = Vector2(1.3, 1.3)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="1" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(194, 96)
+rotation = 3.14159
+shape = SubResource("WorldBoundaryShape2D_6w0uk")
+
+[node name="2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(177, 216)
+shape = SubResource("WorldBoundaryShape2D_6w0uk")
+
+[node name="3" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(24, 96)
+rotation = 1.5708
+shape = SubResource("WorldBoundaryShape2D_6w0uk")
+
+[node name="4" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(336, 112)
+rotation = 4.71239
+shape = SubResource("WorldBoundaryShape2D_6w0uk")
+
+[node name="Panel" type="Panel" parent="."]
+offset_top = 216.0
+offset_right = 360.0
+offset_bottom = 292.0
+theme = SubResource("Theme_e81ju")
+
+[node name="Coins" type="RichTextLabel" parent="."]
+clip_contents = false
+offset_left = 14.0
+offset_top = 219.0
+offset_right = 186.0
+offset_bottom = 239.0
+scale = Vector2(0.5, 0.5)
+bbcode_enabled = true
+text = "0000000"
+scroll_active = false
+autowrap_mode = 0
+
+[node name="Coin" type="AnimatedSprite2D" parent="."]
+position = Vector2(8, 224)
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_7p5x4")
+animation = &"grabbed"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+clip_contents = false
+offset_top = 220.0
+offset_right = 720.0
+offset_bottom = 239.0
+scale = Vector2(0.5, 0.5)
+bbcode_enabled = true
+text = "[center]Furniture Store"
+scroll_active = false
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(24, 249)
+texture = ExtResource("6_dg0ew")
+hframes = 2
+
+[node name="Label" type="Label" parent="Sprite2D"]
+offset_left = -12.0
+offset_top = 14.0
+offset_right = 38.0
+offset_bottom = 36.0
+scale = Vector2(0.5, 0.5)
+text = "wall1
+"
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(60, 249)
+texture = ExtResource("6_dg0ew")
+hframes = 2
+frame = 1
+
+[node name="Label" type="Label" parent="Sprite2D2"]
+offset_left = -12.0
+offset_top = 14.0
+offset_right = 38.0
+offset_bottom = 36.0
+scale = Vector2(0.5, 0.5)
+text = "floor1
+"
+
+[node name="Label" type="Label" parent="."]
+offset_left = 156.0
+offset_top = 241.0
+offset_right = 196.0
+offset_bottom = 263.0
+text = "Coming soon"
+
+[node name="PauseMenu" parent="." instance=ExtResource("7_guw5q")]
+visible = false

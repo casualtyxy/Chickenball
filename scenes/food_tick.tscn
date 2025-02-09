@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://nbmu66d44rym"]
+
+[ext_resource type="Script" path="res://processing/FoodTick.gd" id="1_ypngf"]
+
+[node name="FoodTick" type="Timer"]
+autostart = true
+script = ExtResource("1_ypngf")
+
+[node name="subtimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[connection signal="timeout" from="." to="." method="_on_timeout"]

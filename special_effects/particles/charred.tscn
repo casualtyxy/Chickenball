@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://dm5mxmm0gbvqo"]
+
+[ext_resource type="Script" path="res://special_effects/particles/foodmunch.gd" id="1_uyuur"]
+
+[sub_resource type="Curve" id="Curve_lqxjx"]
+_data = [Vector2(0.0618892, 1), 0.0, 0.0, 0, 0, Vector2(0.967427, 0.0847458), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_oc8uk"]
+offsets = PackedFloat32Array(0.0107527, 0.21147, 0.784946, 1)
+colors = PackedColorArray(1, 1, 0.929412, 1, 0.869032, 0.738519, 0.134929, 1, 0.67451, 0, 0, 1, 0, 0, 0, 1)
+
+[node name="charred" type="CPUParticles2D"]
+amount = 80
+explosiveness = 1.0
+emission_shape = 1
+emission_sphere_radius = 1.0
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, -50)
+initial_velocity_min = 20.0
+initial_velocity_max = 40.0
+scale_amount_max = 7.0
+scale_amount_curve = SubResource("Curve_lqxjx")
+color_ramp = SubResource("Gradient_oc8uk")
+script = ExtResource("1_uyuur")

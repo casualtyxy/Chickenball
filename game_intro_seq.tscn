@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://bi22juafy1g5u"]
+
+[ext_resource type="PackedScene" uid="uid://bgiob2v1uv2dh" path="res://scenes/main_menu.tscn" id="1_30dy8"]
+[ext_resource type="PackedScene" uid="uid://c05yoi2iilqry" path="res://game_intro.tscn" id="2_e1yh3"]
+
+[node name="GameIntroSeq" type="Node2D" groups=["IntroProcess"]]
+
+[node name="mainmenu" parent="." instance=ExtResource("1_30dy8")]
+
+[node name="Intro" parent="mainmenu" instance=ExtResource("2_e1yh3")]
