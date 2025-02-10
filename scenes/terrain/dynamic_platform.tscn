@@ -1,55 +1,54 @@
-[gd_scene load_steps=7 format=3 uid="uid://cuo75nlnel1c1"]
+[gd_scene load_steps=5 format=3 uid="uid://cuo75nlnel1c1"]
 
 [ext_resource type="Script" path="res://scenes/terrain/dynamic_platform.gd" id="1_1qs22"]
-[ext_resource type="Texture2D" uid="uid://p84cto14vgo6" path="res://art/sprites/platform/bar.png" id="1_gwcnw"]
-[ext_resource type="Texture2D" uid="uid://ceuini7e532by" path="res://art/sprites/platform/bar_end.png" id="2_x0vds"]
-[ext_resource type="Texture2D" uid="uid://cmlk4uotptw2w" path="res://art/sprites/platform/screw.png" id="3_osq0o"]
+[ext_resource type="Texture2D" uid="uid://deh057xkqa4kx" path="res://art/sprites/shiny_platform_big.png" id="2_06ge5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bg84d"]
-size = Vector2(90, 12)
+size = Vector2(240, 12)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_20g4u"]
-size = Vector2(4, 12)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_doc0n"]
+size = Vector2(119, 12)
 
 [node name="DynamicPlatform" type="Node2D"]
 script = ExtResource("1_1qs22")
 
 [node name="Bar" type="AnimatableBody2D" parent="."]
+collision_mask = 8
 
 [node name="Sprite2D" type="Sprite2D" parent="Bar"]
-texture = ExtResource("1_gwcnw")
+texture = ExtResource("2_06ge5")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Bar"]
+[node name="BarCol" type="CollisionShape2D" parent="Bar"]
 shape = SubResource("RectangleShape2D_bg84d")
 
-[node name="left" type="Marker2D" parent="Bar"]
-position = Vector2(-45, 0)
+[node name="TL" type="Area2D" parent="Bar"]
+position = Vector2(-60, -6)
+collision_mask = 14
 
-[node name="right" type="Marker2D" parent="Bar"]
-position = Vector2(45, 0)
+[node name="Cshape" type="CollisionShape2D" parent="Bar/TL"]
+shape = SubResource("RectangleShape2D_doc0n")
+debug_color = Color(0.7, 0.660351, 0, 0.42)
 
-[node name="EndLeft" type="AnimatableBody2D" parent="."]
-position = Vector2(-45, 0)
+[node name="TR" type="Area2D" parent="Bar"]
+position = Vector2(60, -6)
+collision_mask = 14
 
-[node name="Sprite2D" type="Sprite2D" parent="EndLeft"]
-texture = ExtResource("2_x0vds")
-offset = Vector2(-2, 0)
+[node name="Cshape" type="CollisionShape2D" parent="Bar/TR"]
+shape = SubResource("RectangleShape2D_doc0n")
+debug_color = Color(0.7, 0, 0.0383116, 0.42)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="EndLeft"]
-position = Vector2(-2, 0)
-shape = SubResource("RectangleShape2D_20g4u")
+[node name="BL" type="Area2D" parent="Bar"]
+position = Vector2(-60, 6)
+collision_mask = 14
 
-[node name="EndRight" type="AnimatableBody2D" parent="."]
-position = Vector2(45, 0)
+[node name="Cshape" type="CollisionShape2D" parent="Bar/BL"]
+shape = SubResource("RectangleShape2D_doc0n")
+debug_color = Color(0.0886037, 0.7, 0, 0.42)
 
-[node name="Sprite2D" type="Sprite2D" parent="EndRight"]
-texture = ExtResource("2_x0vds")
-offset = Vector2(2, 0)
-flip_h = true
+[node name="BR" type="Area2D" parent="Bar"]
+position = Vector2(60, 6)
+collision_mask = 14
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="EndRight"]
-position = Vector2(2, 0)
-shape = SubResource("RectangleShape2D_20g4u")
-
-[node name="Screw" type="Sprite2D" parent="."]
-texture = ExtResource("3_osq0o")
+[node name="Cshape" type="CollisionShape2D" parent="Bar/BR"]
+shape = SubResource("RectangleShape2D_doc0n")
+debug_color = Color(0.677512, 0, 0.7, 0.42)

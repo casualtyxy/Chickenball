@@ -5,47 +5,76 @@ extends Node2D
 @export_group("Rotation")
 @export var rotation_enabled: bool = false
 @export_enum("Constant", "Physics") var rotation_type: int
-@export var rotation_speed = 60 #how fast thang spins
+@export var max_rotation_speed := 400.0
+@export var rotation_acceleration := 5.0
+@export var rotation_deceleration := 10.0
 
-
-var left_side_passengers
-var right_side_passengers
-var rot_vector := Vector2(0,0) #x-left, y-right
-
+var left_top_passengers
+var right_top_passengers
+var left_bottom_passengers
+var right_bottom_passengers
+var rot_vector := Vector2(0,0) #x-left, y-right, x is lefty loosey
 var final_rot_dir := 0
+var active_rotation_speed := 0.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	
+	#prevent over-winding and snap to 0
+	if plank.rotation_degrees == 180.0 or plank.rotation_degrees == -180.0:
+		rotation_degrees = 0.0
+		print("360 rot passed, reset to 0")
+	if plank.rotation_degrees < 0.01 and plank.rotation_degrees > -0.01 and plank.rotation_degrees != 0.00000000000000:
+		rotation_degrees = 0.00000000000000
+		#print("dragging out between 0.01 and -0.01, snapped to 0")
+	
 	if rotation_enabled:
 		if rotation_type == 1:
-			left_side_passengers = $AnimatableBody2D/left.get_overlapping_bodies()
-			right_side_passengers = $AnimatableBody2D/right.get_overlapping_bodies()
+			left_top_passengers = $Bar/TL.get_overlapping_bodies()
+			right_top_passengers = $Bar/TR.get_overlapping_bodies()
+			left_bottom_passengers = $Bar/BL.get_overlapping_bodies()
+			right_bottom_passengers = $Bar/BR.get_overlapping_bodies()
 	
-			for i in left_side_passengers:
+			for i in left_top_passengers:
 				if i is CharacterBody2D:
-					rot_vector.x += 1
-			for i in right_side_passengers:
+					rot_vector.x = 1
+			for i in right_top_passengers:
 				if i is CharacterBody2D:
-					rot_vector.y += 1
+					rot_vector.y = 1
+			for i in left_bottom_passengers:
+				if i is CharacterBody2D:
+					rot_vector.y = 1
+			for i in right_bottom_passengers:
+				if i is CharacterBody2D:
+					rot_vector.x = 1
 	
-			final_rot_dir = (rot_vector.x - rot_vector.y) * -1
-	
-			print(rot_vector)
-			print(final_rot_dir)
-			if rot_vector.x != 0 or rot_vector.y != 0:
-				plank.rotation_degrees = lerp(plank.rotation_degrees, plank.rotation_degrees + final_rot_dir, delta * rotation_speed)
-			elif plank.rotation_degrees != 0:
-				plank.rotation_degrees = lerp(plank.rotation_degrees, 0.0, delta * rotation_speed)
-	
-		rot_vector = Vector2.ZERO
-	
-		print(rot_vector)
-	
-		print("End of process: " + str(final_rot_dir))
-		print(plank.rotation_degrees)
+			if rot_vector.x > rot_vector.y:
+				final_rot_dir = -1
+			elif rot_vector.x < rot_vector.y:
+				final_rot_dir = 1
+			elif rot_vector.x == rot_vector.y:
+				final_rot_dir = 0
+			print("Final rot dir: " + str(final_rot_dir))
+			if rot_vector.x == 1 or rot_vector.y == 1: #there is weight present
+				print("Weight present: Yes")
+				#if final_rot_dir == 0:
+					#pass
+				if abs(active_rotation_speed) != max_rotation_speed:
+					active_rotation_speed = lerpf(active_rotation_speed, max_rotation_speed, delta * rotation_acceleration)
+					print("Speed: " + str(active_rotation_speed) + " (Should not be above " + str(max_rotation_speed) + ")")
+					plank.rotation_degrees += 1 * delta * active_rotation_speed * final_rot_dir
+				else:
+					print("Max speed")
+				
+			elif plank.rotation_degrees != 0: # no weight and plank is not flat
+				print("Weight present: No")
+				if active_rotation_speed != 0:
+					active_rotation_speed = lerpf(active_rotation_speed, 0.0, delta * rotation_deceleration)
+					#plank.rotation_degrees -= 1 * delta * active_rotation_speed * final_rot_dir
+				plank.rotation_degrees -= plank.rotation_degrees / 10
+				print("Rot degrees: " + str(plank.rotation_degrees))
+				#rot_vector = Vector2.ZERO
