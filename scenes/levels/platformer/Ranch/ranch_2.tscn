@@ -8,7 +8,7 @@
 [ext_resource type="TileSet" uid="uid://dk0epobpv3106" path="res://art/tilesets/ranch_platform.tres" id="5_gf0y3"]
 [ext_resource type="PackedScene" uid="uid://cbkv2efk4a42u" path="res://scenes/levels/platformer/player_setup.tscn" id="5_qfevm"]
 [ext_resource type="PackedScene" uid="uid://ciwj8fsttxkrq" path="res://scenes/levels/platformer/sidescroll_camera.tscn" id="6_hi4l5"]
-[ext_resource type="PackedScene" uid="uid://cuo75nlnel1c1" path="res://scenes/terrain/dynamic_platform.tscn" id="9_75ake"]
+[ext_resource type="PackedScene" uid="uid://cuo75nlnel1c1" path="res://scenes/terrain/spinning_platform.tscn" id="9_75ake"]
 
 [sub_resource type="Gradient" id="Gradient_0tlwv"]
 colors = PackedColorArray(0.713726, 0.529412, 0.411765, 1, 1, 1, 1, 0)
@@ -89,7 +89,7 @@ shadow_item_cull_mask = 2
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color(0.91, 0.91, 1, 1)
 
-[node name="DynamicPlatform" parent="." instance=ExtResource("9_75ake")]
+[node name="Spin" parent="." instance=ExtResource("9_75ake")]
 position = Vector2(652, 232)
 rotation_enabled = true
 rotation_type = 1

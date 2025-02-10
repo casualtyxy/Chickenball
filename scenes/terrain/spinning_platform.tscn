@@ -1,6 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://cuo75nlnel1c1"]
+[gd_scene load_steps=6 format=3 uid="uid://cuo75nlnel1c1"]
 
-[ext_resource type="Script" path="res://scenes/terrain/dynamic_platform.gd" id="1_1qs22"]
+[ext_resource type="Script" path="res://scenes/terrain/spinning_platform.gd" id="1_1qs22"]
 [ext_resource type="Texture2D" uid="uid://deh057xkqa4kx" path="res://art/sprites/shiny_platform_big.png" id="2_06ge5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bg84d"]
@@ -9,11 +9,15 @@ size = Vector2(240, 12)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_doc0n"]
 size = Vector2(119, 12)
 
-[node name="DynamicPlatform" type="Node2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l0k8p"]
+
+[node name="SpinningPlatform" type="StaticBody2D"]
 script = ExtResource("1_1qs22")
 
-[node name="Bar" type="AnimatableBody2D" parent="."]
+[node name="Bar" type="RigidBody2D" parent="."]
 collision_mask = 8
+freeze = true
+freeze_mode = 1
 
 [node name="Sprite2D" type="Sprite2D" parent="Bar"]
 texture = ExtResource("2_06ge5")
@@ -52,3 +56,7 @@ collision_mask = 14
 [node name="Cshape" type="CollisionShape2D" parent="Bar/BR"]
 shape = SubResource("RectangleShape2D_doc0n")
 debug_color = Color(0.677512, 0, 0.7, 0.42)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_l0k8p")
+disabled = true
