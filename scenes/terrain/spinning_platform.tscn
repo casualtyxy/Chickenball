@@ -7,7 +7,7 @@
 size = Vector2(240, 12)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_doc0n"]
-size = Vector2(119, 12)
+size = Vector2(106, 2)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l0k8p"]
 
@@ -15,9 +15,10 @@ size = Vector2(119, 12)
 script = ExtResource("1_1qs22")
 
 [node name="Bar" type="RigidBody2D" parent="."]
-collision_mask = 8
-freeze = true
-freeze_mode = 1
+collision_layer = 64
+collision_mask = 0
+gravity_scale = 0.0
+max_contacts_reported = 8
 
 [node name="Sprite2D" type="Sprite2D" parent="Bar"]
 texture = ExtResource("2_06ge5")
@@ -30,6 +31,7 @@ position = Vector2(-60, -6)
 collision_mask = 14
 
 [node name="Cshape" type="CollisionShape2D" parent="Bar/TL"]
+position = Vector2(-7, 0)
 shape = SubResource("RectangleShape2D_doc0n")
 debug_color = Color(0.7, 0.660351, 0, 0.42)
 
@@ -38,6 +40,7 @@ position = Vector2(60, -6)
 collision_mask = 14
 
 [node name="Cshape" type="CollisionShape2D" parent="Bar/TR"]
+position = Vector2(7, 0)
 shape = SubResource("RectangleShape2D_doc0n")
 debug_color = Color(0.7, 0, 0.0383116, 0.42)
 
@@ -46,6 +49,7 @@ position = Vector2(-60, 6)
 collision_mask = 14
 
 [node name="Cshape" type="CollisionShape2D" parent="Bar/BL"]
+position = Vector2(-7, 0)
 shape = SubResource("RectangleShape2D_doc0n")
 debug_color = Color(0.0886037, 0.7, 0, 0.42)
 
@@ -54,9 +58,14 @@ position = Vector2(60, 6)
 collision_mask = 14
 
 [node name="Cshape" type="CollisionShape2D" parent="Bar/BR"]
+position = Vector2(7, 0)
 shape = SubResource("RectangleShape2D_doc0n")
 debug_color = Color(0.677512, 0, 0.7, 0.42)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_l0k8p")
 disabled = true
+
+[node name="PinJoint2D" type="PinJoint2D" parent="."]
+node_a = NodePath("..")
+node_b = NodePath("../Bar")

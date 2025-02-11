@@ -55,14 +55,15 @@ func _deny_sound():
 	$Sound.play()
 
 func enter_arcade():
-	GlobalVar.reset_arcade()
-	randomize()
-	Screendrip.transition()
-	await Screendrip.on_transition_finished
-	get_tree().change_scene_to_file("res://scenes/levels/arcade_tutorial.tscn")
-	GlobalMusic.play_random()
-	SaveFunc.load_game_arcade()
-	print("Best: " + str(GlobalVar.best_score))
+	#GlobalVar.reset_arcade()
+	#randomize()
+	#Screendrip.transition()
+	#await Screendrip.on_transition_finished
+	#get_tree().change_scene_to_file("res://scenes/levels/arcade_tutorial.tscn")
+	#GlobalMusic.play_random()
+	#SaveFunc.load_game_arcade()
+	#print("Best: " + str(GlobalVar.best_score))
+	pass
 func arcade_peek():
 	$Control/Arcade/Label.text = "[center][pulse]Arcade"
 	$Control/Arcade/AnimationPlayer.play("hover")

@@ -177,7 +177,7 @@ func energyReplenish():
 
 func pcControls(delta: float):
 	xinput = Input.get_axis("left", "right")
-	yinput = Input.get_axis("up", "down")
+	yinput = Input.get_axis("jump", "down")
 	move_dir = Vector2(xinput, yinput)
 	#move_vect = move_dir.normalized() * speed
 	

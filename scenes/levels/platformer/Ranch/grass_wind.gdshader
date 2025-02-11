@@ -47,7 +47,7 @@ void vertex(){
 	if (a > 0.0 && !move_top) {
 		VERTEX.x += noise.x;
 		VERTEX.y += noise.y;
-	
+
 	VERTEX = (MODEL_MATRIX * vec4(VERTEX, 0.0, 1.0)).xy;
 	}
 }

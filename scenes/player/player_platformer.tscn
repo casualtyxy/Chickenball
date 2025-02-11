@@ -763,7 +763,7 @@ colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 
 [node name="Player1" type="CharacterBody2D" groups=["Player"]]
 collision_layer = 24
-collision_mask = 61
+collision_mask = 125
 floor_stop_on_slope = false
 floor_max_angle = 1.48353
 floor_snap_length = 5.0
