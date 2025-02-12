@@ -9,15 +9,17 @@ extends StaticBody2D
 @export var max_torque := 40000.0
 @export var rotation_acceleration := 5.0
 @export var rotation_deceleration := 5.0
-@export var rotation_speed := 120.0
+@export var rotation_speed := 30000.0
 @export var rotation_direction := -1
 
 var left_top_passengers:Array
 var right_top_passengers:Array
 var left_bottom_passengers:Array
 var right_bottom_passengers:Array
-var plank_weights := Vector2.ZERO #left, right. This is used to determine the direction of spin after all areas have read
+var left_torq = 0.0 #these two are used to calc the final torque, useful for when 2 players are on the platform at the same time or a player stands in the middle
+var right_torq = 0.0
 var prev_torque := 0.0
+#var plank_weights := Vector2.ZERO #left, right. This is used to determine the direction of spin after all areas have read
 #var rot_vector := Vector2(0,0) #x-left, y-right, x is lefty loosey
 #var final_rot_dir := 0
 #var active_rotation_speed := 0.0
@@ -74,9 +76,10 @@ func _physics_process(delta: float) -> void:
 			if i.is_in_group("Player"):
 				has_TL = true
 		if has_TL:
-			plank.add_constant_torque(rotation_speed * -1)
+			#plank.add_constant_torque(rotation_speed * -1)
+			left_torq = rotation_speed * -1
 		#else:
-			#plank.constant_torque = 0.0
+			#left_torq = 0.0
 		
 		right_top_passengers = $Bar/TR.get_overlapping_bodies()
 		var has_TR = false
@@ -84,7 +87,10 @@ func _physics_process(delta: float) -> void:
 			if i.is_in_group("Player"):
 				has_TR = true
 		if has_TR:
-			plank.add_constant_torque(rotation_speed * 1)
+			#plank.add_constant_torque(rotation_speed * 1)
+			right_torq = rotation_speed * 1
+		#else:
+			#right_torq = 0.0
 		
 		left_bottom_passengers = $Bar/BL.get_overlapping_bodies()
 		var has_BL = false
@@ -92,7 +98,10 @@ func _physics_process(delta: float) -> void:
 			if i.is_in_group("Player"):
 				has_BL = true
 		if has_BL:
-			plank.add_constant_torque(rotation_speed * 1)
+			#plank.add_constant_torque(rotation_speed * 1)
+			right_torq = rotation_speed * 1
+		#else:
+			#right_torq = 0.0
 		
 		right_bottom_passengers = $Bar/BR.get_overlapping_bodies()
 		var has_BR = false
@@ -100,15 +109,25 @@ func _physics_process(delta: float) -> void:
 			if i.is_in_group("Player"):
 				has_BR = true
 		if has_BR:
-			plank.add_constant_torque(rotation_speed * -1)
+			#plank.add_constant_torque(rotation_speed * -1)
+			left_torq = rotation_speed * -1
+		#else:
+			#left_torq = 0.0
 		
-		if not has_TL and not has_TR and not has_BL and not has_BR:
+		if not has_TL and not has_TR and not has_BL and not has_BR and plank.rotation_degrees != 0: #no weight present
 			if plank.rotation_degrees > 10.0:
-				plank.add_constant_torque((rotation_speed / 2) * -1)
+				#plank.add_constant_torque((rotation_speed / 2) * -1)
+				plank.constant_torque = (rotation_speed / 2) * -1
 			elif plank.rotation_degrees < -10.0:
-				plank.add_constant_torque((rotation_speed / 2) * 1)
+				#plank.add_constant_torque((rotation_speed / 2) * 1)
+				plank.constant_torque = (rotation_speed / 2) * 1
+				
 			elif plank.rotation_degrees < 10.0 and plank.rotation_degrees > -10.0 or plank.rotation_degrees < 190.0 and plank.rotation_degrees > 170.0 or plank.rotation_degrees < -170.0 and plank.rotation_degrees > -190.0:
 				plank.constant_torque = 0.0
+		else: #there is at least one player present
+			plank.constant_torque = right_torq + left_torq
+			right_torq = 0.0
+			left_torq = 0.0
 		
 		#UPDATE PREV FRAME INFO
 		prev_torque = plank.constant_torque

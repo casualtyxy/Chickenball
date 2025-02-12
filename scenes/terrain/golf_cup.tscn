@@ -1,26 +1,56 @@
-[gd_scene load_steps=3 format=3 uid="uid://cuji75bsfj6jx"]
+[gd_scene load_steps=5 format=3 uid="uid://cuji75bsfj6jx"]
 
 [ext_resource type="Texture2D" uid="uid://c0qyl4jdm1i0p" path="res://art/sprites/golfcup.png" id="1_uj6tx"]
 [ext_resource type="Texture2D" uid="uid://clcisddco70ld" path="res://art/sprites/flag.png" id="2_l50h3"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2skrl"]
+size = Vector2(28, 2)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dlvm0"]
+size = Vector2(44, 8)
+
 [node name="GolfCup" type="Node2D"]
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
+[node name="Sides" type="StaticBody2D" parent="."]
 position = Vector2(24, 24)
 
-[node name="B" type="Sprite2D" parent="StaticBody2D"]
+[node name="B" type="Sprite2D" parent="Sides"]
 texture = ExtResource("1_uj6tx")
 hframes = 2
 
-[node name="Flag" type="Sprite2D" parent="StaticBody2D"]
+[node name="Flag" type="Sprite2D" parent="Sides"]
+visible = false
 position = Vector2(0, -29)
 texture = ExtResource("2_l50h3")
 hframes = 4
 
-[node name="F" type="Sprite2D" parent="StaticBody2D"]
+[node name="F" type="Sprite2D" parent="Sides"]
+z_index = 1
 texture = ExtResource("1_uj6tx")
 hframes = 2
 frame = 1
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Sides"]
+visible = false
 polygon = PackedVector2Array(-24, -14, -21, -12, -18, 16, 18, 16, 21, -12, 24, -14, 24, 21, -24, 21)
+disabled = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sides"]
+position = Vector2(-23, 0)
+rotation = -1.57079
+shape = SubResource("RectangleShape2D_2skrl")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Sides"]
+position = Vector2(23, 0)
+rotation = 7.85397
+shape = SubResource("RectangleShape2D_2skrl")
+
+[node name="Top" type="StaticBody2D" parent="."]
+collision_layer = 32
+collision_mask = 12
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Top"]
+z_index = 1
+position = Vector2(24, 14)
+shape = SubResource("RectangleShape2D_dlvm0")
+one_way_collision = true
