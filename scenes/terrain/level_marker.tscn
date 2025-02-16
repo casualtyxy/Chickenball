@@ -1,9 +1,10 @@
-[gd_scene load_steps=23 format=3 uid="uid://cpas6v134frk4"]
+[gd_scene load_steps=24 format=3 uid="uid://cpas6v134frk4"]
 
 [ext_resource type="Script" path="res://scenes/terrain/level_marker.gd" id="1_s3x1k"]
 [ext_resource type="Texture2D" uid="uid://cbxd3c18lt1ol" path="res://art/sprites/level_marker.png" id="2_t80pd"]
 [ext_resource type="Texture2D" uid="uid://c7g86rt0vhwwf" path="res://art/sprites/dispenser_star.png" id="3_3juf1"]
 [ext_resource type="Texture2D" uid="uid://bqyre2e3qbivt" path="res://art/sprites/level_marker_flag.png" id="3_vuebg"]
+[ext_resource type="Material" uid="uid://bh2ccyhdrqp6l" path="res://shader_presets/flag_noise.tres" id="3_xr762"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dp44b"]
 size = Vector2(24, 24)
@@ -237,6 +238,7 @@ hframes = 5
 
 [node name="Flag" type="Sprite2D" parent="."]
 visible = false
+material = ExtResource("3_xr762")
 texture = ExtResource("3_vuebg")
 offset = Vector2(0, -24)
 

@@ -8,6 +8,8 @@ var speed = 30
 var target_pos:Vector2
 var direction:Vector2 = Vector2(0,0)
 
+var closest_player: Node2D
+
 var alt_textures = [preload("res://art/enemies/durian1.png"),preload("res://art/enemies/durian2.png"),preload("res://art/enemies/durian3.png")]
 
 func _ready() -> void:
@@ -24,15 +26,28 @@ func _ready() -> void:
 	$Timer.start(5)
 	speed = randi_range(40, 100) * 2
 	
-	if player == null:
-		player = get_parent().find_child("Player")
+	body_entered.connect(_on_body_entered)
+	
+	#if player == null:
+		#player = get_parent().find_child("Player1")
 
 func _physics_process(delta: float) -> void:
 	global_position -= direction * speed * delta
 	#print("Durian pov: " + str(player.global_position))
 
-func set_direction(): #Should be called by whatever fired it, due to position screwy-ness when adding to the tree
-	direction = (global_position - player.global_position).normalized()
+func find_closest_player():
+	pass
+
+func set_direction(xy: Vector2): #Should be called by whatever fired it, due to position screwy-ness when adding to the tree
+	#direction = (global_position - player.global_position).normalized()
+	direction = xy
+
+func _on_body_entered(body: Node2D):
+	if body is CharacterBody2D:
+		if body.is_in_group("Player"):
+			body.hurt()
+		elif body.is_in_group("Squishable"):
+			body.clobbered()
 
 func on_timeout():
 	$Fade.play("fade")

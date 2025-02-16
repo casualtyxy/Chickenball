@@ -289,7 +289,7 @@ z_index = 1
 y_sort_enabled = true
 material = SubResource("ShaderMaterial_wt72t")
 collision_layer = 4
-collision_mask = 4
+collision_mask = 12
 script = ExtResource("1_avtqi")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

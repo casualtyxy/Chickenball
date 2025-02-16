@@ -61,15 +61,6 @@ func _ready() -> void:
 	$FlapInterval.timeout.connect(_on_flap_interval_ended)
 	$WorldCol/InteractRange.area_entered.connect(_on_touching_food)
 	$SpriteScale/Skin.texture = player_skin
-	
-	#if GlobalVar.player_count > 1 and is_player_1:
-		#var prev_player_pos:Vector2 = global_position
-		#for i in GlobalVar.player_count - 1:
-			#var new_player:PackedScene = load("res://scenes/player/player_platformer.tscn")
-			#var new_player_inst = new_player.instantiate()
-			#add_sibling.call_deferred(new_player_inst, true)
-			#new_player_inst.global_position = prev_player_pos - Vector2(48, 0)
-			#prev_player_pos = new_player_inst.global_position
 
 func _physics_process(delta: float) -> void:
 	
@@ -169,7 +160,8 @@ func player_col():
 				#print(str(global_position.y) + " > " + str(body.global_position.y))
 
 func fell_in_pit():
-	sfx.play_sound("hurt")
+	size = 1
+	hurt()
 	#await get_tree().create_timer(3).timeout
 	#send this timer to the finishlevel func in global
 
@@ -335,7 +327,7 @@ func state_manager():
 	#Order logic: should the listed action interrupt the action below it?
 	
 	##### STATE SETTER
-	if 1==1:#current_state != states.HURT: #Set by hurt() which is calle dby enemies and traps
+	if current_state != states.HURT: #Set by hurt() which is calle dby enemies and traps
 		
 		#jumping off ground
 		if was_grounded and is_on_floor() and Input.is_action_just_pressed(button_jump) or not $Coyote.is_stopped() and Input.is_action_just_pressed(button_jump):
@@ -418,7 +410,7 @@ func state_manager():
 			elif direction_facing == -1 and not can_flap: #left
 				$StatePlayer.play("Double_jump_backwards")
 		7: #HURT
-			$StatePlayer.play("Hurt")
+			pass
 		8: #WALL
 			$StatePlayer.play("Wall")
 		9: #FALLING
@@ -438,17 +430,40 @@ func _find_target(area: Area2D):
 			velocity.y += jump_vel * 0.75
 
 func hurt():
-	current_state = states.HURT
-	sfx.play_sound("hurt")
-	await $StatePlayer.animation_finished
-	if size > 1:
+	current_state = states.HURT #basically just overrides statemachine states and anims
+	if size > 1.4:
 		size = 1
+		sfx.play_sound("hurt")
+		activate_inv_frames()
+		$StatePlayer.play("Hurt")
+		await $StatePlayer.animation_finished
+		current_state = states.IDLE
 	else:
-		GlobalVar.finishLevel(false)
-	current_state = states.IDLE
+		sfx.play_sound("explode")
+		$StatePlayer.play("Explode")
+		await $Splode.finished
+		current_state = states.DEAD #Read only I guess, this number is 5
+		disable()
+		#GlobalVar.finishLevel(false)
 
-func heal():
-	#health = max_health
-	pass
+func activate_inv_frames():
+	set_collision_layer_value(4, false)
+	$Inv.play("standard")
+	await $Inv.animation_finished
+	set_collision_layer_value(4, true)
+
+func disable():
+	process_mode = PROCESS_MODE_DISABLED
+	set_collision_layer_value(5, false)
+	$WorldCol.disabled = true
+	hide()
+
+func enable():
+	if not GlobalVar.paused:
+		process_mode = PROCESS_MODE_INHERIT
+		set_collision_layer_value(5, true)
+		$WorldCol.disabled = false
+		size = 1
+		show()
 
 #//

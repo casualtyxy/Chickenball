@@ -47,7 +47,6 @@ func _ready() -> void:
 #func _BR_land(body: Node2D):
 	#pass
 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
 	

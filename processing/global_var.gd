@@ -147,18 +147,24 @@ func calculate_score() -> int:
 		#foodset[6].can_pick = true
 		
 ############ PLATFORMER STUFF
-
-signal level_completed(level: int)
+signal toggled_pause(is_pausing: bool)
+signal level_completed(level: int, completed: bool)
+signal unlock_level(id: int)
 
 var currentWorld:PackedScene = preload("res://scenes/levels/map_ranch_old.tscn")
 var currentLevel:int = 0
+var currentLevelDone:bool = false
 
 func finishLevel(levelComplete: bool):
+	if levelComplete:
+		currentLevelDone = true
+		GlobalMusic.play_music(GlobalMusic.fanfare)
+		await get_tree().create_timer(3).timeout
+	if not levelComplete:
+		currentLevelDone = false
+		GlobalMusic.play_music(GlobalMusic.gameover)
+		await get_tree().create_timer(1).timeout
 	Screendrip.transition(Screendrip.transType.SPOTLIGHT)
 	await Screendrip.on_transition_finished
 	get_tree().change_scene_to_packed(currentWorld)
-	if levelComplete:
-		print("Level finsihed")
-		level_completed.emit(currentLevel)
-	if not levelComplete:
-		print("Level failed")
+	

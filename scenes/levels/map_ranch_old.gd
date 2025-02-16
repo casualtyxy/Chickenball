@@ -44,6 +44,10 @@ func _ready() -> void:
 	
 	GlobalVar.menu_theme = GlobalVar.menu_bg_elements.RANCH
 	
+	
+	await get_tree().create_timer(1.5).timeout
+	GlobalVar.level_completed.emit(GlobalVar.currentLevel, GlobalVar.currentLevelDone)
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	$ParallaxBackground/Clouds1.motion_offset.x += cloud_speed * delta

@@ -94,7 +94,7 @@ _data = {
 size = Vector2(500, 300)
 
 [node name="SidescrollCamera" type="Camera2D"]
-position = Vector2(367, 258)
+position = Vector2(422, 284)
 offset = Vector2(0, -40)
 limit_left = -241
 limit_bottom = 528
@@ -122,6 +122,7 @@ shape = SubResource("WorldBoundaryShape2D_ap0r8")
 
 [node name="Left" type="Marker2D" parent="."]
 visible = false
+position = Vector2(-7, 3)
 
 [node name="Sprite2D" type="Sprite2D" parent="Left"]
 scale = Vector2(2, 2)
@@ -130,7 +131,6 @@ offset = Vector2(0, -24)
 
 [node name="Right" type="Marker2D" parent="."]
 visible = false
-position = Vector2(26, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="Right"]
 scale = Vector2(2, 2)

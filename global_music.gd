@@ -21,6 +21,10 @@ const arcade9 = preload("res://audio/music/arcade9.ogg")
 const arcadefast1 = preload("res://audio/music/arcade_fast1.ogg")
 const arcadebass = preload("res://audio/music/Chickenbass.ogg")
 
+## Effects and Fanfare
+const gameover = preload("res://audio/music/effects/gameover.ogg")
+const fanfare = preload("res://audio/music/effects/levelfinish.ogg")
+
 ### Adventure levels
 const berry_farm = preload("res://audio/music/Tutorial.ogg")
 const berry_farm_level_1 = preload("res://audio/music/CB_Island1.ogg")

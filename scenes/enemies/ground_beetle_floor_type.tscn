@@ -1,8 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://c4pn5qoxahlb2"]
+[gd_scene load_steps=14 format=3 uid="uid://c4pn5qoxahlb2"]
 
 [ext_resource type="Script" path="res://scenes/enemies/ground_beetle_floor_type.gd" id="1_bfbju"]
 [ext_resource type="Texture2D" uid="uid://cxy2m2f4a2i4k" path="res://art/enemies/groundbeetle2.png" id="2_3m5it"]
 [ext_resource type="Texture2D" uid="uid://dt6ofl6hv42br" path="res://art/enemies/wallbeetle.png" id="3_gn7dq"]
+[ext_resource type="PackedScene" uid="uid://pgygsfbf3prg" path="res://processing/pause_module.tscn" id="4_1s3ib"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4ij2g"]
 atlas = ExtResource("2_3m5it")
@@ -62,8 +63,8 @@ size = Vector2(5, 22)
 size = Vector2(9, 22)
 
 [node name="GroundBeetleFloorType" type="CharacterBody2D"]
-collision_layer = 36
-collision_mask = 9
+collision_layer = 4
+collision_mask = 33
 floor_constant_speed = true
 safe_margin = 0.01
 script = ExtResource("1_bfbju")
@@ -87,6 +88,8 @@ one_shot = true
 texture = ExtResource("3_gn7dq")
 
 [node name="weakarea" type="Area2D" parent="." groups=["Squishable"]]
+collision_layer = 4
+collision_mask = 8
 
 [node name="Shape" type="CollisionShape2D" parent="weakarea"]
 position = Vector2(-1.81e-06, -11.5)
@@ -95,6 +98,8 @@ shape = SubResource("RectangleShape2D_5fidf")
 debug_color = Color(0.7, 0.432241, 0, 0.42)
 
 [node name="attackarea" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 8
 
 [node name="Shape" type="CollisionShape2D" parent="attackarea"]
 position = Vector2(-1.98881e-06, -4.5)
@@ -105,3 +110,5 @@ debug_color = Color(0.7, 0, 0.146714, 0.42)
 [node name="OnScreen" type="VisibleOnScreenNotifier2D" parent="."]
 self_modulate = Color(1, 1, 1, 0.0745098)
 rect = Rect2(-80, -80, 160, 160)
+
+[node name="Pause_Module" parent="." instance=ExtResource("4_1s3ib")]

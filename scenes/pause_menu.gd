@@ -26,14 +26,16 @@ func pause_menu():
 		show()
 		sound.stream = sfx_pause
 		sound.play()
-		Engine.time_scale = 0
+		GlobalVar.toggled_pause.emit(true)
+		#Engine.set_deferred("time_scale", 0)
 		GlobalMusic.stream_paused = true
 		$Close.grab_focus()
 	else:
 		hide()
 		sound.stream = sfx_unpause
 		sound.play()
-		Engine.time_scale = 1
+		GlobalVar.toggled_pause.emit(false)
+		#Engine.time_scale = 1
 		GlobalMusic.stream_paused = false
 		Options.saveData()
 	

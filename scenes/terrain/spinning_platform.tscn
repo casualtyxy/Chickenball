@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://cuo75nlnel1c1"]
+[gd_scene load_steps=7 format=3 uid="uid://cuo75nlnel1c1"]
 
 [ext_resource type="Script" path="res://scenes/terrain/spinning_platform.gd" id="1_1qs22"]
 [ext_resource type="Texture2D" uid="uid://deh057xkqa4kx" path="res://art/sprites/shiny_platform_big.png" id="2_06ge5"]
+[ext_resource type="PackedScene" uid="uid://pgygsfbf3prg" path="res://processing/pause_module.tscn" id="3_ho5tb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bg84d"]
 size = Vector2(240, 12)
@@ -69,3 +70,5 @@ disabled = true
 [node name="PinJoint2D" type="PinJoint2D" parent="."]
 node_a = NodePath("..")
 node_b = NodePath("../Bar")
+
+[node name="Pause_Module" parent="." instance=ExtResource("3_ho5tb")]

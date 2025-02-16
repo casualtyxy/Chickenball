@@ -365,12 +365,14 @@ debug_color = Color(0.990973, 0, 0.271586, 0.42)
 visible = false
 
 [node name="LevelMarker" parent="." instance=ExtResource("18_f2xpg")]
-position = Vector2(84, 324)
+position = Vector2(84, 334)
+level_state = 1
 level_id = 1
 level_scene = ExtResource("19_o37h7")
+unlock_level_on_complete = 2
 
 [node name="LevelMarker2" parent="." instance=ExtResource("18_f2xpg")]
-position = Vector2(156.09, 323.644)
+position = Vector2(156, 334)
 level_id = 2
 level_scene = ExtResource("21_liep4")
 

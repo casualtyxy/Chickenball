@@ -2,12 +2,19 @@ extends Camera2D
 
 enum modes {NORMAL, STATIC}
 
-var pos_player_1 := Vector2.ZERO
-var pos_player_2 := Vector2.ZERO
-var pos_player_3 := Vector2.ZERO
-var pos_player_4 := Vector2.ZERO
-var pos_players_x:Array = [pos_player_1.x, pos_player_2.x, pos_player_3.x, pos_player_4.x]
-var pos_players_y:Array = [pos_player_1.y, pos_player_2.y, pos_player_3.y, pos_player_4.y]
+#var pos_player_1 := Vector2.ZERO
+#var pos_player_2 := Vector2.ZERO
+#var pos_player_3 := Vector2.ZERO
+#var pos_player_4 := Vector2.ZERO
+#@export var player_1: PackedScene
+#@export var player_2: PackedScene
+#@export var player_3: PackedScene
+#@export var player_4: PackedScene
+@export var min_zoom := 0.9
+@export var max_zoom := 1.3
+
+var pos_players_x:Array = []#[pos_player_1.x, pos_player_2.x, pos_player_3.x, pos_player_4.x]
+var pos_players_y:Array = []#[pos_player_1.y, pos_player_2.y, pos_player_3.y, pos_player_4.y]
 
 var highest_x
 var lowest_x
@@ -23,12 +30,17 @@ var current_player_pos_check:Vector2
 var right_side_offset = 140.0
 var vertical_offset = 20.0
 var current_mode = 0
-var distance_max_threshold = 180.0
-var distance_min_threshold = 85.0
-var prev_distance = 0.0
-var current_distance = 0.0
+#var distance_max_threshold = 180.0
+#var distance_min_threshold = 85.0
+var distance_threshold = 450.0
+var prev_distance := 0.0
+var current_distance := 0.0
+
+var zoom_speed = 10
 
 var temp
+
+var should_zoom_out = false # temp
 
 func players_distance_calculation():
 	
@@ -53,25 +65,18 @@ func players_distance_calculation():
 		#prev_distance = current_distance
 
 	if GlobalVar.player_count > 1:
-		
+		pos_players_x.clear()
+		pos_players_y.clear()
+		#get every active player and store pos into respective arrays
 		for i in GlobalVar.player_count:
 			temp = "Player" + str(i + 1)
-			pos_players_x[i] = get_parent().find_child(temp).global_position.x
-			pos_players_y[i] = get_parent().find_child(temp).global_position.y
-			##print(pos_players[i])
-			#
-			#print(pos_players[i].x)
-			#
-			#if pos_players[i].x > highest_x:
-				#highest_x = pos_players[i].x
-			#elif pos_players[i].x < lowest_x:
-				#lowest_x = pos_players[i].x
-			#if pos_players[i].y > highest_y:
-				#highest_y = pos_players[i].y
-			#elif pos_players[i].y < lowest_y:
-				#lowest_y = pos_players[i].y
-			#
-			if i >= GlobalVar.player_count:
+			var current_player:CharacterBody2D = get_parent().find_child(temp)
+			
+			if current_player.get_collision_layer_value(5): #If is on camera layer
+				pos_players_x.append(current_player.global_position.x)
+				pos_players_y.append(current_player.global_position.y)
+			
+			if i >= GlobalVar.player_count: #reset loop
 				i = 0
 			
 		highest_x = pos_players_x.max()
@@ -79,13 +84,14 @@ func players_distance_calculation():
 		highest_y = pos_players_y.min()
 		lowest_y = pos_players_y.max()
 		
-		global_position.x = ((highest_x + right_side_offset) + lowest_x) / 2
-		global_position.y = ((highest_y + vertical_offset) + lowest_y) / 2
-		
-		$Left.global_position.x = lowest_x
-		$Left.global_position.y = lowest_y
-		$Right.global_position.x = highest_x
-		$Right.global_position.y = highest_y
+		if highest_x != null and lowest_x != null:
+			global_position.x = ((highest_x + right_side_offset) + lowest_x) / 2
+			$Left.global_position.x = lowest_x
+			$Right.global_position.x = highest_x
+		if highest_y != null and lowest_y != null:
+			global_position.y = ((highest_y + vertical_offset) + lowest_y) / 2
+			$Left.global_position.y = lowest_y
+			$Right.global_position.y = highest_y
 		
 			
 			#if prev_player_pos_check != null:
@@ -122,15 +128,15 @@ func players_distance_calculation():
 		#$Right.global_position = rightmost_player_pos
 		#$Left.global_position = leftmost_player_pos
 		#
-		current_distance = (highest_x + lowest_x) / 2
-		#print("Distance between players is " + str(current_distance))
-		
-		if current_distance > distance_max_threshold and prev_distance <= distance_max_threshold and $AnimationPlayer.assigned_animation != "zoom_out":
-			$AnimationPlayer.play("zoom_out")
-		elif current_distance <= distance_min_threshold and prev_distance > distance_min_threshold:
-			$ZoomInDelay.start(3.0)
+		#current_distance = (highest_x + lowest_x) / 2
+		##print("Distance between players is " + str(current_distance))
 		#
-		prev_distance = current_distance #----REPLACE WITH AREA2D TO DETECT WHEN PLAYERS LEAVE SMALL AREA?
+		#if current_distance > distance_max_threshold and prev_distance <= distance_max_threshold and $AnimationPlayer.assigned_animation != "zoom_out":
+			#$AnimationPlayer.play("zoom_out")
+		#elif current_distance <= distance_min_threshold and prev_distance > distance_min_threshold:
+			#$ZoomInDelay.start(3.0)
+		##
+		#prev_distance = current_distance #----REPLACE WITH AREA2D TO DETECT WHEN PLAYERS LEAVE SMALL AREA?
 		
 		#print("Leftmost: " + str(leftmost_player_pos))
 		#print("Rightmost: " + str(rightmost_player_pos))
@@ -143,9 +149,20 @@ func players_distance_calculation():
 		### Singleplayer
 		global_position = get_parent().find_child("Player1").global_position
 
+func dynamic_zoom(delta: float):
+	if highest_x != null and highest_y != null and lowest_x != null and lowest_y != null:
+		current_distance = Vector2(lowest_x, lowest_y).distance_to(Vector2(highest_x, highest_y))
+	
+		if current_distance < distance_threshold and zoom.x < max_zoom:
+		
+			zoom += Vector2(0.05,0.05) * delta * zoom_speed
+		elif current_distance > distance_threshold and zoom.x > min_zoom:
+		
+			zoom -= Vector2(0.05,0.05) * delta * zoom_speed
+
 
 func _zoom_in_delay_check():
-	if current_distance <= distance_min_threshold and $AnimationPlayer.assigned_animation != "zoom_in":
+	if current_distance < distance_threshold and $AnimationPlayer.assigned_animation != "zoom_in":
 		$AnimationPlayer.play("zoom_in")
 
 func enter_static():
@@ -178,5 +195,6 @@ func _process(delta: float) -> void:
 	match current_mode:
 		0: #NORMAL
 			players_distance_calculation()
+			dynamic_zoom(delta)
 		1: #STATIC
 			enter_static()
