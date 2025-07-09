@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://y3ycqtpsvn8t"]
 
-[ext_resource type="Script" path="res://scenes/items/farm/collect_this_item.gd" id="1_m0b4q"]
+[ext_resource type="Script" uid="uid://c35b61y5wl5yv" path="res://scenes/items/farm/collect_this_item.gd" id="1_m0b4q"]
 [ext_resource type="Texture2D" uid="uid://3ot4mwssyps8" path="res://art/items/apple.png" id="2_0rme6"]
 [ext_resource type="AudioStream" uid="uid://tnn6d05eamc6" path="res://audio/sounds/pluck.wav" id="3_06aaw"]
 
@@ -148,9 +148,9 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_rewxa"]
 _data = {
-"RESET": SubResource("Animation_xm0mt"),
-"collected": SubResource("Animation_peyv7"),
-"default": SubResource("Animation_4q8cu")
+&"RESET": SubResource("Animation_xm0mt"),
+&"collected": SubResource("Animation_peyv7"),
+&"default": SubResource("Animation_4q8cu")
 }
 
 [node name="Collect_this_item" type="Node2D"]
@@ -160,9 +160,9 @@ script = ExtResource("1_m0b4q")
 material = SubResource("CanvasItemMaterial_72ery")
 emitting = false
 amount = 4
+texture = ExtResource("2_0rme6")
 one_shot = true
 explosiveness = 1.0
-texture = ExtResource("2_0rme6")
 direction = Vector2(0, -1)
 gravity = Vector2(0, 400)
 initial_velocity_min = 150.0
@@ -175,7 +175,7 @@ anim_speed_max = 1.0
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../..")
 libraries = {
-"": SubResource("AnimationLibrary_rewxa")
+&"": SubResource("AnimationLibrary_rewxa")
 }
 
 [node name="SFX" type="AudioStreamPlayer2D" parent="."]

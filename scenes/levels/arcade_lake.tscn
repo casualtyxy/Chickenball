@@ -1,9 +1,9 @@
 [gd_scene load_steps=23 format=4 uid="uid://olf62y32qrm1"]
 
-[ext_resource type="Script" path="res://scenes/levels/arcade_lake.gd" id="1_nvfeq"]
+[ext_resource type="Script" uid="uid://dijsbas7kb4yc" path="res://scenes/levels/arcade_lake.gd" id="1_nvfeq"]
 [ext_resource type="PackedScene" uid="uid://f8oy1da6aavx" path="res://scenes/OverlayMenus_Arcade.tscn" id="2_ls6vq"]
 [ext_resource type="Texture2D" uid="uid://dq0xig3ymudok" path="res://art/background/arcade/QuangNguyenVinh_processed.png" id="3_aho1e"]
-[ext_resource type="TileSet" uid="uid://bhb2qwur0ek5h" path="res://art/tilesets/arcade_sets.tres" id="4_etxsw"]
+[ext_resource type="TileSet" uid="uid://bhb2qwur0ek5h" path="res://art/tilesets/old/arcade_sets.tres" id="4_etxsw"]
 [ext_resource type="TileSet" uid="uid://b8w8l1kwhvrfn" path="res://ranch_tiles.tres" id="5_fwvwj"]
 [ext_resource type="PackedScene" uid="uid://f18wj7lkglud" path="res://player/chicken.tscn" id="6_2ws1p"]
 [ext_resource type="PackedScene" uid="uid://nbmu66d44rym" path="res://scenes/food_tick.tscn" id="8_gxogt"]

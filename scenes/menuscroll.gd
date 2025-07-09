@@ -9,5 +9,6 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	$Layer1.motion_offset.x += speed * delta
-	$Banner.motion_offset.x -= speed * delta
+	#$Layer1.motion_offset.x += speed * delta
+	#$Banner.motion_offset.x -= speed * delta
+	pass

@@ -44,6 +44,7 @@ func _ready() -> void:
 	
 	GlobalVar.menu_theme = GlobalVar.menu_bg_elements.RANCH
 	
+	GlobalVar.on_map_loaded()
 	
 	await get_tree().create_timer(1.5).timeout
 	GlobalVar.level_completed.emit(GlobalVar.currentLevel, GlobalVar.currentLevelDone)

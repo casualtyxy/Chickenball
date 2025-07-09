@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dihmc4wsbn0wg"]
 
-[ext_resource type="Script" path="res://scenes/terrain/physics_item.gd" id="1_ug6ud"]
+[ext_resource type="Script" uid="uid://dgbch2y7t6w56" path="res://scenes/terrain/physics_item.gd" id="1_ug6ud"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_i6giv"]
 

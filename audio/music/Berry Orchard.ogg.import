@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://ojolyjyimhao"
+path="res://.godot/imported/Berry Orchard.ogg-c81b1d05b2941c92a285e85238ecae0b.oggvorbisstr"
+
+[deps]
+
+source_file="res://audio/music/Berry Orchard.ogg"
+dest_files=["res://.godot/imported/Berry Orchard.ogg-c81b1d05b2941c92a285e85238ecae0b.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

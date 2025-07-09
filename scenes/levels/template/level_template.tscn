@@ -1,0 +1,135 @@
+[gd_scene load_steps=16 format=3 uid="uid://c4kfmfkeyfjmw"]
+
+[ext_resource type="PackedScene" uid="uid://ceh5iwhxhtdft" path="res://scenes/platformer_ui_layer.tscn" id="1_eux7k"]
+[ext_resource type="PackedScene" uid="uid://bmgh85gvb8svb" path="res://scenes/pause_menu.tscn" id="2_a1w6o"]
+[ext_resource type="Texture2D" uid="uid://dy143oy5l1nmj" path="res://art/background/farm/gradient3.png" id="3_idgco"]
+[ext_resource type="Script" uid="uid://jrtyr6jfkhxj" path="res://scenes/levels/platformer/Ranch/scrolling_background.gd" id="4_8kxy2"]
+[ext_resource type="Texture2D" uid="uid://hqu4sw0r7amj" path="res://art/background/farm/wavy1.png" id="5_m6qwl"]
+[ext_resource type="Texture2D" uid="uid://dw37fca1rx388" path="res://art/background/farm/wavy2.png" id="6_d3641"]
+[ext_resource type="PackedScene" uid="uid://c50xrk7gpbhq0" path="res://scenes/levels/ocean_water.tscn" id="7_s7lyt"]
+[ext_resource type="Texture2D" uid="uid://i7ox7q1hxdms" path="res://art/background/farm/windmills_back.png" id="8_j5r0d"]
+[ext_resource type="Texture2D" uid="uid://fl58856wfdas" path="res://art/background/farm/windmills.png" id="9_h70rp"]
+[ext_resource type="Texture2D" uid="uid://5i47j2lro7dj" path="res://art/background/farm/testlayer.png" id="10_v6oie"]
+[ext_resource type="PackedScene" uid="uid://cbkv2efk4a42u" path="res://scenes/levels/platformer/player_setup.tscn" id="11_6ncn3"]
+[ext_resource type="PackedScene" uid="uid://ciwj8fsttxkrq" path="res://scenes/levels/platformer/sidescroll_camera.tscn" id="12_0mrd6"]
+[ext_resource type="PackedScene" uid="uid://bgxhgwngeksf6" path="res://scenes/colliders/pits.tscn" id="13_6te6x"]
+
+[sub_resource type="Gradient" id="Gradient_wc4uo"]
+colors = PackedColorArray(0.713726, 0.529412, 0.411765, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_d7ven"]
+gradient = SubResource("Gradient_wc4uo")
+width = 128
+height = 128
+fill_from = Vector2(0, 1)
+fill_to = Vector2(0, 0.5)
+
+[node name="LevelTemplate" type="Node2D"]
+
+[node name="PlatformerUILayer" parent="." instance=ExtResource("1_eux7k")]
+visible = false
+
+[node name="PauseMenuLayer" parent="." instance=ExtResource("2_a1w6o")]
+visible = false
+
+[node name="VisualElements" type="Node2D" parent="."]
+
+[node name="BG and Clouds" type="ParallaxBackground" parent="VisualElements"]
+scroll_ignore_camera_zoom = true
+
+[node name="BG" type="Sprite2D" parent="VisualElements/BG and Clouds"]
+texture = ExtResource("3_idgco")
+centered = false
+
+[node name="3" type="ParallaxLayer" parent="VisualElements/BG and Clouds"]
+motion_scale = Vector2(0.03, 0)
+motion_mirroring = Vector2(960, 0)
+script = ExtResource("4_8kxy2")
+scroll_speed = -1
+
+[node name="Sprite2D" type="Sprite2D" parent="VisualElements/BG and Clouds/3"]
+self_modulate = Color(1, 1, 1, 0.490196)
+texture = ExtResource("5_m6qwl")
+centered = false
+
+[node name="2" type="ParallaxLayer" parent="VisualElements/BG and Clouds"]
+motion_scale = Vector2(0.06, 0)
+motion_mirroring = Vector2(960, 0)
+script = ExtResource("4_8kxy2")
+scroll_speed = -3
+
+[node name="Sprite2D" type="Sprite2D" parent="VisualElements/BG and Clouds/2"]
+self_modulate = Color(1, 1, 1, 0.709804)
+texture = ExtResource("6_d3641")
+centered = false
+
+[node name="Water" parent="VisualElements" instance=ExtResource("7_s7lyt")]
+
+[node name="DecorParallax" type="ParallaxBackground" parent="VisualElements"]
+scroll_ignore_camera_zoom = true
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="VisualElements/DecorParallax"]
+motion_scale = Vector2(0.1, 0.05)
+
+[node name="Spriteback" type="Sprite2D" parent="VisualElements/DecorParallax/ParallaxLayer"]
+self_modulate = Color(0.435294, 0.498039, 0.556863, 1)
+texture = ExtResource("8_j5r0d")
+centered = false
+
+[node name="Sprite" type="Sprite2D" parent="VisualElements/DecorParallax/ParallaxLayer"]
+self_modulate = Color(1, 1, 1, 0.686275)
+texture = ExtResource("9_h70rp")
+centered = false
+
+[node name="Parallax2D" type="ParallaxLayer" parent="VisualElements/DecorParallax"]
+visible = false
+motion_scale = Vector2(0.1, 0.03)
+motion_mirroring = Vector2(960, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="VisualElements/DecorParallax/Parallax2D"]
+texture = ExtResource("10_v6oie")
+centered = false
+
+[node name="GroundVeryBack" type="TileMapLayer" parent="VisualElements"]
+
+[node name="GroundBack" type="TileMapLayer" parent="VisualElements"]
+
+[node name="Decor" type="CanvasGroup" parent="VisualElements"]
+
+[node name="PlayerSetup" parent="VisualElements" instance=ExtResource("11_6ncn3")]
+
+[node name="SidescrollCamera" parent="VisualElements" instance=ExtResource("12_0mrd6")]
+
+[node name="Gizmos" type="CanvasGroup" parent="VisualElements"]
+
+[node name="Enemies" type="CanvasGroup" parent="VisualElements"]
+
+[node name="Ground" type="TileMapLayer" parent="VisualElements"]
+
+[node name="FoliageShaders" type="TileMapLayer" parent="VisualElements"]
+
+[node name="Shading" type="PointLight2D" parent="VisualElements"]
+position = Vector2(6335.5, 456)
+scale = Vector2(102.758, 1.125)
+blend_mode = 1
+texture = SubResource("GradientTexture2D_d7ven")
+
+[node name="Sun" type="DirectionalLight2D" parent="VisualElements"]
+rotation = -0.191986
+energy = 0.5
+shadow_enabled = true
+shadow_color = Color(0, 0, 0, 1)
+shadow_filter = 1
+shadow_filter_smooth = 4.0
+shadow_item_cull_mask = 2
+
+[node name="CanvasModulate" type="CanvasModulate" parent="VisualElements"]
+color = Color(0.91, 0.91, 1, 1)
+
+[node name="ProcessingElements" type="Node2D" parent="."]
+
+[node name="Pits" parent="ProcessingElements" instance=ExtResource("13_6te6x")]
+
+[node name="Blockers" type="StaticBody2D" parent="ProcessingElements"]
+
+[editable path="ProcessingElements/Pits"]

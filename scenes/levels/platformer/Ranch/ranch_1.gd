@@ -3,13 +3,13 @@ extends Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	GlobalMusic.play_music(GlobalMusic.berry_farm_level_1)
+	#GlobalMusic.play_music(GlobalMusic.berry_farm_level_1)
 	GlobalVar.foods_collected = 0
-	$CamPanOut.body_entered.connect(_cam_pan_out)
-	$CamPanOut.body_exited.connect(_cam_pan_in)
+	#$CamPanOut.body_entered.connect(_cam_pan_out)
+	#$CamPanOut.body_exited.connect(_cam_pan_in)
 	print_debug("Level loaded")
 	
-	$Temp.body_entered.connect(temp)
+	#$Temp.body_entered.connect(temp)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

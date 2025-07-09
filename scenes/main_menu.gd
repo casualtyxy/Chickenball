@@ -6,15 +6,13 @@ var skippable = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	if GlobalMusic.stream != GlobalMusic.main_menu:
-		GlobalMusic.play_music(GlobalMusic.main_menu)
 	#$SettingsButton/AcceptDialog.add_button("CLEAR DATA", false, "cancel")
 	$Control/SettingsButton.pressed.connect(_on_settings_button_pressed)
 	$Control/HBoxContainer/About.pressed.connect(_on_credits_button_pressed)
 	$Control/HBoxContainer/House.pressed.connect(_on_house_button_pressed)
 	if get_parent().name == "GameIntroSeq":
 		skippable = true
-	$Control/Adventure.grab_focus()
+	#$Control/Adventure.grab_focus()
 	
 	$Control/Arcade.pressed.connect(enter_arcade)
 	$Control/Arcade.mouse_entered.connect(arcade_peek)
@@ -27,13 +25,13 @@ func _ready():
 	$Control/Adventure.mouse_exited.connect(adventure_leave)
 	$Control/Adventure.focus_exited.connect(adventure_leave)
 	var rand = randi_range(1, 200)
-	if rand == 3:
-		$Title.text = "[wave amp=20, freq=-4][center]Dried Mediterranean Barnacles!"
+	#if rand == 3:
+	#	$Title.text = "[wave amp=20, freq=-4][center]Dried Mediterranean Barnacles!"
 	
-	GlobalVar.arcade_levels.assign([load("res://scenes/levels/arcade_forest.tscn"), 
-	load("res://scenes/levels/arcade_lake.tscn"), 
-	load("res://scenes/levels/arcade_depot.tscn"),
-	load("res://scenes/levels/arcade_forest_2.tscn")])
+	#GlobalVar.arcade_levels.assign([load("res://scenes/levels/arcade_forest.tscn"), 
+	#load("res://scenes/levels/arcade_lake.tscn"), 
+	#load("res://scenes/levels/arcade_depot.tscn"),
+	#load("res://scenes/levels/arcade_forest_2.tscn")])
 	
 	load_background(GlobalVar.menu_theme)
 	$Control/Adventure.pressed.connect(_confirm_sound)
@@ -42,10 +40,20 @@ func _ready():
 	$Control/HBoxContainer/Achievements.pressed.connect(_confirm_sound)
 	$Control/HBoxContainer/House.pressed.connect(_confirm_sound)
 	$Control/HBoxContainer/About.pressed.connect(_confirm_sound)
+	$PitSave.body_entered.connect(_on_player_fall)
+	$Rightloop.body_entered.connect(_on_edge_touch.bind(1)) #adds the arguement 0 to be passed in
+	$Leftloop.body_entered.connect(_on_edge_touch.bind(0))
+	
+	#ConfigHandler.reload_keybinds()
+	#Options.loadData()
+	if GlobalMusic.stream != GlobalMusic.main_menu:
+		GlobalMusic.play_music(GlobalMusic.main_menu)
 
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("f11"):
 		GlobalVar.toggle_fullscreen()
+	
+	#if Input
 
 func _confirm_sound():
 	$Sound.stream = load("res://audio/sounds/menu/confirm.ogg")
@@ -53,6 +61,19 @@ func _confirm_sound():
 func _deny_sound():
 	$Sound.stream = load("res://audio/sounds/menu/deny.ogg")
 	$Sound.play()
+
+func _on_player_fall(body: Node2D):
+	body.global_position.y = -72
+	body.global_position.x = 480
+	body.velocity.y = 0
+	body.velocity.x = 0
+
+func _on_edge_touch(body: Node2D, dir: int):
+	if body.is_in_group("Player"):
+		if dir == 0:
+			body.global_position.x = $Rightloop.global_position.x - 24
+		elif dir == 1:
+			body.global_position.x = $Leftloop.global_position.x + 24
 
 func enter_arcade():
 	#GlobalVar.reset_arcade()
@@ -77,9 +98,9 @@ func arcade_leave():
 
 func enter_adventure():
 	#$AudioStreamPlayer2D.play()
-	Screendrip.transition()
+	Screendrip.transition(Screendrip.transType.SPOTLIGHT)
 	await Screendrip.on_transition_finished
-	get_tree().change_scene_to_file("res://scenes/levels/map_ranch_old.tscn")
+	get_tree().change_scene_to_file("res://scenes/levels/platformer/Map/ranch_map.tscn")
 func adventure_peek():
 	$Control/Adventure/Label.text = "[center][pulse]Adventure"
 	$Control/Adventure/AnimationPlayer.play("hover")
@@ -93,16 +114,17 @@ func adventure_leave():
 
 func _on_settings_button_pressed() -> void:
 	#$SettingsButton/AcceptDialog.popup()
-	Screendrip.transition(1)
+	Screendrip.transition(Screendrip.transType.SPOTLIGHT)
 	await Screendrip.on_transition_finished
-	get_tree().change_scene_to_file("res://scenes/settings_menu.tscn")
+	get_tree().change_scene_to_file("res://scenes/menu/settings_menu.tscn")
 func _on_credits_button_pressed() -> void:
 	pass
 func _on_house_button_pressed() -> void:
-	Screendrip.transition()
-	await Screendrip.on_transition_finished
-	get_tree().change_scene_to_file("res://scenes/levels/house_room.tscn")
-	GlobalMusic.play_music(GlobalMusic.house_music)
+	#Screendrip.transition()
+	#await Screendrip.on_transition_finished
+	#get_tree().change_scene_to_file("res://scenes/levels/house_room.tscn")
+	#GlobalMusic.play_music(GlobalMusic.house_music)
+	pass
 
 func _on_quit_button_pressed() -> void:
 	get_tree().quit()

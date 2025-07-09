@@ -1,0 +1,375 @@
+[gd_scene load_steps=6 format=3 uid="uid://kjgy6t5j6f2y"]
+
+[ext_resource type="Script" uid="uid://q0agcej3o2os" path="res://scenes/menu/keybinds_menu.gd" id="1_ht781"]
+[ext_resource type="PackedScene" uid="uid://dgmetcs8lp3pd" path="res://scenes/menu/input_remap_button.tscn" id="1_iq2r5"]
+[ext_resource type="Texture2D" uid="uid://cndueb1adktle" path="res://art/menus/buttons/button_retrobubble.png" id="2_ht781"]
+[ext_resource type="Texture2D" uid="uid://csp4krpn6i2lm" path="res://art/menus/buttons/button_retrobubble_hover.png" id="3_gm50t"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2tyyr"]
+
+[node name="keybinds_menu" type="Node2D"]
+script = ExtResource("1_ht781")
+
+[node name="Controls" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 962.0
+offset_bottom = 482.0
+mouse_filter = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="Controls"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_2tyyr")
+
+[node name="MarginContainer" type="MarginContainer" parent="Controls/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 48
+theme_override_constants/margin_top = 96
+theme_override_constants/margin_right = 48
+theme_override_constants/margin_bottom = 48
+
+[node name="ListContainer" type="ScrollContainer" parent="Controls/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="List" type="VBoxContainer" parent="Controls/PanelContainer/MarginContainer/ListContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Seperator1" type="Control" parent="Controls/PanelContainer/MarginContainer/ListContainer/List"]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+
+[node name="Player1" type="VBoxContainer" parent="Controls/PanelContainer/MarginContainer/ListContainer/List"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Title" type="RichTextLabel" parent="Controls/PanelContainer/MarginContainer/ListContainer/List/Player1"]
+clip_contents = false
+layout_mode = 2
+bbcode_enabled = true
+text = "[center]Player 1"
+fit_content = true
+
+[node name="Seperator" type="HBoxContainer" parent="Controls/PanelContainer/MarginContainer/ListContainer/List/Player1"]
+layout_mode = 2
+
+[node name="Labels" type="VBoxContainer" parent="Controls/PanelContainer/MarginContainer/ListContainer/List/Player1/Seperator"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Left" type="Label" parent="Controls/PanelContainer/MarginContainer/ListContainer/List/Player1/Seperator/Labels"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Move Left"
+
+[node name="Right" type="Label" parent="Controls/PanelContainer/MarginContainer/ListContainer/List/Player1/Seperator/Labels"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Move Right"
+
+[node name="Jump" type="Label" parent="Controls/PanelContainer/MarginContainer/ListContainer/List/Player1/Seperator/Labels"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Jump/Select"
+
+[node name="Flap" type="Label" parent="Controls/PanelContainer/MarginContainer/ListContainer/List/Player1/Seperator/Labels"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Flap"
+
+[node name="Down" type="Label" parent="Controls/PanelContainer/MarginContainer/ListContainer/List/Player1/Seperator/Labels"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Move Down"
+
+[node name="Buttons" type="VBoxContainer" parent="Controls/PanelContainer/MarginContainer/ListContainer/List/Player1/Seperator"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Left" parent="Controls/PanelContainer/MarginContainer/ListContainer/List/Player1/Seperator/Buttons" instance=ExtResource("1_iq2r5")]
+layout_mode = 2
+action = "left"
+
+[node name="Right" parent="Controls/PanelContainer/MarginContainer/ListContainer/List/Player1/Seperator/Buttons" instance=ExtResource("1_iq2r5")]
+layout_mode = 2
+action = "right"
+
+[node name="Jump" parent="Controls/PanelContainer/MarginContainer/ListContainer/List/Player1/Seperator/Buttons" instance=ExtResource("1_iq2r5")]
+layout_mode = 2
+action = "jump"
+
+[node name="Flap" parent="Controls/PanelContainer/MarginContainer/ListContainer/List/Player1/Seperator/Buttons" instance=ExtResource("1_iq2r5")]
+layout_mode = 2
+action = "click_right"
+
+[node name="Down" parent="Controls/PanelContainer/MarginContainer/ListContainer/List/Player1/Seperator/Buttons" instance=ExtResource("1_iq2r5")]
+layout_mode = 2
+action = "down"
+
+[node name="Seperator2" type="Control" parent="Controls/PanelContainer/MarginContainer/ListContainer/List"]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+
+[node name="Player2" type="VBoxContainer" parent="Controls/PanelContainer/MarginContainer/ListContainer/List"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Title" type="RichTextLabel" parent="Controls/PanelContainer/MarginContainer/ListContainer/List/Player2"]
+clip_contents = false
+layout_mode = 2
+bbcode_enabled = true
+text = "[center]Player 2"
+fit_content = true
+
+[node name="Seperator" type="HBoxContainer" parent="Controls/PanelContainer/MarginContainer/ListContainer/List/Player2"]
+layout_mode = 2
+
+[node name="Labels" type="VBoxContainer" parent="Controls/PanelContainer/MarginContainer/ListContainer/List/Player2/Seperator"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Left" type="Label" parent="Controls/PanelContainer/MarginContainer/ListContainer/List/Player2/Seperator/Labels"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Move Left"
+
+[node name="Right" type="Label" parent="Controls/PanelContainer/MarginContainer/ListContainer/List/Player2/Seperator/Labels"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Move Right"
+
+[node name="Jump" type="Label" parent="Controls/PanelContainer/MarginContainer/ListContainer/List/Player2/Seperator/Labels"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Jump/Select"
+
+[node name="Flap" type="Label" parent="Controls/PanelContainer/MarginContainer/ListContainer/List/Player2/Seperator/Labels"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Flap"
+
+[node name="Down" type="Label" parent="Controls/PanelContainer/MarginContainer/ListContainer/List/Player2/Seperator/Labels"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Move Down"
+
+[node name="Buttons" type="VBoxContainer" parent="Controls/PanelContainer/MarginContainer/ListContainer/List/Player2/Seperator"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Left" parent="Controls/PanelContainer/MarginContainer/ListContainer/List/Player2/Seperator/Buttons" instance=ExtResource("1_iq2r5")]
+layout_mode = 2
+action = "p2left"
+player_index = 1
+
+[node name="Right" parent="Controls/PanelContainer/MarginContainer/ListContainer/List/Player2/Seperator/Buttons" instance=ExtResource("1_iq2r5")]
+layout_mode = 2
+action = "p2right"
+player_index = 1
+
+[node name="Jump" parent="Controls/PanelContainer/MarginContainer/ListContainer/List/Player2/Seperator/Buttons" instance=ExtResource("1_iq2r5")]
+layout_mode = 2
+action = "p2jump"
+player_index = 1
+
+[node name="Flap" parent="Controls/PanelContainer/MarginContainer/ListContainer/List/Player2/Seperator/Buttons" instance=ExtResource("1_iq2r5")]
+layout_mode = 2
+action = "p2flap"
+player_index = 1
+
+[node name="Down" parent="Controls/PanelContainer/MarginContainer/ListContainer/List/Player2/Seperator/Buttons" instance=ExtResource("1_iq2r5")]
+layout_mode = 2
+action = "p2down"
+player_index = 1
+
+[node name="Seperator3" type="Control" parent="Controls/PanelContainer/MarginContainer/ListContainer/List"]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+
+[node name="Player3" type="VBoxContainer" parent="Controls/PanelContainer/MarginContainer/ListContainer/List"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Title" type="RichTextLabel" parent="Controls/PanelContainer/MarginContainer/ListContainer/List/Player3"]
+clip_contents = false
+layout_mode = 2
+bbcode_enabled = true
+text = "[center]Player 3"
+fit_content = true
+
+[node name="Seperator" type="HBoxContainer" parent="Controls/PanelContainer/MarginContainer/ListContainer/List/Player3"]
+layout_mode = 2
+
+[node name="Labels" type="VBoxContainer" parent="Controls/PanelContainer/MarginContainer/ListContainer/List/Player3/Seperator"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Left" type="Label" parent="Controls/PanelContainer/MarginContainer/ListContainer/List/Player3/Seperator/Labels"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Move Left"
+
+[node name="Right" type="Label" parent="Controls/PanelContainer/MarginContainer/ListContainer/List/Player3/Seperator/Labels"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Move Right"
+
+[node name="Jump" type="Label" parent="Controls/PanelContainer/MarginContainer/ListContainer/List/Player3/Seperator/Labels"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Jump/Select"
+
+[node name="Flap" type="Label" parent="Controls/PanelContainer/MarginContainer/ListContainer/List/Player3/Seperator/Labels"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Flap"
+
+[node name="Down" type="Label" parent="Controls/PanelContainer/MarginContainer/ListContainer/List/Player3/Seperator/Labels"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Move Down"
+
+[node name="Buttons" type="VBoxContainer" parent="Controls/PanelContainer/MarginContainer/ListContainer/List/Player3/Seperator"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Left" parent="Controls/PanelContainer/MarginContainer/ListContainer/List/Player3/Seperator/Buttons" instance=ExtResource("1_iq2r5")]
+layout_mode = 2
+action = "p3left"
+player_index = 2
+
+[node name="Right" parent="Controls/PanelContainer/MarginContainer/ListContainer/List/Player3/Seperator/Buttons" instance=ExtResource("1_iq2r5")]
+layout_mode = 2
+action = "p3right"
+player_index = 2
+
+[node name="Jump" parent="Controls/PanelContainer/MarginContainer/ListContainer/List/Player3/Seperator/Buttons" instance=ExtResource("1_iq2r5")]
+layout_mode = 2
+action = "p3jump"
+player_index = 2
+
+[node name="Flap" parent="Controls/PanelContainer/MarginContainer/ListContainer/List/Player3/Seperator/Buttons" instance=ExtResource("1_iq2r5")]
+layout_mode = 2
+action = "p3flap"
+player_index = 2
+
+[node name="Down" parent="Controls/PanelContainer/MarginContainer/ListContainer/List/Player3/Seperator/Buttons" instance=ExtResource("1_iq2r5")]
+layout_mode = 2
+action = "p3down"
+player_index = 2
+
+[node name="Seperator4" type="Control" parent="Controls/PanelContainer/MarginContainer/ListContainer/List"]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+
+[node name="Player4" type="VBoxContainer" parent="Controls/PanelContainer/MarginContainer/ListContainer/List"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Title" type="RichTextLabel" parent="Controls/PanelContainer/MarginContainer/ListContainer/List/Player4"]
+clip_contents = false
+layout_mode = 2
+bbcode_enabled = true
+text = "[center]Player 4"
+fit_content = true
+
+[node name="Seperator" type="HBoxContainer" parent="Controls/PanelContainer/MarginContainer/ListContainer/List/Player4"]
+layout_mode = 2
+
+[node name="Labels" type="VBoxContainer" parent="Controls/PanelContainer/MarginContainer/ListContainer/List/Player4/Seperator"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Left" type="Label" parent="Controls/PanelContainer/MarginContainer/ListContainer/List/Player4/Seperator/Labels"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Move Left"
+
+[node name="Right" type="Label" parent="Controls/PanelContainer/MarginContainer/ListContainer/List/Player4/Seperator/Labels"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Move Right"
+
+[node name="Jump" type="Label" parent="Controls/PanelContainer/MarginContainer/ListContainer/List/Player4/Seperator/Labels"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Jump/Select"
+
+[node name="Flap" type="Label" parent="Controls/PanelContainer/MarginContainer/ListContainer/List/Player4/Seperator/Labels"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Flap"
+
+[node name="Down" type="Label" parent="Controls/PanelContainer/MarginContainer/ListContainer/List/Player4/Seperator/Labels"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Move Down"
+
+[node name="Buttons" type="VBoxContainer" parent="Controls/PanelContainer/MarginContainer/ListContainer/List/Player4/Seperator"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Left" parent="Controls/PanelContainer/MarginContainer/ListContainer/List/Player4/Seperator/Buttons" instance=ExtResource("1_iq2r5")]
+layout_mode = 2
+action = "p4left"
+player_index = 3
+
+[node name="Right" parent="Controls/PanelContainer/MarginContainer/ListContainer/List/Player4/Seperator/Buttons" instance=ExtResource("1_iq2r5")]
+layout_mode = 2
+action = "p4right"
+player_index = 3
+
+[node name="Jump" parent="Controls/PanelContainer/MarginContainer/ListContainer/List/Player4/Seperator/Buttons" instance=ExtResource("1_iq2r5")]
+layout_mode = 2
+action = "p4jump"
+player_index = 3
+
+[node name="Flap" parent="Controls/PanelContainer/MarginContainer/ListContainer/List/Player4/Seperator/Buttons" instance=ExtResource("1_iq2r5")]
+layout_mode = 2
+action = "p4flap"
+player_index = 3
+
+[node name="Down" parent="Controls/PanelContainer/MarginContainer/ListContainer/List/Player4/Seperator/Buttons" instance=ExtResource("1_iq2r5")]
+layout_mode = 2
+action = "p4down"
+player_index = 3
+
+[node name="Reset" type="Button" parent="."]
+offset_left = 390.0
+offset_top = 494.0
+offset_right = 568.0
+offset_bottom = 524.0
+text = "Reset to Default"
+
+[node name="Keyclose" type="TextureButton" parent="."]
+offset_left = 11.0
+offset_top = 489.0
+offset_right = 69.0
+offset_bottom = 513.0
+scale = Vector2(1.5, 1.5)
+focus_neighbor_left = NodePath("../../Back")
+focus_neighbor_top = NodePath("../../volume_slider2")
+focus_neighbor_right = NodePath("../../Back")
+focus_neighbor_bottom = NodePath("../../Back")
+focus_next = NodePath("../../DataButton")
+focus_previous = NodePath("../../volume_slider2")
+texture_normal = ExtResource("2_ht781")
+texture_hover = ExtResource("3_gm50t")
+texture_focused = ExtResource("3_gm50t")
+
+[node name="PCountLabel" type="RichTextLabel" parent="Keyclose"]
+clip_contents = false
+layout_mode = 0
+offset_top = 7.0
+offset_right = 97.0
+offset_bottom = 25.0
+scale = Vector2(0.6, 0.6)
+mouse_filter = 2
+bbcode_enabled = true
+text = "[center]Done"
+scroll_active = false

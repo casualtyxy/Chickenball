@@ -1,9 +1,9 @@
 [gd_scene load_steps=14 format=3 uid="uid://ckqybckmgcwt5"]
 
-[ext_resource type="Script" path="res://scenes/screendrip.gd" id="1_lpe23"]
+[ext_resource type="Script" uid="uid://dr126veuxq7bs" path="res://scenes/screendrip.gd" id="1_lpe23"]
 [ext_resource type="Texture2D" uid="uid://ig1aj5ivonf5" path="res://art/menus/screendrip4.png" id="2_1wu20"]
 [ext_resource type="Texture2D" uid="uid://bqukjtjvf5sv2" path="res://art/menus/screenblocks.png" id="3_ykr26"]
-[ext_resource type="Shader" path="res://scenes/spotlight.gdshader" id="4_yq1sw"]
+[ext_resource type="Shader" uid="uid://bvtonl1pu1lk" path="res://scenes/spotlight.gdshader" id="4_yq1sw"]
 
 [sub_resource type="Animation" id="Animation_hsw16"]
 length = 0.001
@@ -351,13 +351,13 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_tov83"]
 _data = {
-"RESET": SubResource("Animation_hsw16"),
-"end": SubResource("Animation_0oblc"),
-"end_blocks": SubResource("Animation_e82id"),
-"end_spotlight": SubResource("Animation_he5u7"),
-"start": SubResource("Animation_6p7ho"),
-"start_blocks": SubResource("Animation_7siap"),
-"start_spotlight": SubResource("Animation_cauu7")
+&"RESET": SubResource("Animation_hsw16"),
+&"end": SubResource("Animation_0oblc"),
+&"end_blocks": SubResource("Animation_e82id"),
+&"end_spotlight": SubResource("Animation_he5u7"),
+&"start": SubResource("Animation_6p7ho"),
+&"start_blocks": SubResource("Animation_7siap"),
+&"start_spotlight": SubResource("Animation_cauu7")
 }
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xpu5n"]
@@ -379,7 +379,7 @@ centered = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_tov83")
+&"": SubResource("AnimationLibrary_tov83")
 }
 
 [node name="Screenblocks" type="Sprite2D" parent="."]

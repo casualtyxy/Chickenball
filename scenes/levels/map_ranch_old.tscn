@@ -1,6 +1,6 @@
 [gd_scene load_steps=30 format=4 uid="uid://cun3bai4wqpq5"]
 
-[ext_resource type="Script" path="res://scenes/levels/map_ranch_old.gd" id="1_a6s5p"]
+[ext_resource type="Script" uid="uid://da6i1gfwi0kox" path="res://scenes/levels/map_ranch_old.gd" id="1_a6s5p"]
 [ext_resource type="PackedScene" uid="uid://cicg2gvjr6355" path="res://scenes/OverlayMenus.tscn" id="2_owjvu"]
 [ext_resource type="Texture2D" uid="uid://q2ds76nl7177" path="res://art/background/Farmsky.png" id="3_hrcjo"]
 [ext_resource type="Texture2D" uid="uid://cggyw5dblc3tb" path="res://art/background/farm/clouds.png" id="4_q2qmx"]
@@ -18,7 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://bmgh85gvb8svb" path="res://scenes/pause_menu.tscn" id="18_wok2c"]
 [ext_resource type="PackedScene" uid="uid://cf5a6kklhi6ny" path="res://scenes/levels/platformer/Ranch/ranch_1.tscn" id="19_o37h7"]
 [ext_resource type="Texture2D" uid="uid://bqs3buhc4rulm" path="res://art/sprites/Sprite-0002.png" id="19_rb71u"]
-[ext_resource type="Script" path="res://scenes/levels/gato.gd" id="20_td7xc"]
+[ext_resource type="Script" uid="uid://brk6f5ig8noou" path="res://scenes/levels/gato.gd" id="20_td7xc"]
 [ext_resource type="PackedScene" uid="uid://b7dabh2xgskfe" path="res://scenes/enemies/porquinut.tscn" id="20_xna0a"]
 [ext_resource type="PackedScene" uid="uid://bbi0uqq02i36b" path="res://scenes/levels/platformer/Ranch/ranch_2.tscn" id="21_liep4"]
 
@@ -82,8 +82,8 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_rapu5"]
 _data = {
-"RESET": SubResource("Animation_vfoy4"),
-"popup": SubResource("Animation_ic41h")
+&"RESET": SubResource("Animation_vfoy4"),
+&"popup": SubResource("Animation_ic41h")
 }
 
 [sub_resource type="Animation" id="Animation_pgv0a"]
@@ -169,8 +169,8 @@ tracks/2/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_8l2xu"]
 _data = {
-"RESET": SubResource("Animation_pgv0a"),
-"dance": SubResource("Animation_orp0w")
+&"RESET": SubResource("Animation_pgv0a"),
+&"dance": SubResource("Animation_orp0w")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e1q2y"]
@@ -252,7 +252,7 @@ tile_map_data = PackedByteArray("AADz/w4AAAAGAAYAAADy/w0AAAAGAAUAAADz/w0AAAAGAAQ
 tile_set = ExtResource("4_qept6")
 
 [node name="Player" parent="." instance=ExtResource("5_w5bk5")]
-position = Vector2(-144, 254)
+position = Vector2(77, 329)
 
 [node name="SignHazard3" type="Sprite2D" parent="."]
 position = Vector2(1068, 708)
@@ -293,7 +293,7 @@ scroll_active = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="BrokenDoor"]
 libraries = {
-"": SubResource("AnimationLibrary_rapu5")
+&"": SubResource("AnimationLibrary_rapu5")
 }
 
 [node name="ChallengeArea" parent="." instance=ExtResource("15_4kfek")]
@@ -346,7 +346,7 @@ script = ExtResource("20_td7xc")
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Gato"]
 root_node = NodePath("../..")
 libraries = {
-"": SubResource("AnimationLibrary_8l2xu")
+&"": SubResource("AnimationLibrary_8l2xu")
 }
 
 [node name="Path2D" parent="." instance=ExtResource("20_xna0a")]

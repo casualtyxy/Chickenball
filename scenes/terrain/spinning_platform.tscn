@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://cuo75nlnel1c1"]
 
-[ext_resource type="Script" path="res://scenes/terrain/spinning_platform.gd" id="1_1qs22"]
+[ext_resource type="Script" uid="uid://cprquxm8iwhvn" path="res://scenes/terrain/spinning_platform.gd" id="1_1qs22"]
 [ext_resource type="Texture2D" uid="uid://deh057xkqa4kx" path="res://art/sprites/shiny_platform_big.png" id="2_06ge5"]
 [ext_resource type="PackedScene" uid="uid://pgygsfbf3prg" path="res://processing/pause_module.tscn" id="3_ho5tb"]
 

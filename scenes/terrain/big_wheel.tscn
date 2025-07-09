@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://ceda8w6f7bxfi"]
 
 [ext_resource type="Texture2D" uid="uid://c56y2h4h04vmq" path="res://art/sprites/big_wheel.png" id="1_1x2i0"]
-[ext_resource type="Script" path="res://scenes/terrain/big_wheel.gd" id="1_oheui"]
+[ext_resource type="Script" uid="uid://bwiqmf76naswd" path="res://scenes/terrain/big_wheel.gd" id="1_oheui"]
 [ext_resource type="AudioStream" uid="uid://pxw3dhhki2yq" path="res://audio/sounds/wheels/mill.ogg" id="3_asie6"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_y68ah"]

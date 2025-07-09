@@ -1,0 +1,48 @@
+[gd_scene load_steps=5 format=3 uid="uid://dm3v0b0ubq5v4"]
+
+[ext_resource type="Script" uid="uid://cde3bvdgbdgjk" path="res://scenes/player/player_ball.gd" id="1_m7y2u"]
+[ext_resource type="Texture2D" uid="uid://cmcjrfao8sh3k" path="res://art/player/chiki.png" id="1_myiga"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_baxua"]
+friction = 0.8
+bounce = 0.2
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_67wwr"]
+radius = 15.0
+
+[node name="PlayerBall" type="RigidBody2D"]
+collision_layer = 24
+collision_mask = 41
+physics_material_override = SubResource("PhysicsMaterial_baxua")
+contact_monitor = true
+max_contacts_reported = 8
+script = ExtResource("1_m7y2u")
+
+[node name="Skin" type="Sprite2D" parent="."]
+texture = ExtResource("1_myiga")
+hframes = 7
+vframes = 4
+frame = 27
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_67wwr")
+
+[node name="Raycasts" type="Node2D" parent="."]
+
+[node name="left" type="RayCast2D" parent="Raycasts"]
+rotation = 1.5708
+target_position = Vector2(9.17939e-07, 21)
+collision_mask = 9
+
+[node name="right" type="RayCast2D" parent="Raycasts"]
+rotation = -1.5708
+target_position = Vector2(-9.17939e-07, 21)
+collision_mask = 9
+
+[node name="down" type="RayCast2D" parent="Raycasts"]
+target_position = Vector2(0, 28)
+collision_mask = 97
+
+[node name="Coyote" type="Timer" parent="."]
+
+[node name="JumpBuffer" type="Timer" parent="."]

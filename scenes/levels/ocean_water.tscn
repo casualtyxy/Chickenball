@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://c50xrk7gpbhq0"]
 
-[ext_resource type="Script" path="res://scenes/levels/ocean_water.gd" id="1_0sax1"]
+[ext_resource type="Script" uid="uid://badpr8xyhq4ou" path="res://scenes/levels/ocean_water.gd" id="1_0sax1"]
 [ext_resource type="Texture2D" uid="uid://b8x0522dm1bkk" path="res://art/background/new_ocean_wide.png" id="2_gj6ab"]
 [ext_resource type="Texture2D" uid="uid://l2ysc1fq8n6b" path="res://art/background/new_ocean_line.png" id="3_te3wj"]
 
@@ -40,9 +40,9 @@ color = Color(0.564706, 0.764706, 0.737255, 1)
 [node name="GPUParticles2D" type="GPUParticles2D" parent="Water"]
 position = Vector2(480, 20)
 amount = 64
-process_material = SubResource("ParticleProcessMaterial_rx56d")
 lifetime = 2.0
 local_coords = true
+process_material = SubResource("ParticleProcessMaterial_rx56d")
 
 [node name="Waterglimmer" type="ParallaxLayer" parent="."]
 position = Vector2(0, 405)

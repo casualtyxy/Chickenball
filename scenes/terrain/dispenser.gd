@@ -1,10 +1,15 @@
-extends StaticBody2D
+class_name Dispenser extends StaticBody2D
 
 var spawn = preload("res://scenes/terrain/physics_item.tscn")
-@export var stored_item:PackedScene
+##Items stuffed in the dispenser. You can place chicklets in here too
+@export var stored_items:Array[PackedScene]
+##Amount of times to fire
 @export var quantity := 7
+##Velocity of the item
 @export var velocity := -700.0
+##How quick items are fired
 @export var frequency := 0.1
+##How wide of an angle items are spread
 @export var spread := 4.0
 
 var is_full = true
@@ -41,7 +46,7 @@ func slam(body: Node2D):
 func fountain():
 	for i in quantity:
 		var spawned_item = spawn.instantiate()
-		spawned_item.item = stored_item
+		spawned_item.item = stored_items.pick_random()
 		call_deferred("add_child", spawned_item)
 		spawned_item.set_packed_scene()
 		spawned_item.position = $SpawnPos.position

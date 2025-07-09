@@ -1,0 +1,109 @@
+[gd_scene load_steps=8 format=3 uid="uid://iln1eju3jn0x"]
+
+[ext_resource type="Script" uid="uid://pvkcak22e2td" path="res://level_options.gd" id="1_m3lqr"]
+[ext_resource type="Script" uid="uid://jrtyr6jfkhxj" path="res://scenes/levels/platformer/Ranch/scrolling_background.gd" id="3_vnabd"]
+[ext_resource type="PackedScene" uid="uid://bmgh85gvb8svb" path="res://scenes/pause_menu.tscn" id="7_esph2"]
+[ext_resource type="PackedScene" uid="uid://c50xrk7gpbhq0" path="res://scenes/levels/ocean_water.tscn" id="7_vnabd"]
+[ext_resource type="PackedScene" uid="uid://ceh5iwhxhtdft" path="res://scenes/platformer_ui_layer.tscn" id="11_esph2"]
+
+[sub_resource type="Gradient" id="Gradient_68rtg"]
+colors = PackedColorArray(0.713726, 0.529412, 0.411765, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_68rtg"]
+gradient = SubResource("Gradient_68rtg")
+width = 128
+height = 128
+fill_from = Vector2(0, 1)
+fill_to = Vector2(0, 0.5)
+
+[node name="LevelOptions" type="Node2D"]
+script = ExtResource("1_m3lqr")
+
+[node name="BG and Clouds" type="ParallaxBackground" parent="."]
+scroll_ignore_camera_zoom = true
+
+[node name="BG" type="Sprite2D" parent="BG and Clouds"]
+centered = false
+
+[node name="3" type="ParallaxLayer" parent="BG and Clouds"]
+motion_scale = Vector2(0.03, 0)
+motion_mirroring = Vector2(960, 0)
+script = ExtResource("3_vnabd")
+scroll_speed = -1
+
+[node name="Sprite2D" type="Sprite2D" parent="BG and Clouds/3"]
+self_modulate = Color(0.632, 0.7216, 0.8, 1)
+centered = false
+
+[node name="2" type="ParallaxLayer" parent="BG and Clouds"]
+motion_scale = Vector2(0.06, 0)
+motion_mirroring = Vector2(960, 0)
+script = ExtResource("3_vnabd")
+scroll_speed = -3
+
+[node name="Sprite2D" type="Sprite2D" parent="BG and Clouds/2"]
+self_modulate = Color(0.8835, 0.90055, 0.93, 1)
+centered = false
+
+[node name="1" type="ParallaxLayer" parent="BG and Clouds"]
+motion_scale = Vector2(0.09, 0)
+motion_mirroring = Vector2(960, 0)
+script = ExtResource("3_vnabd")
+scroll_speed = -5
+
+[node name="Sprite2D" type="Sprite2D" parent="BG and Clouds/1"]
+self_modulate = Color(0.941176, 0.905882, 0.894118, 1)
+centered = false
+
+[node name="Water" parent="." instance=ExtResource("7_vnabd")]
+visible = false
+
+[node name="DecorParallax" type="ParallaxBackground" parent="."]
+scroll_ignore_camera_zoom = true
+
+[node name="Structures" type="ParallaxLayer" parent="DecorParallax"]
+motion_scale = Vector2(0.1, 0.05)
+
+[node name="Spriteback" type="Sprite2D" parent="DecorParallax/Structures"]
+self_modulate = Color(0.435294, 0.498039, 0.556863, 1)
+centered = false
+
+[node name="Sprite" type="Sprite2D" parent="DecorParallax/Structures"]
+self_modulate = Color(1, 1, 1, 0.686275)
+centered = false
+
+[node name="Background" type="ParallaxLayer" parent="DecorParallax"]
+motion_scale = Vector2(0.1, 0.03)
+motion_mirroring = Vector2(960, 0)
+
+[node name="Texture" type="Sprite2D" parent="DecorParallax/Background"]
+centered = false
+
+[node name="AmbiencePlayer" type="AudioStreamPlayer" parent="."]
+bus = &"Ambience"
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
+bus = &"Music"
+
+[node name="PlatformerUILayer" parent="." instance=ExtResource("11_esph2")]
+
+[node name="PauseMenuLayer" parent="." instance=ExtResource("7_esph2")]
+visible = false
+
+[node name="Shading" type="PointLight2D" parent="."]
+position = Vector2(6335.5, 456)
+scale = Vector2(102.758, 1.125)
+blend_mode = 1
+texture = SubResource("GradientTexture2D_68rtg")
+
+[node name="Sun" type="DirectionalLight2D" parent="."]
+rotation = -0.191986
+energy = 0.5
+shadow_enabled = true
+shadow_color = Color(0, 0, 0, 1)
+shadow_filter = 1
+shadow_filter_smooth = 4.0
+shadow_item_cull_mask = 2
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0.91, 0.91, 1, 1)

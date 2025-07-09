@@ -1,16 +1,17 @@
-[gd_scene load_steps=16 format=3 uid="uid://xn1n5bq1t54s"]
+[gd_scene load_steps=17 format=3 uid="uid://xn1n5bq1t54s"]
 
-[ext_resource type="Shader" path="res://scenes/enemies/white.gdshader" id="1_3u618"]
-[ext_resource type="Script" path="res://scenes/enemies/huckerworm.gd" id="2_4gwxm"]
+[ext_resource type="Shader" uid="uid://hhpnougxownw" path="res://scenes/enemies/white.gdshader" id="1_3u618"]
+[ext_resource type="Script" uid="uid://cf27h4l2om7rn" path="res://scenes/enemies/huckerworm.gd" id="2_4gwxm"]
 [ext_resource type="Texture2D" uid="uid://oe1t2hof3tn7" path="res://art/enemies/WormBullet.png" id="5_fhlwe"]
 [ext_resource type="Texture2D" uid="uid://didocxr5xn2s0" path="res://art/enemies/Gummyworm2_back.png" id="6_rq3jn"]
 [ext_resource type="Texture2D" uid="uid://blrbco2c6rirr" path="res://art/enemies/Gummyworm2_outline_fancy.png" id="7_c4110"]
+[ext_resource type="PackedScene" uid="uid://pgygsfbf3prg" path="res://processing/pause_module.tscn" id="7_ddrud"]
 [ext_resource type="Texture2D" uid="uid://bayg6awll25f7" path="res://art/enemies/Gummyworm2_eyes.png" id="8_x3oev"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_odi4t"]
 shader = ExtResource("1_3u618")
 shader_parameter/flash_color = Color(1, 1, 1, 1)
-shader_parameter/flash_value = null
+shader_parameter/flash_value = 0.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_gdn36"]
 shader = ExtResource("1_3u618")
@@ -175,9 +176,9 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_s3fv3"]
 _data = {
-"RESET": SubResource("Animation_unr8t"),
-"spit": SubResource("Animation_1md2y"),
-"squish": SubResource("Animation_fam5y")
+&"RESET": SubResource("Animation_unr8t"),
+&"spit": SubResource("Animation_1md2y"),
+&"squish": SubResource("Animation_fam5y")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gmm1w"]
@@ -206,7 +207,7 @@ shape = SubResource("SegmentShape2D_d2bto")
 [node name="NormalFunc" type="AnimationPlayer" parent="."]
 root_node = NodePath("../weakarea")
 libraries = {
-"": SubResource("AnimationLibrary_s3fv3")
+&"": SubResource("AnimationLibrary_s3fv3")
 }
 
 [node name="Timer" type="Timer" parent="."]
@@ -252,3 +253,5 @@ position = Vector2(0, -19)
 [node name="Boom" type="AudioStreamPlayer2D" parent="."]
 max_distance = 275.0
 bus = &"Sounds"
+
+[node name="Pause_Module" parent="." instance=ExtResource("7_ddrud")]

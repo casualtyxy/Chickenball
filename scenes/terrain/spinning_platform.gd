@@ -113,7 +113,8 @@ func _physics_process(delta: float) -> void:
 		#else:
 			#left_torq = 0.0
 		
-		if not has_TL and not has_TR and not has_BL and not has_BR and plank.rotation_degrees != 0: #no weight present
+		#no weight present
+		if not has_TL and not has_TR and not has_BL and not has_BR and plank.rotation_degrees != 0: 
 			if plank.rotation_degrees > 10.0:
 				#plank.add_constant_torque((rotation_speed / 2) * -1)
 				plank.constant_torque = (rotation_speed / 2) * -1

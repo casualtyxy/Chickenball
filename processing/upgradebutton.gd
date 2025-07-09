@@ -13,8 +13,8 @@ extends Control
 func _ready():
 	$UpgradeButton.pressed.connect(_on_upgrade_button_pressed)
 	print_debug(gamemenu)
-	GlobalVar.food_increased.connect(on_food_up)
-	GlobalVar.health_changed.connect(on_health_change)
+	#GlobalVar.food_increased.connect(on_food_up)
+	#GlobalVar.health_changed.connect(on_health_change)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

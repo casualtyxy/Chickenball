@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://b01itddvf6qs8"]
 
-[ext_resource type="Script" path="res://scenes/terrain/big_wheel.gd" id="1_yxjdy"]
+[ext_resource type="Script" uid="uid://bwiqmf76naswd" path="res://scenes/terrain/big_wheel.gd" id="1_yxjdy"]
 [ext_resource type="Texture2D" uid="uid://cmdrb152eqc3m" path="res://art/sprites/bigger_wheel.png" id="2_okyy8"]
 [ext_resource type="AudioStream" uid="uid://devrdkvpq2aqq" path="res://audio/sounds/wheels/mill2.ogg" id="3_tglrk"]
 

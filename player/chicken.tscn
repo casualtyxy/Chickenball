@@ -1,11 +1,11 @@
 [gd_scene load_steps=125 format=3 uid="uid://f18wj7lkglud"]
 
-[ext_resource type="Script" path="res://player/chicken.gd" id="1_ysap6"]
+[ext_resource type="Script" uid="uid://c40ikvk8d1v3v" path="res://player/chicken.gd" id="1_ysap6"]
 [ext_resource type="Texture2D" uid="uid://c535n5yd8o5ti" path="res://art/player/spicy_fire.png" id="2_b7dgc"]
 [ext_resource type="Texture2D" uid="uid://dhxiiv0p5n5q0" path="res://art/player/shadow.png" id="2_pn332"]
 [ext_resource type="Texture2D" uid="uid://byvnrr36iglwd" path="res://art/player/0.png" id="3_1p3hs"]
-[ext_resource type="Script" path="res://player/foodcheck.gd" id="3_b0q50"]
-[ext_resource type="Script" path="res://player/player_hitbox.gd" id="5_2mqoq"]
+[ext_resource type="Script" uid="uid://brh0xfi4r8abm" path="res://player/foodcheck.gd" id="3_b0q50"]
+[ext_resource type="Script" uid="uid://6t683c412s1e" path="res://player/player_hitbox.gd" id="5_2mqoq"]
 [ext_resource type="AudioStream" uid="uid://tnn6d05eamc6" path="res://audio/sounds/pluck.wav" id="5_naehj"]
 [ext_resource type="AudioStream" uid="uid://urge5j35p4cj" path="res://audio/sounds/whoosh2.wav" id="6_j63yd"]
 [ext_resource type="AudioStream" uid="uid://nqi1hancp6uk" path="res://audio/sounds/hurt.wav" id="6_vtcau"]
@@ -301,9 +301,9 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_8woeq"]
 _data = {
-"RESET": SubResource("Animation_386mn"),
-"fire": SubResource("Animation_b0aqq"),
-"screenshake": SubResource("Animation_1wjcs")
+&"RESET": SubResource("Animation_386mn"),
+&"fire": SubResource("Animation_b0aqq"),
+&"screenshake": SubResource("Animation_1wjcs")
 }
 
 [sub_resource type="Animation" id="Animation_55x5j"]
@@ -853,15 +853,15 @@ tracks/1/use_blend = true
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_inels"]
 _data = {
-"Dash": SubResource("Animation_55x5j"),
-"Eat": SubResource("Animation_rfrbs"),
-"Hurt": SubResource("Animation_2ldh7"),
-"Idle": SubResource("Animation_6d0qq"),
-"Jump": SubResource("Animation_nuq5e"),
-"RESET": SubResource("Animation_yhim2"),
-"Squish": SubResource("Animation_i7n6v"),
-"Starve": SubResource("Animation_ohgfu"),
-"Walk": SubResource("Animation_3kjg4")
+&"Dash": SubResource("Animation_55x5j"),
+&"Eat": SubResource("Animation_rfrbs"),
+&"Hurt": SubResource("Animation_2ldh7"),
+&"Idle": SubResource("Animation_6d0qq"),
+&"Jump": SubResource("Animation_nuq5e"),
+&"RESET": SubResource("Animation_yhim2"),
+&"Squish": SubResource("Animation_i7n6v"),
+&"Starve": SubResource("Animation_ohgfu"),
+&"Walk": SubResource("Animation_3kjg4")
 }
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_t5rgm"]
@@ -1149,8 +1149,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_0w521"]
 _data = {
-"RESET": SubResource("Animation_tb8pi"),
-"blink": SubResource("Animation_7m0eh")
+&"RESET": SubResource("Animation_tb8pi"),
+&"blink": SubResource("Animation_7m0eh")
 }
 
 [sub_resource type="Curve" id="Curve_phvuv"]
@@ -1272,9 +1272,9 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jgm0b"]
 _data = {
-"RESET": SubResource("Animation_ku1es"),
-"overhead": SubResource("Animation_ohxm5"),
-"warning": SubResource("Animation_2iydc")
+&"RESET": SubResource("Animation_ku1es"),
+&"overhead": SubResource("Animation_ohxm5"),
+&"warning": SubResource("Animation_2iydc")
 }
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_g0tcg"]
@@ -1298,7 +1298,7 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_eheap"]
 _data = {
-"ready": SubResource("Animation_wpnpk")
+&"ready": SubResource("Animation_wpnpk")
 }
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
@@ -1386,12 +1386,12 @@ bus = &"Sounds"
 
 [node name="LocalScreenShake" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_8woeq")
+&"": SubResource("AnimationLibrary_8woeq")
 }
 
 [node name="StatePlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_inels")
+&"": SubResource("AnimationLibrary_inels")
 }
 
 [node name="VisMovetree" type="AnimationTree" parent="."]
@@ -1438,7 +1438,7 @@ one_shot = true
 
 [node name="Blink" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_0w521")
+&"": SubResource("AnimationLibrary_0w521")
 }
 
 [node name="Trail" type="CPUParticles2D" parent="."]
@@ -1468,7 +1468,7 @@ autowrap_mode = 0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="DashWarning"]
 libraries = {
-"": SubResource("AnimationLibrary_jgm0b")
+&"": SubResource("AnimationLibrary_jgm0b")
 }
 
 [node name="OverheadLabel" type="RichTextLabel" parent="."]
@@ -1496,5 +1496,5 @@ occluder = SubResource("OccluderPolygon2D_g0tcg")
 
 [node name="ReadyAnim" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_eheap")
+&"": SubResource("AnimationLibrary_eheap")
 }

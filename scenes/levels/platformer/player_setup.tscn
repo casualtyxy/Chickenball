@@ -1,9 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://cbkv2efk4a42u"]
+[gd_scene load_steps=10 format=3 uid="uid://cbkv2efk4a42u"]
 
-[ext_resource type="Script" path="res://scenes/levels/platformer/player_setup.gd" id="1_mf650"]
+[ext_resource type="Script" uid="uid://mr1bkrluly3v" path="res://scenes/levels/platformer/player_setup.gd" id="1_mf650"]
 [ext_resource type="PackedScene" uid="uid://d1oxwr0oqwup1" path="res://scenes/player/player_platformer.tscn" id="1_weyf5"]
-[ext_resource type="Texture2D" uid="uid://dbkrwd4xmxcgi" path="res://art/player/new_chicken3.png" id="3_vmmf7"]
-[ext_resource type="Texture2D" uid="uid://cwvw0hxn82bx6" path="res://art/player/goose.png" id="4_qilrn"]
+[ext_resource type="Texture2D" uid="uid://dj540xelki20e" path="res://art/player/chiki/chiki.png" id="3_b16k4"]
+[ext_resource type="Texture2D" uid="uid://br6om826axrh1" path="res://art/player/chiki/chiki_face.png" id="4_hbqep"]
+[ext_resource type="Texture2D" uid="uid://wb604wvxwoiw" path="res://art/player/ragu/ragu.png" id="5_hbqep"]
+[ext_resource type="Texture2D" uid="uid://phfeq516q8cg" path="res://art/player/cat_white.png" id="5_km8tb"]
+[ext_resource type="Texture2D" uid="uid://vai6u3dy3042" path="res://art/player/ragu/ragu_face.png" id="6_rbcuw"]
+[ext_resource type="Texture2D" uid="uid://c1irtdndx3o6a" path="res://art/player/quail/quail.png" id="7_hbqep"]
+[ext_resource type="Texture2D" uid="uid://civ0l0aufl574" path="res://art/player/quail/quail_face.png" id="8_rbcuw"]
 
 [node name="PlayerSetup" type="Node2D"]
 y_sort_enabled = true
@@ -15,7 +20,8 @@ button_right = "right"
 button_down = "down"
 button_jump = "jump"
 button_flap = "click_right"
-player_skin = ExtResource("3_vmmf7")
+player_skin = ExtResource("3_b16k4")
+player_face = ExtResource("4_hbqep")
 
 [node name="Player2" parent="." instance=ExtResource("1_weyf5")]
 position = Vector2(-40, 0)
@@ -24,7 +30,9 @@ button_right = "p2right"
 button_down = "p2down"
 button_jump = "p2jump"
 button_flap = "p2flap"
-player_skin = ExtResource("4_qilrn")
+index = 1
+player_skin = ExtResource("5_hbqep")
+player_face = ExtResource("6_rbcuw")
 
 [node name="Player3" parent="." instance=ExtResource("1_weyf5")]
 position = Vector2(-80, 0)
@@ -33,7 +41,9 @@ button_right = "p3right"
 button_down = "p3down"
 button_jump = "p3jump"
 button_flap = "p3flap"
-player_skin = ExtResource("3_vmmf7")
+index = 2
+player_skin = ExtResource("7_hbqep")
+player_face = ExtResource("8_rbcuw")
 
 [node name="Player4" parent="." instance=ExtResource("1_weyf5")]
 position = Vector2(-120, 0)
@@ -42,4 +52,5 @@ button_right = "p4right"
 button_down = "p4down"
 button_jump = "p4jump"
 button_flap = "p4flap"
-player_skin = ExtResource("3_vmmf7")
+index = 3
+player_skin = ExtResource("5_km8tb")

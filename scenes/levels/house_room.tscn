@@ -1,7 +1,7 @@
 [gd_scene load_steps=19 format=4 uid="uid://dpv0aaptyi07n"]
 
-[ext_resource type="Texture2D" uid="uid://b0qc3eidog0ca" path="res://art/tilesets/old_house.png" id="1_5e86f"]
-[ext_resource type="Script" path="res://scenes/levels/house_room.gd" id="1_bqkgp"]
+[ext_resource type="Texture2D" uid="uid://b0qc3eidog0ca" path="res://art/tilesets/old/old_house.png" id="1_5e86f"]
+[ext_resource type="Script" uid="uid://baefbfpn734jt" path="res://scenes/levels/house_room.gd" id="1_bqkgp"]
 [ext_resource type="Texture2D" uid="uid://uvyn41wph5b7" path="res://art/menus/background/BG_focus.png" id="2_aaqpw"]
 [ext_resource type="PackedScene" uid="uid://f18wj7lkglud" path="res://player/chicken.tscn" id="3_dkk5c"]
 [ext_resource type="Texture2D" uid="uid://dmg3yux7utn0m" path="res://art/items/coin.png" id="5_4n5hd"]

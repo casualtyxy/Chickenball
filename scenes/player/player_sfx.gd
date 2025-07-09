@@ -10,6 +10,7 @@ var nom:Array[AudioStream] = [preload("res://audio/sounds/pluck.wav")]
 var wallkick:Array[AudioStream] = [preload("res://audio/sounds/player/land.ogg")]
 var landing:Array[AudioStream] = [preload("res://audio/sounds/waddle2.wav")]
 var explode:Array[AudioStream] = [preload("res://audio/sounds/player/dead.ogg")]
+var walk:Array[AudioStream] = [preload("res://audio/sounds/waddle2.wav")]
 
 func play_sound(sound: String, override = true):
 	if playing and override or not playing:
@@ -36,6 +37,9 @@ func play_sound(sound: String, override = true):
 			"explode":
 				last_sound = explode
 				last_sound_name = "explode"
+			"walk":
+				last_sound = walk
+				last_sound_name = "walk"
 		
 		stream = last_sound.pick_random()
 		play()

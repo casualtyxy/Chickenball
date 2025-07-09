@@ -1,6 +1,6 @@
 [gd_scene load_steps=24 format=3 uid="uid://cpas6v134frk4"]
 
-[ext_resource type="Script" path="res://scenes/terrain/level_marker.gd" id="1_s3x1k"]
+[ext_resource type="Script" uid="uid://chbv3q3wojff3" path="res://scenes/terrain/level_marker.gd" id="1_s3x1k"]
 [ext_resource type="Texture2D" uid="uid://cbxd3c18lt1ol" path="res://art/sprites/level_marker.png" id="2_t80pd"]
 [ext_resource type="Texture2D" uid="uid://c7g86rt0vhwwf" path="res://art/sprites/dispenser_star.png" id="3_3juf1"]
 [ext_resource type="Texture2D" uid="uid://bqyre2e3qbivt" path="res://art/sprites/level_marker_flag.png" id="3_vuebg"]
@@ -154,13 +154,13 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_i4miv"]
 _data = {
-"RESET": SubResource("Animation_3s2st"),
-"complete": SubResource("Animation_5w5vv"),
-"unlock": SubResource("Animation_q414g")
+&"RESET": SubResource("Animation_3s2st"),
+&"complete": SubResource("Animation_5w5vv"),
+&"unlock": SubResource("Animation_q414g")
 }
 
 [sub_resource type="Curve" id="Curve_joj7o"]
-max_value = 2.0
+_limits = [0.0, 2.0, 0.0, 1.0]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.767528, 2), 1.26615, 0.0, 0, 0]
 point_count = 2
 
@@ -250,7 +250,7 @@ shape = SubResource("RectangleShape2D_dp44b")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_i4miv")
+&"": SubResource("AnimationLibrary_i4miv")
 }
 
 [node name="F1" type="GPUParticles2D" parent="."]
@@ -258,25 +258,25 @@ position = Vector2(0, -10)
 emitting = false
 amount = 16
 sub_emitter = NodePath("../F2")
-process_material = SubResource("ParticleProcessMaterial_wi76v")
 lifetime = 2.0
 one_shot = true
 explosiveness = 0.8
+process_material = SubResource("ParticleProcessMaterial_wi76v")
 
 [node name="F2" type="GPUParticles2D" parent="."]
 emitting = false
 amount = 16
-process_material = SubResource("ParticleProcessMaterial_5c7r7")
 texture = ExtResource("3_3juf1")
 one_shot = true
 explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_5c7r7")
 
 [node name="F3" type="GPUParticles2D" parent="."]
 position = Vector2(0, -10)
 emitting = false
 amount = 32
-process_material = SubResource("ParticleProcessMaterial_7oli3")
 texture = ExtResource("3_3juf1")
 lifetime = 2.0
 one_shot = true
 explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_7oli3")

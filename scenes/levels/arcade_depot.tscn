@@ -1,8 +1,8 @@
 [gd_scene load_steps=23 format=4 uid="uid://dlgijd8qrmlea"]
 
 [ext_resource type="PackedScene" uid="uid://f8oy1da6aavx" path="res://scenes/OverlayMenus_Arcade.tscn" id="1_f0o27"]
-[ext_resource type="Script" path="res://scenes/levels/arcade_depot.gd" id="1_up156"]
-[ext_resource type="TileSet" uid="uid://bhb2qwur0ek5h" path="res://art/tilesets/arcade_sets.tres" id="2_n8r8n"]
+[ext_resource type="Script" uid="uid://jmsod875vgn0" path="res://scenes/levels/arcade_depot.gd" id="1_up156"]
+[ext_resource type="TileSet" uid="uid://bhb2qwur0ek5h" path="res://art/tilesets/old/arcade_sets.tres" id="2_n8r8n"]
 [ext_resource type="PackedScene" uid="uid://f18wj7lkglud" path="res://player/chicken.tscn" id="3_tdj1e"]
 [ext_resource type="Texture2D" uid="uid://dw1amjkmjorp5" path="res://art/background/arcade/NicolasPostiglion_processed.png" id="3_y4ghn"]
 [ext_resource type="PackedScene" uid="uid://bnmirafkjx5tt" path="res://scenes/levels/arcade specials/lamp.tscn" id="4_y6fks"]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=16 format=3 uid="uid://c4nll2moqdjvt"]
 
-[ext_resource type="Script" path="res://scenes/gameover.gd" id="1_4ocid"]
+[ext_resource type="Script" uid="uid://c7cp8jbjpfp7p" path="res://scenes/gameover.gd" id="1_4ocid"]
 [ext_resource type="Texture2D" uid="uid://bcyawfvrksawe" path="res://art/background/youdied2.png" id="2_xw4iv"]
 [ext_resource type="Texture2D" uid="uid://byvnrr36iglwd" path="res://art/player/0.png" id="3_s478q"]
 [ext_resource type="AudioStream" uid="uid://6i3mlni1jfkg" path="res://audio/ambience/chickgameover.wav" id="4_jqwex"]
@@ -102,8 +102,8 @@ tracks/3/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_qiaqn"]
 _data = {
-"RESET": SubResource("Animation_bwliw"),
-"death": SubResource("Animation_b1t8d")
+&"RESET": SubResource("Animation_bwliw"),
+&"death": SubResource("Animation_b1t8d")
 }
 
 [sub_resource type="Animation" id="Animation_teb1f"]
@@ -452,8 +452,8 @@ tracks/13/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4gk18"]
 _data = {
-"RESET": SubResource("Animation_teb1f"),
-"animate_stats": SubResource("Animation_kdce2")
+&"RESET": SubResource("Animation_teb1f"),
+&"animate_stats": SubResource("Animation_kdce2")
 }
 
 [sub_resource type="Animation" id="Animation_oyd7k"]
@@ -515,8 +515,8 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_x0oqy"]
 _data = {
-"RESET": SubResource("Animation_oyd7k"),
-"default": SubResource("Animation_c425e")
+&"RESET": SubResource("Animation_oyd7k"),
+&"default": SubResource("Animation_c425e")
 }
 
 [sub_resource type="Environment" id="Environment_8d6re"]
@@ -551,7 +551,7 @@ frame = 16
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="PlayerPos"]
 libraries = {
-"": SubResource("AnimationLibrary_qiaqn")
+&"": SubResource("AnimationLibrary_qiaqn")
 }
 autoplay = "death"
 
@@ -675,12 +675,12 @@ scroll_active = false
 
 [node name="Intro" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_4gk18")
+&"": SubResource("AnimationLibrary_4gk18")
 }
 
 [node name="Float" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_x0oqy")
+&"": SubResource("AnimationLibrary_x0oqy")
 }
 
 [node name="music" type="AudioStreamPlayer" parent="."]

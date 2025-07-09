@@ -1,9 +1,10 @@
-[gd_scene load_steps=14 format=3 uid="uid://c4pn5qoxahlb2"]
+[gd_scene load_steps=23 format=3 uid="uid://c4pn5qoxahlb2"]
 
-[ext_resource type="Script" path="res://scenes/enemies/ground_beetle_floor_type.gd" id="1_bfbju"]
+[ext_resource type="Script" uid="uid://dtpclhwecblvu" path="res://scenes/enemies/ground_beetle_floor_type.gd" id="1_bfbju"]
 [ext_resource type="Texture2D" uid="uid://cxy2m2f4a2i4k" path="res://art/enemies/groundbeetle2.png" id="2_3m5it"]
 [ext_resource type="Texture2D" uid="uid://dt6ofl6hv42br" path="res://art/enemies/wallbeetle.png" id="3_gn7dq"]
 [ext_resource type="PackedScene" uid="uid://pgygsfbf3prg" path="res://processing/pause_module.tscn" id="4_1s3ib"]
+[ext_resource type="AudioStream" uid="uid://dhl1mi3hlwsgi" path="res://audio/sounds/enemies/doinklow.wav" id="5_aak0w"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4ij2g"]
 atlas = ExtResource("2_3m5it")
@@ -20,6 +21,38 @@ region = Rect2(0, 0, 24, 24)
 [sub_resource type="AtlasTexture" id="AtlasTexture_mq6ht"]
 atlas = ExtResource("2_3m5it")
 region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eaewa"]
+atlas = ExtResource("2_3m5it")
+region = Rect2(168, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aak0w"]
+atlas = ExtResource("2_3m5it")
+region = Rect2(192, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c7ew4"]
+atlas = ExtResource("2_3m5it")
+region = Rect2(48, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_505gt"]
+atlas = ExtResource("2_3m5it")
+region = Rect2(96, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yynm0"]
+atlas = ExtResource("2_3m5it")
+region = Rect2(120, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ytgho"]
+atlas = ExtResource("2_3m5it")
+region = Rect2(144, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bvbym"]
+atlas = ExtResource("2_3m5it")
+region = Rect2(48, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v3nwv"]
+atlas = ExtResource("2_3m5it")
+region = Rect2(96, 0, 24, 24)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_8j388"]
 animations = [{
@@ -44,10 +77,45 @@ animations = [{
 "loop": true,
 "name": &"flying",
 "speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eaewa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aak0w")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_c7ew4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_505gt")
+}],
+"loop": true,
+"name": &"turn_cliff",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yynm0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ytgho")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_bvbym")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v3nwv")
+}],
+"loop": true,
+"name": &"turn_wall",
+"speed": 4.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_m4mtc"]
-size = Vector2(1.00004, 16)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_eaewa"]
+radius = 6.0
+height = 16.0
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_pqlv2"]
 resource_local_to_scene = true
@@ -57,42 +125,55 @@ particles_anim_v_frames = 1
 particles_anim_loop = true
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5fidf"]
-size = Vector2(5, 22)
+size = Vector2(5, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n4vpt"]
-size = Vector2(9, 22)
+size = Vector2(9, 20)
 
-[node name="GroundBeetleFloorType" type="CharacterBody2D"]
+[node name="FloorBeetle" type="CharacterBody2D"]
 collision_layer = 4
-collision_mask = 33
+collision_mask = 97
 floor_constant_speed = true
+floor_max_angle = 1.48353
+floor_snap_length = 5.0
 safe_margin = 0.01
 script = ExtResource("1_bfbju")
-speed = -35
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_8j388")
+animation = &"turn_cliff"
 autoplay = "default"
+frame = 1
+frame_progress = 0.14267
 offset = Vector2(0, -12)
 
 [node name="WorldCol" type="CollisionShape2D" parent="."]
-position = Vector2(-1.90735e-06, -0.499987)
+position = Vector2(0, -6)
 rotation = 1.5708
-shape = SubResource("RectangleShape2D_m4mtc")
+shape = SubResource("CapsuleShape2D_eaewa")
 
 [node name="dead" type="CPUParticles2D" parent="."]
 material = SubResource("CanvasItemMaterial_pqlv2")
 emitting = false
 amount = 1
-one_shot = true
 texture = ExtResource("3_gn7dq")
+lifetime = 2.0
+one_shot = true
+direction = Vector2(0, -1)
+gravity = Vector2(0, 450)
+initial_velocity_min = 150.0
+initial_velocity_max = 150.0
+angular_velocity_min = 30.0
+angular_velocity_max = 50.0
+anim_speed_min = 10.0
+anim_speed_max = 10.0
 
 [node name="weakarea" type="Area2D" parent="." groups=["Squishable"]]
 collision_layer = 4
 collision_mask = 8
 
 [node name="Shape" type="CollisionShape2D" parent="weakarea"]
-position = Vector2(-1.81e-06, -11.5)
+position = Vector2(-1.81794e-06, -11.5)
 rotation = 1.5708
 shape = SubResource("RectangleShape2D_5fidf")
 debug_color = Color(0.7, 0.432241, 0, 0.42)
@@ -102,7 +183,7 @@ collision_layer = 4
 collision_mask = 8
 
 [node name="Shape" type="CollisionShape2D" parent="attackarea"]
-position = Vector2(-1.98881e-06, -4.5)
+position = Vector2(-1.99676e-06, -4.5)
 rotation = 1.5708
 shape = SubResource("RectangleShape2D_n4vpt")
 debug_color = Color(0.7, 0, 0.146714, 0.42)
@@ -112,3 +193,30 @@ self_modulate = Color(1, 1, 1, 0.0745098)
 rect = Rect2(-80, -80, 160, 160)
 
 [node name="Pause_Module" parent="." instance=ExtResource("4_1s3ib")]
+
+[node name="Raycasting" type="Node2D" parent="."]
+
+[node name="left" type="RayCast2D" parent="Raycasting"]
+position = Vector2(0, -6)
+rotation = 1.57079
+target_position = Vector2(-5.62668e-05, 9)
+
+[node name="right" type="RayCast2D" parent="Raycasting"]
+position = Vector2(0, -6)
+rotation = -1.57079
+target_position = Vector2(5.62668e-05, 9)
+
+[node name="leftdown" type="RayCast2D" parent="Raycasting"]
+position = Vector2(-5, -1)
+target_position = Vector2(0, 26)
+collision_mask = 97
+
+[node name="rightdown" type="RayCast2D" parent="Raycasting"]
+position = Vector2(5, -1)
+target_position = Vector2(0, 26)
+collision_mask = 97
+
+[node name="Sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_aak0w")
+volume_db = 5.0
+bus = &"Sounds"

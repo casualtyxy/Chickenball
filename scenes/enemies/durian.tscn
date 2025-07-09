@@ -1,9 +1,10 @@
-[gd_scene load_steps=14 format=3 uid="uid://cvwlu5dgu01y0"]
+[gd_scene load_steps=15 format=3 uid="uid://cvwlu5dgu01y0"]
 
-[ext_resource type="Script" path="res://scenes/enemies/durian.gd" id="1_avtqi"]
-[ext_resource type="Shader" path="res://scenes/enemies/white.gdshader" id="2_3r137"]
+[ext_resource type="Script" uid="uid://d2kn6tbta3dll" path="res://scenes/enemies/durian.gd" id="1_avtqi"]
+[ext_resource type="Shader" uid="uid://hhpnougxownw" path="res://scenes/enemies/white.gdshader" id="2_3r137"]
 [ext_resource type="Texture2D" uid="uid://c0607lx7mfmyk" path="res://art/enemies/durian1.png" id="2_myox8"]
 [ext_resource type="AudioStream" uid="uid://cspmh8mbkqtgt" path="res://audio/sounds/ExplosionShort.wav" id="4_ialy7"]
+[ext_resource type="PackedScene" uid="uid://pgygsfbf3prg" path="res://processing/pause_module.tscn" id="5_qxnyg"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_wt72t"]
 shader = ExtResource("2_3r137")
@@ -72,8 +73,8 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ncw55"]
 _data = {
-"RESET": SubResource("Animation_e0m2n"),
-"default": SubResource("Animation_0otkc")
+&"RESET": SubResource("Animation_e0m2n"),
+&"default": SubResource("Animation_0otkc")
 }
 
 [sub_resource type="Animation" id="Animation_b1v7e"]
@@ -279,9 +280,9 @@ tracks/3/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_iiadi"]
 _data = {
-"RESET": SubResource("Animation_b1v7e"),
-"explode": SubResource("Animation_jcvwa"),
-"fade": SubResource("Animation_tv2eo")
+&"RESET": SubResource("Animation_b1v7e"),
+&"explode": SubResource("Animation_jcvwa"),
+&"fade": SubResource("Animation_tv2eo")
 }
 
 [node name="Durian" type="Area2D" groups=["Durian"]]
@@ -304,12 +305,14 @@ shape = SubResource("CircleShape2D_oul3w")
 
 [node name="Spin" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_ncw55")
+&"": SubResource("AnimationLibrary_ncw55")
 }
 
 [node name="Fade" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_iiadi")
+&"": SubResource("AnimationLibrary_iiadi")
 }
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+
+[node name="Pause_Module" parent="." instance=ExtResource("5_qxnyg")]

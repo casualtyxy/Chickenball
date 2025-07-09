@@ -1,0 +1,153 @@
+[gd_scene load_steps=13 format=3 uid="uid://cjpi4tkyeolp2"]
+
+[ext_resource type="Script" uid="uid://c1j06newxatgs" path="res://scenes/terrain/moving_platform.gd" id="1_ef2l6"]
+[ext_resource type="Texture2D" uid="uid://deh057xkqa4kx" path="res://art/sprites/shiny_platform_big.png" id="1_ot2qg"]
+[ext_resource type="PackedScene" uid="uid://pgygsfbf3prg" path="res://processing/pause_module.tscn" id="3_2oi7u"]
+
+[sub_resource type="Curve2D" id="Curve2D_cu1li"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, -192, 0, -192, 0, 192, -192, 0, 0, 0, 0, 0, 0, 192, 0, 192, 0, -192, 192, 0, 0, 0, 0, 0, 0, -192)
+}
+point_count = 5
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4ud34"]
+size = Vector2(240, 12)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_001eu"]
+size = Vector2(224, 4)
+
+[sub_resource type="Animation" id="Animation_cykfs"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PathFollow2D:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_43ge2"]
+resource_name = "back_and_fourth"
+length = 4.0
+loop_mode = 2
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PathFollow2D:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="Animation" id="Animation_armen"]
+resource_name = "dont_loop"
+length = 4.0
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PathFollow2D:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="Animation" id="Animation_wi84b"]
+resource_name = "forward"
+length = 4.0
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PathFollow2D:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="Animation" id="Animation_l4ci8"]
+resource_name = "default"
+length = 4.0
+loop_mode = 2
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PathFollow2D:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 4),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3xqdj"]
+_data = {
+&"RESET": SubResource("Animation_cykfs"),
+&"back_and_fourth": SubResource("Animation_43ge2"),
+&"dont_loop": SubResource("Animation_armen"),
+&"forward": SubResource("Animation_wi84b"),
+&"swing": SubResource("Animation_l4ci8")
+}
+
+[node name="MovingPlatform" type="Path2D"]
+curve = SubResource("Curve2D_cu1li")
+script = ExtResource("1_ef2l6")
+
+[node name="AnimatableBody2D" type="AnimatableBody2D" parent="."]
+position = Vector2(-0.00140676, -192)
+collision_layer = 64
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="AnimatableBody2D"]
+texture = ExtResource("1_ot2qg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatableBody2D"]
+shape = SubResource("RectangleShape2D_4ud34")
+one_way_collision = true
+
+[node name="ActivationZone" type="Area2D" parent="AnimatableBody2D"]
+collision_layer = 0
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatableBody2D/ActivationZone"]
+position = Vector2(0, -6)
+shape = SubResource("RectangleShape2D_001eu")
+debug_color = Color(1, 0.475141, 0.269822, 0.42)
+
+[node name="PathFollow2D" type="PathFollow2D" parent="."]
+position = Vector2(-0.00140676, -192)
+progress = 0.00280762
+rotates = false
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="PathFollow2D"]
+remote_path = NodePath("../../AnimatableBody2D")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_3xqdj")
+}
+autoplay = "RESET"
+
+[node name="Pause_Module" parent="." instance=ExtResource("3_2oi7u")]

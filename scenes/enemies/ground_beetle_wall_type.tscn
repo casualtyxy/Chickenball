@@ -1,0 +1,122 @@
+[gd_scene load_steps=14 format=3 uid="uid://dr04tf4pwqrw2"]
+
+[ext_resource type="Script" uid="uid://cx32k1eavc07j" path="res://scenes/enemies/ground_beetle_wall_type.gd" id="1_2ak4u"]
+[ext_resource type="Texture2D" uid="uid://cxy2m2f4a2i4k" path="res://art/enemies/groundbeetle2.png" id="2_48xpl"]
+[ext_resource type="Texture2D" uid="uid://dt6ofl6hv42br" path="res://art/enemies/wallbeetle.png" id="3_qufln"]
+[ext_resource type="PackedScene" uid="uid://pgygsfbf3prg" path="res://processing/pause_module.tscn" id="4_8qn6b"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lnj6o"]
+atlas = ExtResource("2_48xpl")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mq6ht"]
+atlas = ExtResource("2_48xpl")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bcc0y"]
+atlas = ExtResource("3_qufln")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8j388"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lnj6o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mq6ht")
+}],
+"loop": true,
+"name": &"default",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bcc0y")
+}],
+"loop": false,
+"name": &"still",
+"speed": 4.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bg0kv"]
+radius = 8.0
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_pqlv2"]
+resource_local_to_scene = true
+particles_animation = true
+particles_anim_h_frames = 2
+particles_anim_v_frames = 1
+particles_anim_loop = true
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5fidf"]
+size = Vector2(10, 13)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n4vpt"]
+size = Vector2(12, 6)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cp1wx"]
+radius = 192.0
+
+[node name="WallBeetle" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 33
+motion_mode = 1
+floor_constant_speed = true
+platform_on_leave = 2
+safe_margin = 0.01
+script = ExtResource("1_2ak4u")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+rotation = 1.5708
+sprite_frames = SubResource("SpriteFrames_8j388")
+animation = &"still"
+autoplay = "still"
+
+[node name="WorldCol" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CircleShape2D_bg0kv")
+
+[node name="dead" type="CPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_pqlv2")
+emitting = false
+amount = 1
+texture = ExtResource("3_qufln")
+one_shot = true
+
+[node name="weakarea" type="Area2D" parent="." groups=["Squishable"]]
+collision_layer = 4
+collision_mask = 8
+
+[node name="Shape" type="CollisionShape2D" parent="weakarea"]
+position = Vector2(-1.5, -5.42999e-06)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_5fidf")
+debug_color = Color(0.7, 0.432241, 0, 0.42)
+
+[node name="attackarea" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 8
+
+[node name="Shape" type="CollisionShape2D" parent="attackarea"]
+position = Vector2(8, 0)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_n4vpt")
+debug_color = Color(0.7, 0, 0.146714, 0.42)
+
+[node name="OnScreen" type="VisibleOnScreenNotifier2D" parent="."]
+self_modulate = Color(1, 1, 1, 0.0745098)
+rect = Rect2(-80, -80, 160, 160)
+
+[node name="Pause_Module" parent="." instance=ExtResource("4_8qn6b")]
+
+[node name="aggro" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 16
+
+[node name="Shape" type="CollisionShape2D" parent="aggro"]
+shape = SubResource("CircleShape2D_cp1wx")
+debug_color = Color(1, 0.951, 0.51, 0.0196078)
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true

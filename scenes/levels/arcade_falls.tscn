@@ -1,8 +1,8 @@
 [gd_scene load_steps=8 format=4 uid="uid://xo4a0046tpbk"]
 
 [ext_resource type="PackedScene" uid="uid://f8oy1da6aavx" path="res://scenes/OverlayMenus_Arcade.tscn" id="1_bmik7"]
-[ext_resource type="Script" path="res://scenes/levels/arcade_falls.gd" id="1_sj58x"]
-[ext_resource type="TileSet" uid="uid://bhb2qwur0ek5h" path="res://art/tilesets/arcade_sets.tres" id="2_68sid"]
+[ext_resource type="Script" uid="uid://dt88e5817ywgj" path="res://scenes/levels/arcade_falls.gd" id="1_sj58x"]
+[ext_resource type="TileSet" uid="uid://bhb2qwur0ek5h" path="res://art/tilesets/old/arcade_sets.tres" id="2_68sid"]
 [ext_resource type="PackedScene" uid="uid://f18wj7lkglud" path="res://player/chicken.tscn" id="3_g1e6i"]
 [ext_resource type="Texture2D" uid="uid://b8pk22fr1abok" path="res://art/menus/arcadeguide.png" id="4_400g3"]
 [ext_resource type="Texture2D" uid="uid://tribxu8tm44t" path="res://art/menus/arcadeguide2.png" id="5_5wpgv"]

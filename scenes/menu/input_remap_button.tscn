@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://dgmetcs8lp3pd"]
+
+[ext_resource type="Script" uid="uid://dlnffur7i8qac" path="res://scenes/menu/input_remap_button.gd" id="1_4kups"]
+
+[node name="InputRemapButton" type="Button"]
+theme_override_colors/font_color = Color(0.292502, 1, 0.151445, 1)
+theme_override_font_sizes/font_size = 12
+text = "..."
+script = ExtResource("1_4kups")

@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://ylnbat75qy6m"]
+
+[node name="Fly" type="Node2D"]
+
+[node name="Pivot" type="Marker2D" parent="."]
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Area2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]

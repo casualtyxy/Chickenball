@@ -1,13 +1,15 @@
-[gd_scene load_steps=41 format=3 uid="uid://d1oxwr0oqwup1"]
+[gd_scene load_steps=50 format=3 uid="uid://d1oxwr0oqwup1"]
 
-[ext_resource type="Script" path="res://scenes/player/player_platformer.gd" id="1_w83gu"]
-[ext_resource type="Shader" path="res://scenes/enemies/white.gdshader" id="2_5kj7c"]
-[ext_resource type="Texture2D" uid="uid://dbkrwd4xmxcgi" path="res://art/player/new_chicken3.png" id="3_1kjrj"]
-[ext_resource type="Script" path="res://scenes/player/player_sfx.gd" id="3_7ddyx"]
+[ext_resource type="Script" uid="uid://cvxv5ipvhjn7r" path="res://scenes/player/player_platformer.gd" id="1_w83gu"]
+[ext_resource type="Shader" uid="uid://hhpnougxownw" path="res://scenes/enemies/white.gdshader" id="2_5kj7c"]
+[ext_resource type="Script" uid="uid://camencxjtxpkv" path="res://scenes/player/player_sfx.gd" id="3_7ddyx"]
+[ext_resource type="Texture2D" uid="uid://dj540xelki20e" path="res://art/player/chiki/chiki.png" id="3_vafrv"]
+[ext_resource type="Texture2D" uid="uid://br6om826axrh1" path="res://art/player/chiki/chiki_face.png" id="4_odttn"]
 [ext_resource type="Texture2D" uid="uid://cndyo13k0wnxd" path="res://art/effects/impact.png" id="5_w4n7e"]
 [ext_resource type="PackedScene" uid="uid://pgygsfbf3prg" path="res://processing/pause_module.tscn" id="6_vhb4g"]
 [ext_resource type="Texture2D" uid="uid://brwinobjgdiqe" path="res://art/effects/player_death.png" id="7_cahs5"]
 [ext_resource type="Texture2D" uid="uid://bhva4fgtay50r" path="res://art/effects/clobbered_2.png" id="8_ehot8"]
+[ext_resource type="Texture2D" uid="uid://lqh3mjqbcqy" path="res://art/effects/sweat.png" id="10_odttn"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ikdg5"]
 resource_local_to_scene = true
@@ -15,20 +17,31 @@ shader = ExtResource("2_5kj7c")
 shader_parameter/flash_color = Color(0, 0, 0, 1)
 shader_parameter/flash_value = 0.5
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_f02j8"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vafrv"]
 radius = 7.0
-height = 18.0
+height = 14.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uid3g"]
 size = Vector2(14, 4)
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_x4vlo"]
-radius = 9.0
-height = 22.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uelv4"]
+size = Vector2(14, 20)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ajpbi"]
 radius = 8.0
 height = 20.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_odttn"]
+size = Vector2(1.5, 6)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lt3sm"]
+size = Vector2(7.99999, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vafrv"]
+size = Vector2(8.00001, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p4uo4"]
+size = Vector2(14, 7)
 
 [sub_resource type="Animation" id="Animation_6wr3w"]
 resource_name = "Double_jump"
@@ -44,7 +57,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 1,
-"values": [9, 10, 9, 10, 11]
+"values": [7, 8, 7, 8, 9]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -94,6 +107,54 @@ tracks/4/keys = {
 "update": 0,
 "values": [0.0, 0.5]
 }
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("FaceScale/Face:frame")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [7, 8, 7, 8, 9]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("FaceScale/Face:rotation")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 2),
+"update": 0,
+"values": [0.0, -0.174533, 0.174533, 0.0]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("FaceScale/Face:offset")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -5)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("FaceScale/Face:scale")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_qs22r"]
 resource_name = "Double_jump_backwards"
@@ -109,7 +170,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 1,
-"values": [9, 10, 9, 10, 11]
+"values": [7, 8, 7, 8, 9]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -158,6 +219,54 @@ tracks/4/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [0.2, 0.0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("FaceScale/Face:frame")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [7, 8, 7, 8, 9]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("FaceScale/Face:rotation")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 2),
+"update": 0,
+"values": [0.0, 0.174533, -0.174533, 0.0]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("FaceScale/Face:offset")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -5)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("FaceScale/Face:scale")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_03scs"]
@@ -219,10 +328,34 @@ tracks/4/path = NodePath("Splode:emitting")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0.15),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.15),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [true]
+"values": [false, true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("FaceScale/Face:frame")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.15),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [9, 13]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("FaceScale/Face:scale")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_pcg1u"]
@@ -239,7 +372,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0.2),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [13]
+"values": [11]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -276,6 +409,54 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [0.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("FaceScale/Face:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.2),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [11]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("FaceScale/Face:scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 2),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.7, 1.3)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("FaceScale/Face:rotation")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("FaceScale/Face:offset")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0.2),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, -5)]
 }
 
 [sub_resource type="Animation" id="Animation_gwcdw"]
@@ -316,7 +497,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [11]
+"values": [9]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -341,6 +522,54 @@ tracks/4/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [0.0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("FaceScale/Face:offset")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.05),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(3, -10), Vector2(1, -10)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("FaceScale/Face:rotation")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("FaceScale/Face:frame")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [9]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("FaceScale/Face:scale")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_bvb18"]
@@ -396,6 +625,54 @@ tracks/3/keys = {
 "update": 0,
 "values": [Vector2(0, -10)]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("FaceScale/Face:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.3, 0.45),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("FaceScale/Face:scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.1, 0.9)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("FaceScale/Face:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("FaceScale/Face:offset")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -10)]
+}
 
 [sub_resource type="Animation" id="Animation_276on"]
 resource_name = "Jump_end"
@@ -408,10 +685,10 @@ tracks/0/path = NodePath("SpriteScale/Skin:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.3),
-"transitions": PackedFloat32Array(1, 1, 2),
+"times": PackedFloat32Array(0, 0.1, 0.14, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 2),
 "update": 0,
-"values": [Vector2(0.7, 1.3), Vector2(1.5, 0.5), Vector2(1, 1)]
+"values": [Vector2(1, 1), Vector2(1.5, 0.5), Vector2(1.5, 0.5), Vector2(1, 1)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -473,6 +750,42 @@ tracks/5/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("FaceScale/Face:frame")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.06, 0.21, 0.25, 0.35),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 0]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("FaceScale/Face:scale")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.14, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 2),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.5, 0.5), Vector2(1.5, 0.5), Vector2(1, 1)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("FaceScale/Face:offset")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 0.04, 0.21, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, -10), Vector2(0, -12), Vector2(0, -8), Vector2(0, -10)]
+}
 
 [sub_resource type="Animation" id="Animation_4vvs2"]
 resource_name = "Jump_start"
@@ -485,10 +798,10 @@ tracks/0/path = NodePath("SpriteScale/Skin:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.05, 0.2, 0.35, 0.55),
-"transitions": PackedFloat32Array(1, 1, 0.5, 0.5, 2),
+"times": PackedFloat32Array(0.05, 0.2, 0.55),
+"transitions": PackedFloat32Array(1, 0.5, 2),
 "update": 0,
-"values": [Vector2(1, 1), Vector2(1.2, 0.8), Vector2(0.5, 1.5), Vector2(1.2, 0.8), Vector2(1, 1)]
+"values": [Vector2(1.2, 0.8), Vector2(0.5, 1.5), Vector2(1, 1)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -497,10 +810,10 @@ tracks/1/path = NodePath("SpriteScale/Skin:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1),
+"times": PackedFloat32Array(0, 0.05),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [14, 12]
+"values": [14, 10]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -525,6 +838,42 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [0.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("FaceScale/Face:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.05, 0.2, 0.55),
+"transitions": PackedFloat32Array(1, 0.5, 2),
+"update": 0,
+"values": [Vector2(1.2, 0.8), Vector2(0.5, 1.5), Vector2(1, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("FaceScale/Face:frame")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.05),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [14, 10]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("FaceScale/Face:offset")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, -10), Vector2(0, -5), Vector2(0, -8)]
 }
 
 [sub_resource type="Animation" id="Animation_7e543"]
@@ -637,6 +986,42 @@ tracks/8/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("FaceScale/Face:visible")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("FaceScale/Face:frame")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [9]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("FaceScale/Face:offset")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, -10)]
+}
 
 [sub_resource type="Animation" id="Animation_vrfdg"]
 resource_name = "Walking"
@@ -674,6 +1059,42 @@ tracks/2/path = NodePath("SpriteScale/Skin:offset")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -10)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("FaceScale/Face:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.06, 0.12, 0.18, 0.24, 0.3, 0.36),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [14, 15, 16, 17, 18, 19, 20]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("FaceScale/Face:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.11, 0.22, 0.33),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.1, 0.9), Vector2(1, 1), Vector2(1.1, 0.9)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("FaceScale/Face:offset")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
@@ -747,17 +1168,32 @@ tracks/4/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_q4730"]
 _data = {
-"Double_jump": SubResource("Animation_6wr3w"),
-"Double_jump_backwards": SubResource("Animation_qs22r"),
-"Explode": SubResource("Animation_03scs"),
-"Falling": SubResource("Animation_pcg1u"),
-"Hurt": SubResource("Animation_gwcdw"),
-"Idle": SubResource("Animation_bvb18"),
-"Jump_end": SubResource("Animation_276on"),
-"Jump_start": SubResource("Animation_4vvs2"),
-"RESET": SubResource("Animation_7e543"),
-"Walking": SubResource("Animation_vrfdg"),
-"Wall": SubResource("Animation_sxyh1")
+&"Double_jump": SubResource("Animation_6wr3w"),
+&"Double_jump_backwards": SubResource("Animation_qs22r"),
+&"Explode": SubResource("Animation_03scs"),
+&"Falling": SubResource("Animation_pcg1u"),
+&"Hurt": SubResource("Animation_gwcdw"),
+&"Idle": SubResource("Animation_bvb18"),
+&"Jump_end": SubResource("Animation_276on"),
+&"Jump_start": SubResource("Animation_4vvs2"),
+&"RESET": SubResource("Animation_7e543"),
+&"Walking": SubResource("Animation_vrfdg"),
+&"Wall": SubResource("Animation_sxyh1")
+}
+
+[sub_resource type="Animation" id="Animation_4fdps"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpriteScale/Skin:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_spioy"]
@@ -776,30 +1212,14 @@ tracks/0/keys = {
 "values": [true, false, true, false, true, false, true, false, true, false, true]
 }
 
-[sub_resource type="Animation" id="Animation_4fdps"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("SpriteScale/Skin:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_hw376"]
 _data = {
-"RESET": SubResource("Animation_4fdps"),
-"standard": SubResource("Animation_spioy")
+&"RESET": SubResource("Animation_4fdps"),
+&"standard": SubResource("Animation_spioy")
 }
 
 [sub_resource type="Curve" id="Curve_6qwu5"]
-min_value = 2.0
-max_value = 6.0
+_limits = [2.0, 6.0, 0.0, 1.0]
 _data = [Vector2(0, 2), 0.0, 8.10594, 0, 0, Vector2(0.749164, 6), 0.0, 0.0, 0, 0]
 point_count = 2
 
@@ -808,7 +1228,7 @@ offsets = PackedFloat32Array(0, 0.900369)
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 
 [sub_resource type="Curve" id="Curve_eqafr"]
-max_value = 2.0
+_limits = [0.0, 2.0, 0.0, 1.0]
 _data = [Vector2(0.00334448, 0.361373), 0.0, 4.29922, 0, 0, Vector2(0.505017, 0.950202), -0.145319, -0.145319, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 3
 
@@ -860,13 +1280,31 @@ scale_min = 0.5
 scale_curve = SubResource("CurveTexture_wluxv")
 color_ramp = SubResource("GradientTexture1D_g2p0p")
 
+[sub_resource type="Gradient" id="Gradient_uelv4"]
+offsets = PackedFloat32Array(0, 0.835391)
+colors = PackedColorArray(1, 1, 1, 1, 0.64, 0.766, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_fv0wu"]
+gradient = SubResource("Gradient_uelv4")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_p4uo4"]
+particle_flag_disable_z = true
+angle_min = -45.0
+angle_max = -45.0
+direction = Vector3(0, -1, 0)
+initial_velocity_min = 80.0
+initial_velocity_max = 100.0
+gravity = Vector3(0, 250, 0)
+scale_max = 2.0
+color_ramp = SubResource("GradientTexture1D_fv0wu")
+
 [node name="Player1" type="CharacterBody2D" groups=["Player"]]
 collision_layer = 24
-collision_mask = 121
+collision_mask = 225
 floor_stop_on_slope = false
 floor_max_angle = 1.48353
 floor_snap_length = 5.0
-platform_floor_layers = 4294967287
+platform_floor_layers = 4294967159
 safe_margin = 0.01
 script = ExtResource("1_w83gu")
 
@@ -876,15 +1314,29 @@ position = Vector2(0, -8)
 [node name="Skin" type="Sprite2D" parent="SpriteScale"]
 material = SubResource("ShaderMaterial_ikdg5")
 position = Vector2(0, 8)
-texture = ExtResource("3_1kjrj")
+texture = ExtResource("3_vafrv")
 offset = Vector2(0, -10)
 hframes = 7
 vframes = 4
 
+[node name="FaceTransform" type="RemoteTransform2D" parent="SpriteScale"]
+remote_path = NodePath("../../FaceScale/Face")
+use_global_coordinates = false
+update_scale = false
+
+[node name="FaceScale" type="Node2D" parent="."]
+
+[node name="Face" type="Sprite2D" parent="FaceScale"]
+texture = ExtResource("4_odttn")
+offset = Vector2(1, -10)
+hframes = 7
+vframes = 4
+frame = 9
+
 [node name="WorldCol" type="CollisionShape2D" parent="."]
-position = Vector2(-3.52264e-06, -8)
+position = Vector2(0, -7)
 rotation = 1.5708
-shape = SubResource("CapsuleShape2D_f02j8")
+shape = SubResource("CapsuleShape2D_vafrv")
 
 [node name="AttackArea" type="Area2D" parent="WorldCol"]
 position = Vector2(8, -2.89599e-05)
@@ -894,50 +1346,116 @@ collision_mask = 4
 priority = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WorldCol/AttackArea"]
-position = Vector2(0, -1)
+position = Vector2(2.18279e-11, -1)
 shape = SubResource("RectangleShape2D_uid3g")
 debug_color = Color(0.7, 0, 0.0484317, 0.42)
 
-[node name="InteractRange" type="Area2D" parent="WorldCol"]
-position = Vector2(8, -2.89599e-05)
+[node name="InteractRangeX" type="Area2D" parent="WorldCol"]
+visible = false
 rotation = -1.5708
 collision_layer = 0
-collision_mask = 3
+collision_mask = 19
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldCol/InteractRange"]
-position = Vector2(0, -8)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldCol/InteractRangeX"]
 rotation = 1.5708
-shape = SubResource("CapsuleShape2D_x4vlo")
+shape = SubResource("RectangleShape2D_uelv4")
 debug_color = Color(1, 0.7365, 0.49, 0.133333)
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="WorldCol/InteractRange"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="WorldCol/InteractRangeX"]
 visible = false
 position = Vector2(3.8147e-06, -8)
 scale = Vector2(1.1, 1.1)
 polygon = PackedVector2Array(1.81818, 9.09091, -10, 9, -10, -9, 10, -9, 10, 9, 2.72727, 9, -2.6549e-07, 7, 8, 7, 8, -7, -8, -7, -8, 7, -1, 7)
 disabled = true
 
-[node name="RigidBody2D" type="RigidBody2D" parent="WorldCol"]
+[node name="InteractRangeY" type="Area2D" parent="WorldCol"]
+visible = false
+collision_layer = 0
+collision_mask = 19
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldCol/InteractRangeY"]
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_uelv4")
+debug_color = Color(1, 0.7365, 0.49, 0.133333)
+
+[node name="Deprecated" type="RigidBody2D" parent="WorldCol"]
 collision_layer = 8
 collision_mask = 8
 gravity_scale = 0.0
 contact_monitor = true
 max_contacts_reported = 5
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldCol/RigidBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldCol/Deprecated"]
 visible = false
 shape = SubResource("CapsuleShape2D_ajpbi")
 disabled = true
 debug_color = Color(0.443304, 0, 0.7, 0.42)
 
+[node name="Headbounce" type="Area2D" parent="WorldCol"]
+visible = false
+collision_layer = 0
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldCol/Headbounce"]
+position = Vector2(-8, 2.89599e-05)
+shape = SubResource("RectangleShape2D_odttn")
+disabled = true
+debug_color = Color(0.0391195, 0.540732, 0, 0.42)
+
+[node name="WallChecksDEP" type="Node2D" parent="WorldCol"]
+visible = false
+position = Vector2(1, -7.14263e-06)
+
+[node name="Right" type="Area2D" parent="WorldCol/WallChecksDEP"]
+position = Vector2(-3.25799e-05, -9)
+collision_layer = 0
+collision_mask = 65
+
+[node name="Shape" type="CollisionShape2D" parent="WorldCol/WallChecksDEP/Right"]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_lt3sm")
+disabled = true
+
+[node name="Left" type="Area2D" parent="WorldCol/WallChecksDEP"]
+position = Vector2(3.25799e-05, 9)
+collision_layer = 0
+collision_mask = 65
+
+[node name="Shape" type="CollisionShape2D" parent="WorldCol/WallChecksDEP/Left"]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_vafrv")
+disabled = true
+
+[node name="a" type="RayCast2D" parent="WorldCol/WallChecksDEP"]
+position = Vector2(-2, 7.23998e-06)
+target_position = Vector2(-4.00543e-05, -11)
+
+[node name="b" type="RayCast2D" parent="WorldCol/WallChecksDEP"]
+position = Vector2(3, -1.086e-05)
+target_position = Vector2(-4.00543e-05, -11)
+
+[node name="Forehead" type="AnimatableBody2D" parent="WorldCol"]
+visible = false
+position = Vector2(-4, 1.448e-05)
+rotation = -1.5708
+collision_layer = 128
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldCol/Forehead"]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_p4uo4")
+one_way_collision = true
+one_way_collision_margin = 5.0
+debug_color = Color(1, 0.963864, 0.282975, 0.42)
+
 [node name="StatePlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_q4730")
+&"": SubResource("AnimationLibrary_q4730")
 }
 
 [node name="Inv" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_hw376")
+&"": SubResource("AnimationLibrary_hw376")
 }
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -996,9 +1514,9 @@ script = ExtResource("3_7ddyx")
 [node name="Pow" type="CPUParticles2D" parent="."]
 emitting = false
 amount = 1
+texture = ExtResource("5_w4n7e")
 lifetime = 0.1
 one_shot = true
-texture = ExtResource("5_w4n7e")
 direction = Vector2(0, 0)
 gravity = Vector2(0, 0)
 scale_amount_curve = SubResource("Curve_eqafr")
@@ -1025,16 +1543,30 @@ color_ramp = SubResource("Gradient_rs7by")
 emitting = false
 amount = 1
 sub_emitter = NodePath("Splode2")
-process_material = SubResource("ParticleProcessMaterial_ygovv")
 texture = ExtResource("7_cahs5")
 lifetime = 2.0
 one_shot = true
 explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_ygovv")
 
 [node name="Splode2" type="GPUParticles2D" parent="Splode"]
 emitting = false
 amount = 16
-process_material = SubResource("ParticleProcessMaterial_uh1mp")
 texture = ExtResource("8_ehot8")
 one_shot = true
 explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_uh1mp")
+
+[node name="ForeheadTransform" type="RemoteTransform2D" parent="."]
+position = Vector2(0, -11)
+remote_path = NodePath("../WorldCol/Forehead")
+
+[node name="Sweat" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 3
+texture = ExtResource("10_odttn")
+lifetime = 0.5
+one_shot = true
+speed_scale = 1.2
+explosiveness = 0.7
+process_material = SubResource("ParticleProcessMaterial_p4uo4")

@@ -1,0 +1,80 @@
+[gd_scene load_steps=9 format=3 uid="uid://b1pkyb31c72rd"]
+
+[ext_resource type="Script" uid="uid://b10yvhkaw36um" path="res://chicklet.gd" id="1_f1r28"]
+[ext_resource type="Texture2D" uid="uid://bsi10h6sjv0t3" path="res://art/player/chicklet.png" id="2_yjinu"]
+[ext_resource type="Texture2D" uid="uid://cw8fa6fjpc25r" path="res://art/effects/1up.png" id="3_yjinu"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_oydyy"]
+radius = 4.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f1r28"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_oydyy"]
+particles_animation = true
+particles_anim_h_frames = 3
+particles_anim_v_frames = 1
+particles_anim_loop = true
+
+[sub_resource type="Curve" id="Curve_ku2qu"]
+_data = [Vector2(0.00336701, 0.991096), 0.0, 0.0, 0, 0, Vector2(0.670034, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.00273967), -6.80019, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_yjinu"]
+particles_animation = true
+particles_anim_h_frames = 2
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[node name="Chicklet" type="CharacterBody2D"]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_f1r28")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_yjinu")
+offset = Vector2(0, -8)
+hframes = 2
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 9
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -4)
+shape = SubResource("CircleShape2D_oydyy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_f1r28")
+disabled = true
+
+[node name="1up" type="CPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_oydyy")
+emitting = false
+amount = 1
+texture = ExtResource("3_yjinu")
+lifetime = 1.5
+one_shot = true
+direction = Vector2(0, -1)
+spread = 0.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 50.0
+initial_velocity_max = 50.0
+damping_min = 50.0
+damping_max = 50.0
+scale_amount_curve = SubResource("Curve_ku2qu")
+anim_speed_min = 5.0
+anim_speed_max = 5.0
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_yjinu")
+emitting = false
+amount = 1
+texture = ExtResource("2_yjinu")
+lifetime = 3.0
+one_shot = true
+direction = Vector2(0, -1)
+gravity = Vector2(0, 240)
+initial_velocity_min = 80.0
+initial_velocity_max = 120.0
+angular_velocity_min = -2000.0
+angular_velocity_max = 2000.0
