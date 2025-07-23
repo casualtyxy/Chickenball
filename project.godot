@@ -45,6 +45,15 @@ window/stretch/mode="canvas_items"
 mouse_cursor/custom_image="uid://b74wj4hs3ktw6"
 mouse_cursor/tooltip_position_offset=Vector2(20, 20)
 
+[file_customization]
+
+folder_colors={
+"res://art/": "yellow",
+"res://audio/": "orange",
+"res://player/": "gray",
+"res://scenes/": "green"
+}
+
 [global_group]
 
 Item=""
@@ -59,6 +68,7 @@ LotusBall=""
 Durian=""
 Squishable=""
 Food="Players increase size when eating this"
+BeetleFood=""
 
 [gui]
 

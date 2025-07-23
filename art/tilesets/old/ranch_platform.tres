@@ -1,10 +1,11 @@
-[gd_resource type="TileSet" load_steps=75 format=3 uid="uid://dk0epobpv3106"]
+[gd_resource type="TileSet" load_steps=76 format=3 uid="uid://dk0epobpv3106"]
 
 [ext_resource type="PackedScene" uid="uid://dkevavr6l6slt" path="res://scenes/items/farm/seed.tscn" id="1_mwu22"]
 [ext_resource type="PackedScene" uid="uid://ct16v3mhvbgsr" path="res://scenes/items/farm/blackberry.tscn" id="2_6ipp4"]
 [ext_resource type="Texture2D" uid="uid://r3mqe8ebokdc" path="res://art/tilesets/old/ranch_platformer.png" id="2_lnhy0"]
 [ext_resource type="PackedScene" uid="uid://dvdgpt1phfpps" path="res://scenes/items/farm/raspberry.tscn" id="3_5ipv1"]
 [ext_resource type="PackedScene" uid="uid://tv0fdcatn3mq" path="res://scenes/terrain/softblock.tscn" id="4_63uis"]
+[ext_resource type="PackedScene" uid="uid://vbrglt1f4r3b" path="res://scenes/terrain/beetle_food.tscn" id="4_l5dud"]
 [ext_resource type="PackedScene" uid="uid://dpphylf7cbyvq" path="res://scenes/terrain/dispenser.tscn" id="5_8el5s"]
 [ext_resource type="Material" uid="uid://ba448ke4q04o3" path="res://shader_presets/bottom_grass.tres" id="6_7n6d7"]
 [ext_resource type="Texture2D" uid="uid://b4ea78a2bp7c7" path="res://art/tilesets/old/ranch_platformer_2.png" id="8_h3xfe"]
@@ -14,6 +15,7 @@ resource_name = "Items"
 scenes/1/scene = ExtResource("1_mwu22")
 scenes/2/scene = ExtResource("2_6ipp4")
 scenes/3/scene = ExtResource("3_5ipv1")
+scenes/4/scene = ExtResource("4_l5dud")
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_y2imq"]
 resource_name = "Softblocks"

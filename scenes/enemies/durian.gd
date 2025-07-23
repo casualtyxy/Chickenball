@@ -24,7 +24,7 @@ func _ready() -> void:
 		$Spin.play_backwards("default")
 	$Timer.timeout.connect(on_timeout) ##Uncomment for homing
 	$Timer.start(5)
-	speed = randi_range(40, 100) * 2
+	#speed = randi_range(40, 100) * 2
 	
 	body_entered.connect(_on_body_entered)
 	
@@ -41,6 +41,9 @@ func find_closest_player():
 func set_direction(xy: Vector2): #Should be called by whatever fired it, due to position screwy-ness when adding to the tree
 	#direction = (global_position - player.global_position).normalized()
 	direction = xy
+func set_speed(speed_in: float):
+	if speed_in > 0: #passing a negative will do nothing
+		speed = speed_in
 
 func _on_body_entered(body: Node2D):
 	if body is CharacterBody2D:

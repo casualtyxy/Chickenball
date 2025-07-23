@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dt6ofl6hv42br"
-path="res://.godot/imported/wallbeetle.png-0e14984f22377ba4ae5554cb03d7218d.ctex"
+uid="uid://3mwh7ooyljmn"
+path="res://.godot/imported/durian_juice.png-0e5f899beddc27581269206920f4c2fc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/enemies/wallbeetle.png"
-dest_files=["res://.godot/imported/wallbeetle.png-0e14984f22377ba4ae5554cb03d7218d.ctex"]
+source_file="res://art/enemies/durian/durian_juice.png"
+dest_files=["res://.godot/imported/durian_juice.png-0e5f899beddc27581269206920f4c2fc.ctex"]
 
 [params]
 

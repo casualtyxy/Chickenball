@@ -1,0 +1,290 @@
+[gd_scene load_steps=22 format=3 uid="uid://dnpt33hyexjoi"]
+
+[ext_resource type="Shader" uid="uid://hhpnougxownw" path="res://scenes/enemies/white.gdshader" id="1_gb8x5"]
+[ext_resource type="Script" uid="uid://45ts88qdxtpw" path="res://scenes/enemies/physics_durian.gd" id="2_gb8x5"]
+[ext_resource type="Texture2D" uid="uid://c0607lx7mfmyk" path="res://art/enemies/durian1.png" id="3_wvylo"]
+[ext_resource type="PackedScene" uid="uid://pgygsfbf3prg" path="res://processing/pause_module.tscn" id="5_ewehj"]
+[ext_resource type="Texture2D" uid="uid://dm2tj6myvkb5g" path="res://art/enemies/durian/durian_chunk.png" id="6_o3okh"]
+[ext_resource type="Texture2D" uid="uid://3mwh7ooyljmn" path="res://art/enemies/durian/durian_juice.png" id="7_ewehj"]
+[ext_resource type="Texture2D" uid="uid://bkwng65ov7jir" path="res://art/enemies/durian/durian_stink.png" id="8_j5jxu"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wt72t"]
+shader = ExtResource("1_gb8x5")
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/flash_value = 0.0
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_gb8x5"]
+bounce = 0.7
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_oul3w"]
+radius = 9.0
+
+[sub_resource type="Animation" id="Animation_b1v7e"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:use_parent_material")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:material:shader_parameter/flash_value")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Sprite2D:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Particles/Chunks:emitting")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Particles/Globs:emitting")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Particles/Stink:emitting")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_wvylo"]
+resource_name = "burst"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Particles/Chunks:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Particles/Globs:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Particles/Stink:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_iiadi"]
+_data = {
+&"RESET": SubResource("Animation_b1v7e"),
+&"burst": SubResource("Animation_wvylo")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ordne"]
+radius = 11.0
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_6i8ur"]
+particle_flag_disable_z = true
+direction = Vector3(0, -1, 0)
+spread = 180.0
+initial_velocity_min = 50.0
+initial_velocity_max = 80.0
+angular_velocity_min = 150.0
+angular_velocity_max = 250.0
+gravity = Vector3(0, 250, 0)
+
+[sub_resource type="Curve" id="Curve_wvylo"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -3.25497, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_o3okh"]
+curve = SubResource("Curve_wvylo")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_rov1g"]
+particle_flag_disable_z = true
+emission_shape_offset = Vector3(0, 8, 0)
+direction = Vector3(0, -1, 0)
+spread = 30.0
+initial_velocity_min = 50.0
+initial_velocity_max = 220.0
+angular_velocity_min = -10.0
+angular_velocity_max = 9.99998
+gravity = Vector3(0, 250, 0)
+scale_curve = SubResource("CurveTexture_o3okh")
+
+[sub_resource type="Gradient" id="Gradient_bfam3"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_oia23"]
+gradient = SubResource("Gradient_bfam3")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_q2hnr"]
+particle_flag_disable_z = true
+initial_velocity_min = -20.0
+initial_velocity_max = 20.0
+gravity = Vector3(0, -40, 0)
+color = Color(1, 1, 1, 0.509804)
+color_ramp = SubResource("GradientTexture1D_oia23")
+hue_variation_min = -0.02
+hue_variation_max = -2.23517e-08
+
+[node name="Durian" type="RigidBody2D" groups=["Durian"]]
+z_index = 1
+y_sort_enabled = true
+material = SubResource("ShaderMaterial_wt72t")
+collision_layer = 4
+collision_mask = 109
+physics_material_override = SubResource("PhysicsMaterial_gb8x5")
+contact_monitor = true
+max_contacts_reported = 1
+script = ExtResource("2_gb8x5")
+durability = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+light_mask = 2
+texture = ExtResource("3_wvylo")
+hframes = 3
+
+[node name="WorldCol" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_oul3w")
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="AnimPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_iiadi")
+}
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+
+[node name="Pause_Module" parent="." instance=ExtResource("5_ewehj")]
+
+[node name="Redzone" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 12
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Redzone"]
+shape = SubResource("CircleShape2D_ordne")
+debug_color = Color(0.7, 0, 0.0811177, 0.42)
+
+[node name="Particles" type="Node2D" parent="."]
+
+[node name="Chunks" type="GPUParticles2D" parent="Particles"]
+emitting = false
+amount = 2
+texture = ExtResource("6_o3okh")
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_6i8ur")
+
+[node name="Globs" type="GPUParticles2D" parent="Particles"]
+emitting = false
+texture = ExtResource("7_ewehj")
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_rov1g")
+
+[node name="Stink" type="GPUParticles2D" parent="Particles"]
+emitting = false
+amount = 14
+texture = ExtResource("8_j5jxu")
+lifetime = 1.5
+one_shot = true
+explosiveness = 0.6
+randomness = 0.1
+process_material = SubResource("ParticleProcessMaterial_q2hnr")

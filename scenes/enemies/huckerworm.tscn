@@ -1,9 +1,9 @@
 [gd_scene load_steps=23 format=3 uid="uid://2r1c64mroptw"]
 
-[ext_resource type="Script" path="res://scenes/enemies/huckerworm.gd" id="1_675u0"]
-[ext_resource type="Shader" path="res://scenes/enemies/white.gdshader" id="1_sheuh"]
+[ext_resource type="Script" uid="uid://cf27h4l2om7rn" path="res://scenes/enemies/huckerworm.gd" id="1_675u0"]
+[ext_resource type="Shader" uid="uid://hhpnougxownw" path="res://scenes/enemies/white.gdshader" id="1_sheuh"]
 [ext_resource type="Animation" uid="uid://dvgnggt45h8s2" path="res://scenes/enemies/explode.res" id="3_37u57"]
-[ext_resource type="Texture2D" uid="uid://oe1t2hof3tn7" path="res://art/enemies/WormBullet.png" id="3_55gha"]
+[ext_resource type="Texture2D" uid="uid://oe1t2hof3tn7" path="res://art/enemies/gummyworm/WormBullet.png" id="3_55gha"]
 [ext_resource type="AudioStream" uid="uid://chwc41j0peo3y" path="res://audio/sounds/Inflate.wav" id="4_gup8g"]
 [ext_resource type="AudioStream" uid="uid://cspmh8mbkqtgt" path="res://audio/sounds/ExplosionShort.wav" id="4_l3nc7"]
 [ext_resource type="Texture2D" uid="uid://xhkl2ycpi0sw" path="res://art/enemies/Gummyworm.png" id="4_mycog"]

@@ -9,3 +9,8 @@ func _when_pausing_game(is_paused: bool):
 		get_parent().process_mode = PROCESS_MODE_DISABLED
 	else:
 		get_parent().process_mode = PROCESS_MODE_INHERIT
+
+# Ensures durians and other stuff that spawn after a pause wont continue to process (how is that even happening)
+func _process(delta: float) -> void:
+	if GlobalVar.paused:
+		get_parent().process_mode = Node.PROCESS_MODE_DISABLED

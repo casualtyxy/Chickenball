@@ -90,10 +90,10 @@ libraries = {
 }
 
 [node name="DetectionArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 12
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
 position = Vector2(0, -23)
 shape = SubResource("RectangleShape2D_3rvmk")
 debug_color = Color(0.00492518, 0.7, 0, 0.42)
-
-[node name="Timer" type="Timer" parent="."]

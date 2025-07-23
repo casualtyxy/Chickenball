@@ -567,7 +567,7 @@ func hurt():
 func knockout(): #dedicated "death" handler
 	set_collision_layer_value(4, false) #disables player-on-player col
 	set_collision_layer_value(5, false) #disables camera tracking
-	$WorldCol/AttackArea/CollisionShape2D.disabled = true
+	$WorldCol/AttackArea/CollisionShape2D.set_deferred("disabled", true)
 	current_state = states.DEAD #Must be placed above signal so the player_setup can count dead players right
 	GlobalVar.player_died.emit()
 	sfx.play_sound("explode")

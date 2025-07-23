@@ -91,8 +91,8 @@ bus = &"Music"
 visible = false
 
 [node name="Shading" type="PointLight2D" parent="."]
-position = Vector2(6335.5, 456)
-scale = Vector2(102.758, 1.125)
+position = Vector2(12539.5, 456)
+scale = Vector2(199.695, 1.125)
 blend_mode = 1
 texture = SubResource("GradientTexture2D_68rtg")
 

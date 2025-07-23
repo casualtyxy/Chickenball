@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://xhmb6bavx7ir"]
+
+[ext_resource type="Script" uid="uid://d4bj0hurtnca8" path="res://spawn_pos_debug.gd" id="1_4anwb"]
+[ext_resource type="Texture2D" uid="uid://cehsb0rptr1ix" path="res://art/items/buttons.png" id="2_xjnxa"]
+
+[node name="SpawnPosDebug" type="Node2D"]
+script = ExtResource("1_4anwb")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = 3.14159
+texture = ExtResource("2_xjnxa")
+hframes = 4
+frame = 2

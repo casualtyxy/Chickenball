@@ -1,13 +1,15 @@
 extends Node
 
-var config = ConfigFile.new()
 const SETTINGS_FILE_PATH = "user://settings.ini"
+var config = ConfigFile.new()
+var volume_music
+var volume_sound
 
 func _ready() -> void:
 	if !FileAccess.file_exists(SETTINGS_FILE_PATH):
-		#config.set_value("Volume", "sound", 0.5)
-		#config.set_value("Volume", "music", 0.5)
-		#config.set_value("Volume", "ambient", 0.5)
+		config.set_value("volume", "sound", 0.5)
+		config.set_value("volume", "music", 0.5)
+		#config.set_value("volume", "ambient", 0.5)
 		
 		config.save(SETTINGS_FILE_PATH)
 	else:
@@ -16,7 +18,7 @@ func _ready() -> void:
 func save_example_settings(key: String, value):
 	config.set_value("example", key, value)
 	config.save(SETTINGS_FILE_PATH)
-func load_example_settings():
+func load_example_settings() -> Dictionary: #if breaks, remove "-> dictionary", learning to code with strong structure
 	var example_settings = {}
 	for key in config.get_section_keys("example"):
 		example_settings[key] = config.get_value("example", key)
@@ -25,11 +27,16 @@ func load_example_settings():
 #############
 
 func save_volume_settings():
-	#config.set_value("volume", "sound", volume_sound)
-	#config.set_value("volume", "music", volume_music)
-	pass
+	config.set_value("volume", "sound", volume_sound)
+	config.set_value("volume", "music", volume_music)
 
-#############
+func load_volume_settings() -> Dictionary:
+	var volume_settings = {}
+	for key in config.get_section_keys("volume"):
+		volume_settings[key] = config.get_value("volume", key)
+	return volume_settings
+
+############# PROLLY WONT USE AFTER ALL
 
 func save_keybind(action: StringName, event: InputEvent, player_to_assign: int): #player to assign will be the device id for now
 	var event_str

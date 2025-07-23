@@ -1,8 +1,8 @@
 [gd_scene load_steps=23 format=3 uid="uid://c4pn5qoxahlb2"]
 
 [ext_resource type="Script" uid="uid://dtpclhwecblvu" path="res://scenes/enemies/ground_beetle_floor_type.gd" id="1_bfbju"]
-[ext_resource type="Texture2D" uid="uid://cxy2m2f4a2i4k" path="res://art/enemies/groundbeetle2.png" id="2_3m5it"]
-[ext_resource type="Texture2D" uid="uid://dt6ofl6hv42br" path="res://art/enemies/wallbeetle.png" id="3_gn7dq"]
+[ext_resource type="Texture2D" uid="uid://cxy2m2f4a2i4k" path="res://art/enemies/beetles/groundbeetle2.png" id="2_3m5it"]
+[ext_resource type="Texture2D" uid="uid://dt6ofl6hv42br" path="res://art/enemies/beetles/wallbeetle.png" id="3_gn7dq"]
 [ext_resource type="PackedScene" uid="uid://pgygsfbf3prg" path="res://processing/pause_module.tscn" id="4_1s3ib"]
 [ext_resource type="AudioStream" uid="uid://dhl1mi3hlwsgi" path="res://audio/sounds/enemies/doinklow.wav" id="5_aak0w"]
 
@@ -130,7 +130,7 @@ size = Vector2(5, 20)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n4vpt"]
 size = Vector2(9, 20)
 
-[node name="FloorBeetle" type="CharacterBody2D"]
+[node name="GrndBtle" type="CharacterBody2D" groups=["Squishable"]]
 collision_layer = 4
 collision_mask = 97
 floor_constant_speed = true
@@ -180,7 +180,7 @@ debug_color = Color(0.7, 0.432241, 0, 0.42)
 
 [node name="attackarea" type="Area2D" parent="."]
 collision_layer = 4
-collision_mask = 8
+collision_mask = 12
 
 [node name="Shape" type="CollisionShape2D" parent="attackarea"]
 position = Vector2(-1.99676e-06, -4.5)

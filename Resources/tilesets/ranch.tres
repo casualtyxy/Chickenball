@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=16 format=3 uid="uid://30sdhqom4atb"]
+[gd_resource type="TileSet" load_steps=17 format=3 uid="uid://30sdhqom4atb"]
 
 [ext_resource type="Texture2D" uid="uid://iesmq1uglwqx" path="res://art/tilesets/ranch.png" id="1_7bl31"]
 [ext_resource type="Texture2D" uid="uid://djkynyxqffjgu" path="res://art/tilesets/ranch_slopes.png" id="2_x1fxi"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://dkevavr6l6slt" path="res://scenes/items/farm/seed.tscn" id="4_6lr8l"]
 [ext_resource type="PackedScene" uid="uid://ct16v3mhvbgsr" path="res://scenes/items/farm/blackberry.tscn" id="5_id300"]
 [ext_resource type="PackedScene" uid="uid://dvdgpt1phfpps" path="res://scenes/items/farm/raspberry.tscn" id="6_qojgg"]
+[ext_resource type="PackedScene" uid="uid://vbrglt1f4r3b" path="res://scenes/terrain/beetle_food.tscn" id="6_u17hh"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_622t7"]
 resource_name = "Solid"
@@ -100,19 +101,13 @@ texture_region_size = Vector2i(24, 24)
 7:6/0 = 0
 7:6/0/modulate = Color(0.635613, 0.570604, 0.642562, 1)
 8:6/0 = 0
-8:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(-12, -12, 12, -12, 12, 12, -12, 12)
+8:6/0/modulate = Color(0.635613, 0.570604, 0.642562, 1)
 7:7/0 = 0
 7:7/0/modulate = Color(0.635613, 0.570604, 0.642562, 1)
 6:7/0 = 0
 6:7/0/modulate = Color(0.635613, 0.570604, 0.642562, 1)
-7:8/0 = 0
-7:8/0/modulate = Color(0.635613, 0.570604, 0.642562, 1)
-8:8/0 = 0
-8:8/0/modulate = Color(0.635613, 0.570604, 0.642562, 1)
 8:7/0 = 0
 8:7/0/modulate = Color(0.635613, 0.570604, 0.642562, 1)
-6:8/0 = 0
-6:8/0/modulate = Color(0.635613, 0.570604, 0.642562, 1)
 5:8/0 = 0
 5:8/0/physics_layer_1/polygon_0/points = PackedVector2Array(-12, -12, 12, -12, 12, 0, -12, 0)
 5:8/0/physics_layer_1/polygon_0/one_way = true
@@ -180,6 +175,18 @@ texture_region_size = Vector2i(24, 24)
 8:1/0/texture_origin = Vector2i(-12, -12)
 4:2/0 = 0
 4:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-12, -12, 12, -12, 12, 12, -12, 12)
+9:7/0 = 0
+9:7/0/modulate = Color(0.635613, 0.570604, 0.642562, 1)
+9:6/0 = 0
+9:6/0/modulate = Color(0.635613, 0.570604, 0.642562, 1)
+9:5/0 = 0
+9:5/0/modulate = Color(0.635613, 0.570604, 0.642562, 1)
+9:4/0 = 0
+9:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-12, -12, 12, -12, 12, 12, -12, 12)
+6:8/0 = 0
+6:8/0/physics_layer_0/polygon_0/points = PackedVector2Array(-12, -12, 12, -12, 12, 12, -12, 12)
+7:8/0 = 0
+7:8/0/physics_layer_0/polygon_0/points = PackedVector2Array(-12, -12, 12, -12, 12, 12, -12, 12)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_37ois"]
 resource_name = "Solid Slopes"
@@ -214,7 +221,11 @@ texture_region_size = Vector2i(24, 24)
 12:0/0/texture_origin = Vector2i(-12, 0)
 12:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-12, -12, 36, 12, -12, 12)
 14:0/0 = 0
+14:0/0/physics_layer_1/polygon_0/points = PackedVector2Array(12, -12, 12, 12, -12, 12)
+14:0/0/physics_layer_1/polygon_0/one_way = true
 15:0/0 = 0
+15:0/0/physics_layer_1/polygon_0/points = PackedVector2Array(-12, -12, 12, 12, -12, 12)
+15:0/0/physics_layer_1/polygon_0/one_way = true
 0:1/0 = 0
 0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-12, -12, 12, -12, 12, 12)
 1:1/0 = 0
@@ -543,8 +554,6 @@ texture_region_size = Vector2i(24, 24)
 4:6/0/modulate = Color(0.635613, 0.570604, 0.642562, 1)
 5:6/0 = 0
 5:6/0/modulate = Color(0.635613, 0.570604, 0.642562, 1)
-8:6/0 = 0
-8:6/0/modulate = Color(0.635613, 0.570604, 0.642562, 1)
 0:7/0 = 0
 0:7/0/modulate = Color(0.635613, 0.570604, 0.642562, 1)
 1:7/0 = 0
@@ -575,6 +584,10 @@ texture_region_size = Vector2i(24, 24)
 5:9/0/modulate = Color(0.635613, 0.570604, 0.642562, 1)
 4:2/0 = 0
 4:2/0/modulate = Color(0.635613, 0.570604, 0.642562, 1)
+6:8/0 = 0
+6:8/0/modulate = Color(0.635613, 0.570604, 0.642562, 1)
+7:8/0 = 0
+7:8/0/modulate = Color(0.635613, 0.570604, 0.642562, 1)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_87yml"]
 resource_name = "passable slopes"
@@ -608,10 +621,6 @@ texture_region_size = Vector2i(24, 24)
 12:0/0 = 0
 12:0/0/texture_origin = Vector2i(-12, 0)
 12:0/0/modulate = Color(0.635613, 0.570604, 0.642562, 1)
-14:0/0 = 0
-14:0/0/modulate = Color(0.635613, 0.570604, 0.642562, 1)
-15:0/0 = 0
-15:0/0/modulate = Color(0.635613, 0.570604, 0.642562, 1)
 0:1/0 = 0
 0:1/0/modulate = Color(0.635613, 0.570604, 0.642562, 1)
 1:1/0 = 0
@@ -636,10 +645,6 @@ texture_region_size = Vector2i(24, 24)
 10:1/0/modulate = Color(0.635613, 0.570604, 0.642562, 1)
 13:1/0 = 0
 13:1/0/modulate = Color(0.635613, 0.570604, 0.642562, 1)
-14:1/0 = 0
-14:1/0/modulate = Color(0.635613, 0.570604, 0.642562, 1)
-15:1/0 = 0
-15:1/0/modulate = Color(0.635613, 0.570604, 0.642562, 1)
 0:2/size_in_atlas = Vector2i(2, 1)
 0:2/0 = 0
 0:2/0/texture_origin = Vector2i(-12, 0)
@@ -736,6 +741,7 @@ texture_region_size = Vector2i(24, 24)
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_6lr8l"]
 resource_name = "Blocks & Items"
 scenes/1/scene = ExtResource("3_7bl31")
+scenes/2/scene = ExtResource("6_u17hh")
 scenes/3/scene = ExtResource("4_6lr8l")
 scenes/4/scene = ExtResource("5_id300")
 scenes/5/scene = ExtResource("6_qojgg")

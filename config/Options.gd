@@ -9,22 +9,22 @@ var volume_sound = 1
 var volume_music = 1
 var volume_ambient = 1
 
-func loadData():
-	var optionsFile = ConfigFile.new()
-	
-	var status = optionsFile.load("user://%s" % CONFIG_FILENAME)
-	
-	if status == OK:
-		
-		display_onscreen_controls = optionsFile.get_value("Preferences", "mobileControls")
-		volume_sound = optionsFile.get_value("Volume", "sound")
-		volume_music = optionsFile.get_value("Volume", "music")
-		volume_ambient = optionsFile.get_value("Volume", "ambient")
-	
-	print_debug("Attempted to load data")
-	print("loaded: volume " + str(volume_sound))
-	print("loaded: volume " + str(volume_music))
-	print("loaded: volume " + str(volume_ambient))
+#func loadData():
+	#var optionsFile = ConfigFile.new()
+	#
+	#var status = optionsFile.load("user://%s" % CONFIG_FILENAME)
+	#
+	#if status == OK:
+		#
+		#display_onscreen_controls = optionsFile.get_value("Preferences", "mobileControls")
+		#volume_sound = optionsFile.get_value("Volume", "sound")
+		#volume_music = optionsFile.get_value("Volume", "music")
+		#volume_ambient = optionsFile.get_value("Volume", "ambient")
+	#
+	#print_debug("Attempted to load data")
+	#print("loaded: volume " + str(volume_sound))
+	#print("loaded: volume " + str(volume_music))
+	#print("loaded: volume " + str(volume_ambient))
 
 func saveData():
 	var optionsFile = ConfigFile.new()
@@ -37,4 +37,5 @@ func saveData():
 	optionsFile.save("user://%s" % CONFIG_FILENAME)
 
 func _ready() -> void:
-	loadData()
+	#loadData()
+	pass

@@ -50,8 +50,17 @@ func disable_col():
 func _on_zone_entered():
 	has_ai = true
 	if link_ids.size() > 0:
-		for i in link_ids:
-			GlobalVar.ground_beetle_activate_link.emit(link_ids[i - 1])
+		for i in link_ids.size():
+			print_debug("Index is currently " + str(i))
+			GlobalVar.ground_beetle_activate_link.emit(link_ids[i])
+			print_debug("Activated beetle link to group ID " + str(link_ids[i]))
+
+func feeder():
+	var foodcheck = $attackarea.get_overlapping_bodies()
+	for i:Node2D in foodcheck:
+		if i.is_in_group("BeetleFood"):
+			i.queue_free()
+			scale += Vector2(0.2,0.2)
 
 func _physics_process(delta: float) -> void:
 	if has_ai:
@@ -70,6 +79,7 @@ func run_ai(delta: float) -> void:
 		$Sprite.flip_h = false
 	
 	raycast_checks()
+	feeder()
 	
 	move_and_slide()
 	
@@ -79,7 +89,7 @@ func run_ai(delta: float) -> void:
 	#
 	#previous_global_position = global_position
 
-func receive_signal(received_id: int):
+func receive_signal(received_id: int): #from globalvar activate link
 	if id > 0 and not has_ai:
 		if received_id == id:
 			_on_zone_entered()
